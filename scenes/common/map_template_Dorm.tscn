@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://b6nxt5uwh0cnj"]
+[gd_scene load_steps=6 format=3 uid="uid://dtdmw24g3xf70"]
 
 [ext_resource type="Texture2D" uid="uid://cyff2im8g5lli" path="res://scenes/common/Room_Builder_free_16x16.png" id="1_dcbt4"]
 [ext_resource type="Texture2D" uid="uid://c5awkqqlxkbh3" path="res://scenes/common/Interiors_free_16x16.png" id="2_fctt6"]
