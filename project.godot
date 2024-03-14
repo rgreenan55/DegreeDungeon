@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Degree Dungeon"
-run/main_scene="res://entities/player/Player.tscn"
+run/main_scene="res://entities/enemies/Enemy.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 run/max_fps=60
 

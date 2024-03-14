@@ -130,7 +130,7 @@ script = ExtResource("1_f30xf")
 position = Vector2(34, 24)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_0nkkh")
-animation = &"move_down"
+animation = &"idle"
 
 [node name="PlayerCollider" type="CollisionShape2D" parent="."]
 position = Vector2(34, 25)
