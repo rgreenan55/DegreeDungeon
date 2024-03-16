@@ -32,17 +32,7 @@ size_flags_vertical = 0
 [node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="HealthBar" type="TextureRect" parent="Control/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="HealthContainer" type="GridContainer" parent="Control/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
-
-[node name="HealthLabel" type="Label" parent="Control/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="EnergyBar" type="TextureRect" parent="Control/MarginContainer/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-
-[node name="EnergyLabel" type="Label" parent="Control/MarginContainer/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
+columns = 20

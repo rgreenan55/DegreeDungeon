@@ -1,30 +1,31 @@
 extends CanvasLayer
 class_name UI
 
-@onready var health_bar = $Control/MarginContainer/VBoxContainer/HBoxContainer/HealthBar
-@onready var health_label = $Control/MarginContainer/VBoxContainer/HBoxContainer/HealthLabel
-@onready var energy_bar = $Control/MarginContainer/VBoxContainer/HBoxContainer2/EnergyBar
-@onready var energy_label = $Control/MarginContainer/VBoxContainer/HBoxContainer2/EnergyLabel
+@onready var CoffeeGui = preload("res://ui/scenes/coffee_gui.tscn")
 
-var health = 100:
+
+@onready var health_container = %HealthContainer
+
+var health = 5:
 	set(new_health):
 		health = new_health
-		_update_health_label()
-		
-var energy = 100:
-	set(new_energy):
-		energy = new_energy
-		_update_health_label()
 		
 func _ready():
-	_update_health_label()
-		
-func _update_health_label():
-	health_label.text = str(health)
+	pass
 	
-func _update_energy_label():
-	energy_label.text = str(energy)
+func set_max_health(max: int):
+	for i in range(max):
+		var coffee = CoffeeGui.instantiate()
+		health_container.add_child(coffee)
+		
+func update_health(current_health: int):
+	if current_health < 0:
+		return
+	
+	var coffee_cups = health_container.get_children()
 
-# TODO:
-#	- Design the sprites for the health/energy bar
-#	- Map values of health/energy to specific animation sprites for the bars
+	for i in range(current_health):
+		coffee_cups[i].update(true)
+		
+	for i in range(current_health, coffee_cups.size()):
+		coffee_cups[i].update(false)
