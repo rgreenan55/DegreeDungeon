@@ -1,0 +1,19 @@
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://bv1ia5qyer18k"]
+
+[ext_resource type="FontFile" uid="uid://dr1xvankr2vyc" path="res://fonts/m3x6.ttf" id="1_taway"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2c78e"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t0kyw"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lf7yj"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[resource]
+default_font = ExtResource("1_taway")
+default_font_size = 60
+Button/styles/hover = SubResource("StyleBoxFlat_2c78e")
+Button/styles/normal = SubResource("StyleBoxFlat_t0kyw")
+Button/styles/pressed = SubResource("StyleBoxFlat_lf7yj")
