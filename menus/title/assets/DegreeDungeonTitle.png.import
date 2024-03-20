@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1q60nj8alqhu"
-path="res://.godot/imported/loose sprites.png-1f3cdd9817565daae9ab5aeaae9aef62.ctex"
+uid="uid://c5dcihw1vclu3"
+path="res://.godot/imported/DegreeDungeonTitle.png-74e37283e3f4d6d3221210f74c4ef3a6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/player/loose sprites.png"
-dest_files=["res://.godot/imported/loose sprites.png-1f3cdd9817565daae9ab5aeaae9aef62.ctex"]
+source_file="res://menus/title/assets/DegreeDungeonTitle.png"
+dest_files=["res://.godot/imported/DegreeDungeonTitle.png-74e37283e3f4d6d3221210f74c4ef3a6.ctex"]
 
 [params]
 
