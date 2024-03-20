@@ -12,7 +12,7 @@ script = ExtResource("1_m3ssa")
 
 [node name="Player" parent="." instance=ExtResource("2_hbgph")]
 z_index = 4
-position = Vector2(10, 15)
+position = Vector2(32, 46)
 scale = Vector2(0.667, 0.667)
 
 [node name="UI" parent="." instance=ExtResource("3_nvljr")]

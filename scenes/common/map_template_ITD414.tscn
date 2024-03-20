@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://ctbcvoya1ie4j"]
+[gd_scene load_steps=6 format=3 uid="uid://bfaxd8um1mdrb"]
 
 [ext_resource type="Texture2D" uid="uid://cyff2im8g5lli" path="res://scenes/common/Room_Builder_free_16x16.png" id="1_rg1ku"]
 [ext_resource type="Texture2D" uid="uid://c5awkqqlxkbh3" path="res://scenes/common/Interiors_free_16x16.png" id="2_fik31"]
@@ -4181,7 +4181,7 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_yy7cq")
 sources/1 = SubResource("TileSetAtlasSource_luey2")
 
-[node name="Node2D" type="Node2D"]
+[node name="Lab" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_8q60a")
