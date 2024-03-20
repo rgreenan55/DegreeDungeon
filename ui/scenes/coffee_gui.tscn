@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://hk3gwne0w781"]
+
+[ext_resource type="Texture2D" uid="uid://cqas02dljqthn" path="res://ui/assets/sprites/FOOD.png" id="1_g4fn3"]
+[ext_resource type="Script" path="res://ui/scenes/coffee_gui.gd" id="1_j0iox"]
+
+[node name="coffee_gui" type="Panel"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(36, 43)
+offset_right = 36.0
+offset_bottom = 43.0
+script = ExtResource("1_j0iox")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -7)
+scale = Vector2(2, 2)
+texture = ExtResource("1_g4fn3")
+centered = false
+hframes = 27
+vframes = 31
+frame = 164
