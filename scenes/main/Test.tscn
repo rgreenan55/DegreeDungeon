@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://gyo7c48qalkt"]
+[gd_scene load_steps=3 format=3 uid="uid://b6abrfeikcyrp"]
 
-[ext_resource type="PackedScene" uid="uid://urlec0li4vsi" path="res://scenes/common/map_template_GWC124.tscn" id="1_0us5t"]
+[ext_resource type="PackedScene" uid="uid://dp065tuqfglwl" path="res://scenes/common/map_template_GWC124.tscn" id="1_0us5t"]
 [ext_resource type="PackedScene" uid="uid://bu0mw60kso2sl" path="res://entities/player/Player.tscn" id="2_hbgph"]
 
 [node name="Test" type="Node2D"]
@@ -9,5 +9,5 @@
 
 [node name="Player" parent="." instance=ExtResource("2_hbgph")]
 z_index = 4
-position = Vector2(10, 15)
+position = Vector2(32, 46)
 scale = Vector2(0.667, 0.667)

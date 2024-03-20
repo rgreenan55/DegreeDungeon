@@ -369,19 +369,22 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ar8ad"]
+size = Vector2(15, 16.5)
 
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 53
 script = ExtResource("1_f30xf")
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -1)
-scale = Vector2(2, 2)
+scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_0nkkh")
 animation = &"idle_down"
-frame_progress = 0.1566
+frame_progress = 0.00270182
 
 [node name="PlayerCollider" type="CollisionShape2D" parent="."]
-position = Vector2(0, 10)
+position = Vector2(0, 5.25)
 shape = SubResource("RectangleShape2D_ar8ad")
 
 [node name="MeleeHit" type="Area2D" parent="."]

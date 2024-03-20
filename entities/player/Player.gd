@@ -10,7 +10,7 @@ var move_speed : float
 
 # On Player Load
 func _ready():
-	move_speed = 200
+	move_speed = 100
 	velocity = Vector2.ZERO
 
 # Regular Processes

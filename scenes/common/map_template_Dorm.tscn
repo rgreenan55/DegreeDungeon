@@ -15092,7 +15092,7 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_yy7cq")
 sources/1 = SubResource("TileSetAtlasSource_luey2")
 
-[node name="Node2D" type="Node2D"]
+[node name="DormTemplate" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_8q60a")
