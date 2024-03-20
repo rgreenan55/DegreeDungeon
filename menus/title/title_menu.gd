@@ -5,7 +5,8 @@ class_name TITLE_MENU
 
 # Start the game at the scene specified in starting_scene
 func _on_play_pressed():
-	get_tree().change_scene_to_packed(starting_scene)
+	GameState.current_scene = starting_scene.resource_path
+	get_tree().change_scene_to_file(GameState.current_scene)
 
 # Quit out of the game
 func _on_quit_pressed():
