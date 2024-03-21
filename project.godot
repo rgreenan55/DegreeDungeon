@@ -15,13 +15,8 @@ run/main_scene="res://menus/title/title_menu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 run/max_fps=60
 
-[debug]
-
-settings/stdout/print_fps=true
-
 [display]
 
-window/size/mode=4
 window/stretch/mode="canvas_items"
 
 [editor]
@@ -70,11 +65,16 @@ dev_dmg={
 [layer_names]
 
 2d_physics/layer_1="World"
+2d_navigation/layer_1="Floor"
 2d_physics/layer_2="Player"
 2d_physics/layer_3="Enemies"
 2d_physics/layer_4="Player Projectiles"
 2d_physics/layer_5="Enemy Projectiles"
 2d_physics/layer_6="World Objects"
+
+[navigation]
+
+2d/default_edge_connection_margin=8.0
 
 [rendering]
 

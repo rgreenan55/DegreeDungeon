@@ -12,5 +12,5 @@ func _ready():
 	Player.s_health_changed.connect(UIContainer.update_health)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
