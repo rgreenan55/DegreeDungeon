@@ -148,7 +148,6 @@ shape = SubResource("CircleShape2D_qvqlk")
 shape = SubResource("CapsuleShape2D_be6lr")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-debug_enabled = true
 debug_path_custom_point_size = 2.0
 
 [node name="MovementTimer" type="Timer" parent="."]
