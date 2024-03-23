@@ -1,7 +1,9 @@
-[gd_scene load_steps=50 format=3 uid="uid://bu0mw60kso2sl"]
+[gd_scene load_steps=56 format=3 uid="uid://bu0mw60kso2sl"]
 
 [ext_resource type="Script" path="res://entities/player/Player.gd" id="1_f30xf"]
 [ext_resource type="Texture2D" uid="uid://ccavkdfy5cvul" path="res://entities/player/Adam_16x16.png" id="2_13qk2"]
+[ext_resource type="Script" path="res://entities/player/MeleeAttack.gd" id="3_kbq0e"]
+[ext_resource type="Texture2D" uid="uid://b5kfbjwcypip6" path="res://entities/player/Keyboard.png" id="4_yjtom"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4b3mc"]
 atlas = ExtResource("2_13qk2")
@@ -368,12 +370,51 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fu8g3"]
+radius = 9.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pqbp4"]
+size = Vector2(35.5, 33.3333)
+
+[sub_resource type="Animation" id="Animation_oeqyx"]
+resource_name = "attack"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeleeCollider:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y3gen"]
+_data = {
+"attack": SubResource("Animation_oeqyx")
+}
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ar8ad"]
-size = Vector2(15, 16.5)
+size = Vector2(15, 10.8333)
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
+scale = Vector2(0.75, 0.75)
 collision_layer = 2
-collision_mask = 53
+collision_mask = 49
 script = ExtResource("1_f30xf")
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
@@ -383,6 +424,38 @@ sprite_frames = SubResource("SpriteFrames_0nkkh")
 animation = &"idle_down"
 frame_progress = 0.00270182
 
-[node name="PlayerCollider" type="CollisionShape2D" parent="."]
-position = Vector2(0, 5.25)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_fu8g3")
+
+[node name="MeleeAttack" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 53
+script = ExtResource("3_kbq0e")
+
+[node name="MeleeCollider" type="CollisionShape2D" parent="MeleeAttack"]
+position = Vector2(26.25, 0.666667)
+shape = SubResource("RectangleShape2D_pqbp4")
+disabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="MeleeAttack"]
+visible = false
+position = Vector2(16, -1.33333)
+rotation = -1.5708
+scale = Vector2(1, 1.639)
+texture = ExtResource("4_yjtom")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MeleeAttack"]
+libraries = {
+"": SubResource("AnimationLibrary_y3gen")
+}
+
+[node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 20
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(0, 12.0833)
 shape = SubResource("RectangleShape2D_ar8ad")
+
+[connection signal="body_entered" from="MeleeAttack" to="MeleeAttack" method="_on_body_entered"]
+[connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]
