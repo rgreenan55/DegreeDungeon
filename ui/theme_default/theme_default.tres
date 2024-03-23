@@ -1,3 +1,19 @@
-[gd_resource type="Theme" format=3 uid="uid://coqvjnmppcj70"]
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://coqvjnmppcj70"]
+
+[ext_resource type="FontFile" uid="uid://dr1xvankr2vyc" path="res://fonts/m3x6.ttf" id="1_rxvck"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_32qeb"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hikqc"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_laj7i"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [resource]
+default_font = ExtResource("1_rxvck")
+default_font_size = 60
+Button/styles/hover = SubResource("StyleBoxFlat_32qeb")
+Button/styles/normal = SubResource("StyleBoxFlat_hikqc")
+Button/styles/pressed = SubResource("StyleBoxFlat_laj7i")
