@@ -371,7 +371,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ar8ad"]
 size = Vector2(15, 16.5)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 2
 collision_mask = 53
 script = ExtResource("1_f30xf")
@@ -386,8 +386,3 @@ frame_progress = 0.00270182
 [node name="PlayerCollider" type="CollisionShape2D" parent="."]
 position = Vector2(0, 5.25)
 shape = SubResource("RectangleShape2D_ar8ad")
-
-[node name="MeleeHit" type="Area2D" parent="."]
-
-[node name="MeleeCollider" type="CollisionShape2D" parent="MeleeHit"]
-position = Vector2(29.5, 2)
