@@ -76,8 +76,8 @@ dev_dmg={
 2d_navigation/layer_1="Floor"
 2d_physics/layer_2="Player"
 2d_physics/layer_3="Enemies"
-2d_physics/layer_4="Player Projectiles"
-2d_physics/layer_5="Enemy Projectiles"
+2d_physics/layer_4="Player Attacks"
+2d_physics/layer_5="Enemy Attacks"
 2d_physics/layer_6="World Objects"
 
 [navigation]

@@ -4,6 +4,7 @@ extends CharacterBody2D
 
 # References
 @onready var animation : AnimatedSprite2D = $AnimatedSprite
+@onready var weapon : Area2D = $MeleeAttack
 
 # Exported Variables
 @export var max_health : int = 5
@@ -31,13 +32,16 @@ func _physics_process(_delta):
 	_process_collisions()
 	move_and_slide()
 
-
 func _process_collisions():
 	if Input.is_action_just_pressed("dev_dmg"):
 		current_health -= 1
 		if current_health < 0:
 			pass # rip
 		s_health_changed.emit(current_health)
+
+func _unhandled_input(event : InputEvent) -> void:
+	if event.is_action_pressed("attack"):
+		weapon.attack()
 
 # Determines velocity based on user input
 func get_movement_input():
@@ -62,4 +66,7 @@ func determine_animation():
 		if (velocity.x < 0): animation.flip_h = true
 		else: animation.flip_h = false
 
-
+func _on_hurt_box_body_entered(body : Node2D):
+	if (body.is_in_group("Enemy")):
+		current_health -= 1
+		s_health_changed.emit(current_health)

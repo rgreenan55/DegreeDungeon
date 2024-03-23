@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d2an0e6ro0g2g"
-path="res://.godot/imported/Walk.png-a34f56126d2ea6d503d2653c31297b9d.ctex"
+uid="uid://q5hk0cpek5v3"
+path="res://.godot/imported/Amelia_16x16.png-d13c6ff2d08a013bb347c8fc653e989a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/enemies/Walk.png"
-dest_files=["res://.godot/imported/Walk.png-a34f56126d2ea6d503d2653c31297b9d.ctex"]
+source_file="res://entities/enemies/amelia/Amelia_16x16.png"
+dest_files=["res://.godot/imported/Amelia_16x16.png-d13c6ff2d08a013bb347c8fc653e989a.ctex"]
 
 [params]
 
