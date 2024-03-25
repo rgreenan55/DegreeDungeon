@@ -1,11 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://ck0pn4iprgpq8"]
+[gd_scene load_steps=13 format=3 uid="uid://ck0pn4iprgpq8"]
 
 [ext_resource type="Script" path="res://scenes/world_0/player_home.gd" id="1_3xm6r"]
 [ext_resource type="Texture2D" uid="uid://c5awkqqlxkbh3" path="res://scenes/common/Interiors_free_16x16.png" id="1_brp2g"]
 [ext_resource type="Texture2D" uid="uid://cyff2im8g5lli" path="res://scenes/common/Room_Builder_free_16x16.png" id="2_re54i"]
 [ext_resource type="Texture2D" uid="uid://cnbrn31ljo5ak" path="res://scenes/assets/RPG Nature Tileset.png" id="3_fpwvc"]
 [ext_resource type="PackedScene" uid="uid://bu0mw60kso2sl" path="res://entities/player/Player.tscn" id="5_7qsbc"]
-[ext_resource type="PackedScene" uid="uid://dlkxnlrqqt2mj" path="res://ui/scene_transition.tscn" id="6_rl8h0"]
+[ext_resource type="PackedScene" uid="uid://dlkxnlrqqt2mj" path="res://ui/scene_transition_ui/scene_transition.tscn" id="6_rl8h0"]
+[ext_resource type="PackedScene" uid="uid://d3ihesiv3yinj" path="res://ui/speech_bubble_ui/speech_bubble.tscn" id="7_lu881"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p8knd"]
 texture = ExtResource("1_brp2g")
@@ -5839,6 +5840,9 @@ sources/0 = SubResource("TileSetAtlasSource_p8knd")
 sources/1 = SubResource("TileSetAtlasSource_egox1")
 sources/2 = SubResource("TileSetAtlasSource_q58s1")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iucc1"]
+size = Vector2(52, 44)
+
 [node name="PlayerHome" type="Node2D"]
 script = ExtResource("1_3xm6r")
 
@@ -5870,8 +5874,28 @@ z_index = 1
 position = Vector2(536, 565)
 scale = Vector2(0.5, 0.5)
 
+[node name="MomSpeechBubble" parent="." instance=ExtResource("7_lu881")]
+unique_name_in_owner = true
+position = Vector2(475, 445)
+scale = Vector2(0.25, 0.25)
+
+[node name="MomTrigger" type="Area2D" parent="."]
+position = Vector2(473, 450)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MomTrigger"]
+z_index = 1
+position = Vector2(1, 12)
+shape = SubResource("RectangleShape2D_iucc1")
+
+[node name="MomTimer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
 [node name="SceneTransition" parent="." instance=ExtResource("6_rl8h0")]
 offset_left = 257.324
 offset_top = 356.378
 offset_right = 257.324
 offset_bottom = 356.378
+
+[connection signal="body_entered" from="MomTrigger" to="." method="_on_mom_trigger_body_entered"]
+[connection signal="timeout" from="MomTimer" to="." method="_on_mom_timer_timeout"]

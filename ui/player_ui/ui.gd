@@ -1,7 +1,7 @@
 extends CanvasLayer
 class_name UI
 
-@onready var CoffeeGui = preload("res://ui/scenes/coffee_gui.tscn")
+@onready var CoffeeGui = preload("res://ui/player_ui/scenes/coffee_gui.tscn")
 @onready var health_container = %HealthContainer
 @onready var animation_player = %AnimationPlayer
 @onready var scene_transition = %SceneTransition

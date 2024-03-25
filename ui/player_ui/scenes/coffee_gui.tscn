@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://hk3gwne0w781"]
 
 [ext_resource type="Texture2D" uid="uid://cqas02dljqthn" path="res://ui/assets/sprites/FOOD.png" id="1_g4fn3"]
-[ext_resource type="Script" path="res://ui/scenes/coffee_gui.gd" id="1_j0iox"]
+[ext_resource type="Script" path="res://ui/player_ui/scenes/coffee_gui.gd" id="1_j0iox"]
 
 [node name="coffee_gui" type="Panel"]
 self_modulate = Color(1, 1, 1, 0)
