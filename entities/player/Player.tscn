@@ -1,7 +1,31 @@
-[gd_scene load_steps=50 format=3 uid="uid://bu0mw60kso2sl"]
+[gd_scene load_steps=56 format=3 uid="uid://bu0mw60kso2sl"]
 
 [ext_resource type="Script" path="res://entities/player/Player.gd" id="1_f30xf"]
 [ext_resource type="Texture2D" uid="uid://ccavkdfy5cvul" path="res://entities/player/Adam_16x16.png" id="2_13qk2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tdh4c"]
+atlas = ExtResource("2_13qk2")
+region = Rect2(96, 168, 16, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_crnfs"]
+atlas = ExtResource("2_13qk2")
+region = Rect2(112, 168, 16, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oxuu1"]
+atlas = ExtResource("2_13qk2")
+region = Rect2(128, 168, 16, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2jk6n"]
+atlas = ExtResource("2_13qk2")
+region = Rect2(144, 168, 16, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hrko2"]
+atlas = ExtResource("2_13qk2")
+region = Rect2(160, 168, 16, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_51y1q"]
+atlas = ExtResource("2_13qk2")
+region = Rect2(176, 168, 16, 23)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4b3mc"]
 atlas = ExtResource("2_13qk2")
@@ -185,6 +209,29 @@ region = Rect2(176, 72, 16, 24)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0nkkh"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tdh4c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_crnfs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oxuu1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2jk6n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hrko2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_51y1q")
+}],
+"loop": true,
+"name": &"dead_left_right",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_4b3mc")
@@ -380,8 +427,7 @@ script = ExtResource("1_f30xf")
 position = Vector2(0, -1)
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_0nkkh")
-animation = &"idle_down"
-frame_progress = 0.00270182
+animation = &"dead_left_right"
 
 [node name="PlayerCollider" type="CollisionShape2D" parent="."]
 position = Vector2(0, 5.25)

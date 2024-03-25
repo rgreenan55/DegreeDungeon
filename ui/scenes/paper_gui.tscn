@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://dqx6lc7y0ni7"]
+
+[ext_resource type="Texture2D" uid="uid://cx42xxhy4wp5" path="res://ui/assets/sprites/UI books & more.png" id="1_pn0a2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mxvw5"]
+atlas = ExtResource("1_pn0a2")
+region = Rect2(512, 16, 48, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hgwmj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mxvw5")
+}],
+"loop": true,
+"name": &"Default_Paper",
+"speed": 5.0
+}]
+
+[node name="paper_gui" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_hgwmj")
+animation = &"Default_Paper"
