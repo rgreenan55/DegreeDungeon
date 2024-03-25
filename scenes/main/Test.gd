@@ -13,5 +13,5 @@ func _ready():
 	Player.s_died.connect(UIContainer.player_died)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass

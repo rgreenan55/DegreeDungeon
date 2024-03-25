@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bjva1wctdfx6w"]
+[gd_scene load_steps=19 format=3 uid="uid://bghlk20cvt4ed"]
 
 [ext_resource type="Texture2D" uid="uid://d2an0e6ro0g2g" path="res://entities/enemies/Walk.png" id="1_8dn5f"]
 [ext_resource type="Script" path="res://entities/enemies/Enemy.gd" id="1_du78g"]
@@ -117,25 +117,44 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nsde4"]
-size = Vector2(20, 30)
+[sub_resource type="CircleShape2D" id="CircleShape2D_qvqlk"]
+radius = 40.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_j62in"]
-size = Vector2(12, 25)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_be6lr"]
+radius = 3.0
+height = 7.0
 
-[node name="Enemy" type="CharacterBody2D"]
-position = Vector2(216, 115)
+[node name="Enemy" type="CharacterBody2D" groups=["Enemy"]]
+scale = Vector2(2, 2)
+collision_layer = 4
+collision_mask = 43
+motion_mode = 1
+wall_min_slide_angle = 0.0
 script = ExtResource("1_du78g")
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_w823c")
 animation = &"move"
 
+[node name="LineOfSight" type="Area2D" parent="."]
+visible = false
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LineOfSight"]
+shape = SubResource("CircleShape2D_qvqlk")
+
 [node name="EnemyCollider" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_nsde4")
+shape = SubResource("CapsuleShape2D_be6lr")
 
-[node name="OnHit" type="Area2D" parent="."]
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+debug_path_custom_point_size = 2.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="OnHit"]
-position = Vector2(17, 0)
-shape = SubResource("RectangleShape2D_j62in")
+[node name="MovementTimer" type="Timer" parent="."]
+
+[node name="PathFindingTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="body_entered" from="LineOfSight" to="." method="enemy_sees_player"]
+[connection signal="timeout" from="MovementTimer" to="." method="handle_idle_movement"]
+[connection signal="timeout" from="PathFindingTimer" to="." method="make_path"]

@@ -5,7 +5,7 @@ extends CharacterBody2D
 # References
 @onready var animation : AnimatedSprite2D = $AnimatedSprite
 
-# Exported variables
+# Exported Variables
 @export var max_health : int = 5
 
 # Variables
@@ -24,19 +24,20 @@ func _ready():
 	velocity = Vector2.ZERO
 	is_dead = false
 
-func _process(delta):
+# Processes
+func _process(_delta):
 	if is_dead:
 		return
 	get_movement_input()
 	determine_animation()
 
 # Physics Processes
-func _physics_process(delta):
+func _physics_process(_delta):
 	if is_dead:
 		return
 	_process_collisions()
 	move_and_slide()
-	
+
 
 func _process_collisions():
 	if Input.is_action_just_pressed("dev_dmg"):
