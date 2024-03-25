@@ -15,7 +15,7 @@ var years = [0, 1, 2, 3, 4]
 var year_scenes = [
 	[	# Year 0
 		"res://menus/title/title_menu.tscn",
-		
+		"res://scenes/world_0/player_home.tscn",
 	],
 	[	# Year 1
 		"res://scenes/main/Test.tscn",
