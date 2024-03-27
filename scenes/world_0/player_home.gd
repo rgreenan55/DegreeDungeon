@@ -1,9 +1,11 @@
 extends Node2D
 
-@onready var player = $Player
+@onready var ui = %UI
+@onready var player = %Player
 @onready var player_camera = $PlayerCamera
 @onready var mom_speech_bubble = %MomSpeechBubble
 @onready var mom_timer = %MomTimer
+@onready var tile_map = $TileMap
 
 # Variables
 var mom_text_pre_trigger = [
@@ -21,8 +23,13 @@ var mom_text_post_trigger = [
 ]
 
 var has_adam_triggered_mom: bool = false
+var has_adam_triggered_mail: bool = false
 
 func _ready():
+	# Set max health in GUI to zero since we don't want that to be visible right now
+	ui.set_max_health(0)
+	ui.update_health(0)
+	
 	_update_mom_speech()
 	_update_camera_pos()
 
@@ -48,7 +55,12 @@ func _on_mom_timer_timeout():
 
 func _on_mom_trigger_body_entered(body):
 	if body.name == "Player" and !has_adam_triggered_mom:
+		# Set the triggered bool
 		has_adam_triggered_mom = true
+		# Remove door to leave house
+		tile_map.set_layer_enabled(2, false)
 
 func _on_mailbox_body_entered(body):
-	print(body.name)
+	if body.name == "Player" and !has_adam_triggered_mail:
+		has_adam_triggered_mail = true
+		ui.send_acceptance_letter()
