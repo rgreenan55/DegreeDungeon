@@ -12,8 +12,11 @@ extends CharacterBody2D
 var move_speed : float
 var current_health: int
 var is_dead: bool
+var is_invincible: bool
+var is_speedy: bool
 
 # Signals
+signal s_max_health_changed
 signal s_health_changed
 signal s_died
 
@@ -23,6 +26,8 @@ func _ready():
 	move_speed = 100
 	velocity = Vector2.ZERO
 	is_dead = false
+	is_invincible = false
+	is_speedy = false
 
 # Processes
 func _process(_delta):
@@ -38,17 +43,21 @@ func _physics_process(_delta):
 	_process_collisions()
 	move_and_slide()
 
+func damage_player(amount):
+	if is_invincible:
+		return
+	current_health -= amount
+	if current_health <= 0:
+		is_dead = true
+		animation.play("dead_left_right");
+		if (velocity.x > 0): animation.flip_h = true
+		s_died.emit()
+
+	s_health_changed.emit(current_health)
 
 func _process_collisions():
 	if Input.is_action_just_pressed("dev_dmg"):
-		current_health -= 1
-		if current_health <= 0:
-			is_dead = true
-			animation.play("dead_left_right");
-			if (velocity.x > 0): animation.flip_h = true
-			s_died.emit()
-
-		s_health_changed.emit(current_health)
+		damage_player(1)
 
 # Determines velocity based on user input
 func get_movement_input():

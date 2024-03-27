@@ -1,0 +1,76 @@
+[gd_scene load_steps=11 format=3 uid="uid://malwav3fokf5"]
+
+[ext_resource type="Script" path="res://scenes/common/ExitDoorTop.gd" id="1_b0qki"]
+[ext_resource type="PackedScene" uid="uid://bwkikgqbgvxvc" path="res://scenes/common/RoomTransition.tscn" id="2_ulwyd"]
+[ext_resource type="Texture2D" uid="uid://c5awkqqlxkbh3" path="res://scenes/common/Interiors_free_16x16.png" id="3_grhy6"]
+[ext_resource type="Texture2D" uid="uid://cyff2im8g5lli" path="res://scenes/common/Room_Builder_free_16x16.png" id="4_yv00t"]
+[ext_resource type="Script" path="res://entities/items/scripts/AnimationPlayer.gd" id="5_vtlra"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7y8kn"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(8, 16, 1)
+gravity = Vector3(0, 0, 0)
+radial_accel_max = 36.82
+
+[sub_resource type="Gradient" id="Gradient_h7bvd"]
+colors = PackedColorArray(1, 1, 1, 0.501961, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_71kbs"]
+gradient = SubResource("Gradient_h7bvd")
+width = 1
+
+[sub_resource type="Animation" id="Animation_7r1gk"]
+resource_name = "Glow"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Door:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.945098, 0.745098, 0.537255, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_aq2rn"]
+_data = {
+"Glow": SubResource("Animation_7r1gk")
+}
+
+[node name="ExitDoorTop" type="Node2D"]
+script = ExtResource("1_b0qki")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_7y8kn")
+texture = SubResource("GradientTexture1D_71kbs")
+
+[node name="RoomTransition" parent="." instance=ExtResource("2_ulwyd")]
+
+[node name="Door" type="Sprite2D" parent="."]
+position = Vector2(0, 1)
+texture = ExtResource("3_grhy6")
+region_enabled = true
+region_rect = Rect2(192, 387, 16, 28)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -13)
+texture = ExtResource("4_yv00t")
+region_enabled = true
+region_rect = Rect2(103, 16, 16, 6)
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_aq2rn")
+}
+script = ExtResource("5_vtlra")
+animationName = "Glow"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(15, 15)
+
+[connection signal="animation_finished" from="AnimationPlayer2" to="AnimationPlayer2" method="_on_animation_finished"]

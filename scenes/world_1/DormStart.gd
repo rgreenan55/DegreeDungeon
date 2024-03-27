@@ -7,6 +7,7 @@ extends Node2D
 func _ready():
 	# Set max health in GUI to that of the player
 	UIContainer.set_max_health(Player.max_health)
+	Player.current_health -= 1
 	UIContainer.update_health(Player.current_health)
 	# Connect the health changed signal of the player to the UI
 	Player.s_max_health_changed.connect(UIContainer.set_max_health)
