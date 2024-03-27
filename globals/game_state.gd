@@ -18,6 +18,9 @@ var year_scenes = [
 		
 	],
 	[	# Year 1
+		"res://scenes/world_1/DormStart.tscn",
+		"res://scenes/world_1/Class1.tscn",
+		"res://scenes/world_1/Hall.tscn",
 		"res://scenes/main/Test.tscn",
 	],
 	[	# Year 2

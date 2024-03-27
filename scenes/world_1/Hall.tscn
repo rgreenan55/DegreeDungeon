@@ -1,0 +1,63 @@
+[gd_scene load_steps=12 format=3 uid="uid://dq870pms4umlk"]
+
+[ext_resource type="Script" path="res://scenes/world_1/DormStart.gd" id="1_uq3gx"]
+[ext_resource type="PackedScene" uid="uid://bahc25h2bhidl" path="res://scenes/common/map_template_Hall.tscn" id="2_xwwgw"]
+[ext_resource type="PackedScene" uid="uid://bu0mw60kso2sl" path="res://entities/player/Player.tscn" id="3_fmrpe"]
+[ext_resource type="PackedScene" uid="uid://dk2p23b6cvj8e" path="res://ui/ui.tscn" id="4_k25e0"]
+[ext_resource type="PackedScene" uid="uid://dlkxnlrqqt2mj" path="res://ui/scene_transition.tscn" id="5_8btry"]
+[ext_resource type="PackedScene" uid="uid://malwav3fokf5" path="res://scenes/common/ExitDoorTop.tscn" id="6_xp7tp"]
+[ext_resource type="PackedScene" uid="uid://cw6falelokm82" path="res://entities/items/objects/SpeedPickup.tscn" id="7_wf17f"]
+[ext_resource type="PackedScene" uid="uid://top8no5yrwkr" path="res://entities/items/objects/MaxHealthPickup.tscn" id="8_qe6r6"]
+[ext_resource type="PackedScene" uid="uid://bv780bs63xu5j" path="res://entities/items/objects/FullHealthPickup.tscn" id="9_u30ju"]
+[ext_resource type="PackedScene" uid="uid://hvtmxof87uoa" path="res://entities/items/objects/InvincibilityPickup.tscn" id="10_2h0oq"]
+[ext_resource type="PackedScene" uid="uid://cmigi4uq1hp61" path="res://entities/items/objects/HealthPickup.tscn" id="11_5xvcr"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_uq3gx")
+
+[node name="Hallway" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_xwwgw")]
+player = NodePath("../Player")
+
+[node name="UI" parent="." instance=ExtResource("4_k25e0")]
+
+[node name="SceneTransition" parent="." instance=ExtResource("5_8btry")]
+
+[node name="Player" parent="." instance=ExtResource("3_fmrpe")]
+z_index = 2
+position = Vector2(49, 145)
+scale = Vector2(0.667, 0.667)
+
+[node name="ExitDoorTop" parent="." node_paths=PackedStringArray("scene_transition") instance=ExtResource("6_xp7tp")]
+z_index = 1
+position = Vector2(96, 72)
+scene_transition = NodePath("../SceneTransition")
+
+[node name="SpeedPickup" parent="." instance=ExtResource("7_wf17f")]
+position = Vector2(80, 118)
+
+[node name="MaxHealthPickup" parent="." instance=ExtResource("8_qe6r6")]
+position = Vector2(367, 118)
+
+[node name="FullHealthPickup" parent="." instance=ExtResource("9_u30ju")]
+position = Vector2(457, 118)
+
+[node name="InvincibilityPickup" parent="." instance=ExtResource("10_2h0oq")]
+position = Vector2(521, 119)
+
+[node name="HealthPickup" parent="." instance=ExtResource("11_5xvcr")]
+position = Vector2(155, 121)
+
+[node name="SpeedPickup2" parent="." instance=ExtResource("7_wf17f")]
+position = Vector2(214, 120)
+
+[node name="InvincibilityPickup2" parent="." instance=ExtResource("10_2h0oq")]
+position = Vector2(689, 122)
+
+[node name="HealthPickup2" parent="." instance=ExtResource("11_5xvcr")]
+position = Vector2(635, 117)
+
+[node name="FullHealthPickup2" parent="." instance=ExtResource("9_u30ju")]
+position = Vector2(582, 123)
+
+[node name="MaxHealthPickup2" parent="." instance=ExtResource("8_qe6r6")]
+position = Vector2(279, 114)
