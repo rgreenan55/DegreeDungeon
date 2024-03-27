@@ -1,0 +1,59 @@
+[gd_scene load_steps=10 format=3 uid="uid://bjb2isxw353ap"]
+
+[ext_resource type="Script" path="res://entities/enemies/Bob_Projectile.gd" id="1_0nxa3"]
+[ext_resource type="PackedScene" uid="uid://bu0mw60kso2sl" path="res://entities/player/Player.tscn" id="2_0royr"]
+[ext_resource type="Texture2D" uid="uid://p0ew45wvstye" path="res://entities/enemies/Purple Effect and Bullet 16x16.png" id="3_gdl1v"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1j1k6"]
+radius = 8.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1a5vh"]
+atlas = ExtResource("3_gdl1v")
+region = Rect2(302, 144, 17, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xc2cb"]
+atlas = ExtResource("3_gdl1v")
+region = Rect2(319, 144, 17, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ycpu3"]
+atlas = ExtResource("3_gdl1v")
+region = Rect2(336, 144, 17, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tgh8v"]
+atlas = ExtResource("3_gdl1v")
+region = Rect2(353, 144, 17, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tiiq6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1a5vh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xc2cb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ycpu3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tgh8v")
+}],
+"loop": true,
+"name": &"projectile",
+"speed": 5.0
+}]
+
+[node name="BobProjectile" type="Area2D" groups=["Projectile"]]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_0nxa3")
+player = ExtResource("2_0royr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_1j1k6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_tiiq6")
+animation = &"projectile"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

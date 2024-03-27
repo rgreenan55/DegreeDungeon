@@ -134,7 +134,7 @@ script = ExtResource("1_du78g")
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_w823c")
-animation = &"move"
+animation = &"move_up"
 
 [node name="LineOfSight" type="Area2D" parent="."]
 visible = false

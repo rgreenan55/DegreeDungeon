@@ -10,7 +10,7 @@ extends CharacterBody2D
 
 # Variables
 var move_speed : float
-var current_health: int
+@export var current_health: int
 var is_dead: bool
 
 # Signals

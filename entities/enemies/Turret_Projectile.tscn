@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://bamsd1ipaw4pe"]
+
+[ext_resource type="Script" path="res://entities/enemies/Turret_Projectile.gd" id="1_4ehbj"]
+[ext_resource type="Texture2D" uid="uid://cmnygax07rwnv" path="res://entities/enemies/Fire Effect and Bullet 16x16.png" id="1_v6m23"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6rq5i"]
+radius = 7.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_17ais"]
+atlas = ExtResource("1_v6m23")
+region = Rect2(480, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_80rgu"]
+atlas = ExtResource("1_v6m23")
+region = Rect2(496, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_su823"]
+atlas = ExtResource("1_v6m23")
+region = Rect2(512, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_37g5j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_17ais")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_80rgu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_su823")
+}],
+"loop": true,
+"name": &"projectile",
+"speed": 5.0
+}]
+
+[node name="Turret_Projectile" type="Area2D"]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_4ehbj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_6rq5i")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_37g5j")
+animation = &"projectile"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

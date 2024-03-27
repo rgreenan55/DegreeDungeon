@@ -1,9 +1,8 @@
 extends CharacterBody2D
 
 # References
-@onready var animation : AnimatedSprite2D = $AnimatedSprite
-@onready var nav_agent : NavigationAgent2D = $NavigationAgent2D
-
+@onready var animation : AnimatedSprite2D = $AnimatedSprite2D
+@export var orb_template : PackedScene
 # Enums
 enum EnemyStates { IDLE, ALERT }
 
@@ -15,7 +14,7 @@ var player : Node2D
 
 # On Enemy Load
 func _ready():
-	move_speed = 50
+	move_speed = 40
 	health = 3
 	state = EnemyStates.IDLE
 	handle_idle_movement()
@@ -26,34 +25,15 @@ func _process(_delta):
 
 # Processes Physics
 func _physics_process(_delta):
-	if (state == EnemyStates.ALERT): handle_alert_movement()
-	keep_enemy_in_bounds()
+	#if (state == EnemyStates.ALERT): handle_alert_movement()
+	#keep_enemy_in_bounds()
 	move_and_slide()
-
-# Move Towards Next Navigation Point
-func handle_alert_movement():
-	velocity = to_local(nav_agent.get_next_path_position()).normalized() * move_speed
-
-# Creates Path for Navigation (called on Timer End)
-func make_path():
-	nav_agent.target_position = player.global_position
-	$PathFindingTimer.start()
 
 # Movement when Enemy is IDLE
 func handle_idle_movement():
 	if (state == EnemyStates.IDLE):
 		velocity = Vector2(randi_range(-1, 1), randi_range(-1, 1)).normalized() * move_speed
-		$MovementTimer.start(randf_range(2,5))
-
-# Called when player enters enemy Line Of Sight
-func enemy_sees_player(body : Node2D):
-	if (body.is_in_group("Player")):
-		$MovementTimer.paused = true
-		$PathFindingTimer.start()
-		player = body
-		move_speed = 75
-		state = EnemyStates.ALERT
-
+		$MovementTimer.start(randf_range(1,3))
 # Handles Animations
 func play_animations():
 	if (velocity.x == 0):
@@ -61,16 +41,15 @@ func play_animations():
 		elif (velocity.y > 0): animation.play("move_down")
 		else: animation.play("idle")
 	else:
-		animation.play("move");
-		if (velocity.x < 0): animation.flip_h = true
-		else: animation.flip_h = false
+		if (velocity.x < 0): animation.play("move_left");
+		elif (velocity.x > 0): animation.play("move_right")
 
 func keep_enemy_in_bounds():
 	var screen_size = get_viewport_rect().size
 	if position.x < 0:
 		position.x = 0
 		velocity.x *= -1
-	if position.x > screen_size.x:
+	if position.x > screen_size.x :
 		position.x = screen_size.x
 		velocity.x *= -1
 	if position.y < 0:
@@ -82,3 +61,10 @@ func keep_enemy_in_bounds():
 
 func die():
 	queue_free()
+
+func _on_movement_timer_timeout():
+	handle_idle_movement()
+
+func _on_shoot_timer_timeout():
+	var orb = orb_template.instantiate()
+	add_child(orb)
