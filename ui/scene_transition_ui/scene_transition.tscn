@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dlkxnlrqqt2mj"]
 
-[ext_resource type="Script" path="res://ui/scene_transition.gd" id="1_u4q8k"]
+[ext_resource type="Script" path="res://ui/scene_transition_ui/scene_transition.gd" id="1_u4q8k"]
 
 [sub_resource type="Animation" id="Animation_tspl4"]
 resource_name = "Fade"
