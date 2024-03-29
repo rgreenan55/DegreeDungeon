@@ -1,12 +1,15 @@
 extends Control
 class_name TITLE_MENU
 
-@export var starting_scene : PackedScene
+@onready var scene_transition = $SceneTransition
 
-# Start the game at the scene specified in starting_scene
+func _ready():
+	# Reset the game state variables
+	GameState.reset()
+
+# Start the game at the next scene specified in Year 0 
 func _on_play_pressed():
-	GameState.current_scene = starting_scene.resource_path
-	get_tree().change_scene_to_file(GameState.current_scene)
+	scene_transition.transition_to(GameState.next_scene_path())
 
 # Quit out of the game
 func _on_quit_pressed():

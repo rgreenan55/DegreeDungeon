@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" path="res://menus/title/title_menu.gd" id="1_6phue"]
 [ext_resource type="Theme" uid="uid://bv1ia5qyer18k" path="res://menus/title/title_menu.tres" id="1_csnxv"]
-[ext_resource type="PackedScene" uid="uid://gyo7c48qalkt" path="res://scenes/main/Test.tscn" id="2_xrkqe"]
 [ext_resource type="Texture2D" uid="uid://c5dcihw1vclu3" path="res://menus/title/assets/DegreeDungeonTitle.png" id="4_2c2i6"]
 [ext_resource type="Shader" path="res://menus/title/title_menu.gdshader" id="4_nrtk4"]
 [ext_resource type="Texture2D" uid="uid://bc7t7hfoumnot" path="res://menus/title/assets/DegreeDungeonTitleBackground.png" id="5_vvnl2"]
+[ext_resource type="PackedScene" uid="uid://dlkxnlrqqt2mj" path="res://ui/scene_transition_ui/scene_transition.tscn" id="7_tuyc0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_v88ga"]
 shader = ExtResource("4_nrtk4")
@@ -20,7 +20,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_csnxv")
 script = ExtResource("1_6phue")
-starting_scene = ExtResource("2_xrkqe")
 
 [node name="BackgroundColor" type="ColorRect" parent="."]
 layout_mode = 1
@@ -71,12 +70,23 @@ size_flags_vertical = 4
 [node name="Play" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(128, 64)
 layout_mode = 2
+focus_neighbor_top = NodePath("../Quit")
+focus_neighbor_bottom = NodePath("../Quit")
+focus_next = NodePath("../Quit")
+focus_previous = NodePath("../Quit")
 text = "Play"
 
 [node name="Quit" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(128, 64)
 layout_mode = 2
+focus_neighbor_top = NodePath("../Play")
+focus_neighbor_bottom = NodePath("../Play")
+focus_next = NodePath("../Play")
+focus_previous = NodePath("../Play")
 text = "Quit"
+
+[node name="SceneTransition" parent="." instance=ExtResource("7_tuyc0")]
+layout_mode = 1
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

@@ -10,6 +10,7 @@ func _ready():
 	UIContainer.update_health(Player.current_health)
 	# Connect the health changed signal of the player to the UI
 	Player.s_health_changed.connect(UIContainer.update_health)
+	Player.s_died.connect(UIContainer.player_died)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):

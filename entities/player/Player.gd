@@ -3,6 +3,7 @@ extends CharacterBody2D
 
 # Signals
 signal s_health_changed
+signal s_died
 
 # References
 @onready var animation : AnimatedSprite2D = $AnimatedSprite
@@ -13,31 +14,41 @@ signal s_health_changed
 
 # Variables
 var move_speed : float
+
 var current_health : int :
 	set (value):
-		s_health_changed.emit(value)
 		current_health = value
+		s_health_changed.emit(value)
+    if (value == 0) handle_death()
+
+var current_health: int
+var is_dead: bool
+
 
 # On Player Load
 func _ready():
 	current_health = max_health
 	move_speed = 100
 	velocity = Vector2.ZERO
+	is_dead = false
 
 # Processes
 func _process(_delta):
+	if is_dead:
+		return
 	get_movement_input()
 	determine_animation()
 
 # Physics Processes
 func _physics_process(_delta):
+	if is_dead:
+		return
 	_process_collisions()
 	move_and_slide()
 
 func _process_collisions():
 	if Input.is_action_just_pressed("dev_dmg"):
 		current_health -= 1
-		if current_health < 0: pass # rip
 
 func _unhandled_input(event : InputEvent) -> void:
 	if event.is_action_pressed("attack"):
@@ -70,3 +81,9 @@ func handle_hit(body : Node2D):
 	if (body.is_in_group("Enemy")):
 		current_health -= 1
 		s_health_changed.emit(current_health)
+    
+ func handle_death():
+   is_dead = true
+	 animation.play("dead_left_right");
+	 if (velocity.x > 0): animation.flip_h = true
+ 	 s_died.emit()
