@@ -7,7 +7,7 @@ func _ready():
 	# Reset the game state variables
 	GameState.reset()
 
-# Start the game at the next scene specified in Year 0 
+# Start the game at the next scene specified in Year 0
 func _on_play_pressed():
 	scene_transition.transition_to(GameState.next_scene_path())
 

@@ -14,15 +14,13 @@ signal s_died
 
 # Variables
 var move_speed : float
-
+var is_dead: bool
 var current_health : int :
 	set (value):
 		current_health = value
 		s_health_changed.emit(value)
-    if (value == 0) handle_death()
+		if (value == 0): handle_death()
 
-var current_health: int
-var is_dead: bool
 
 
 # On Player Load
@@ -81,9 +79,9 @@ func handle_hit(body : Node2D):
 	if (body.is_in_group("Enemy")):
 		current_health -= 1
 		s_health_changed.emit(current_health)
-    
- func handle_death():
-   is_dead = true
-	 animation.play("dead_left_right");
-	 if (velocity.x > 0): animation.flip_h = true
- 	 s_died.emit()
+
+func handle_death():
+	is_dead = true
+	animation.play("dead_left_right");
+	if (velocity.x > 0): animation.flip_h = true
+	s_died.emit()
