@@ -31,6 +31,30 @@ var year_scenes = [
 	],
 ]
 
+# The year_scenes 2D array represent all of the 
+# starting positions of the player for each scene
+# within each year. Each entry in this 2D array
+# corresponds to the starting position for the
+# entry in the year_scenes array
+var year_player_positions = [
+	[	# Year 0
+		Vector2(0, 0),
+		Vector2(0, 0),
+	],
+	[	# Year 1
+		Vector2(32, 46),
+	],
+	[	# Year 2
+		Vector2(0, 0),
+	],
+	[	# Year 3
+		Vector2(0, 0),
+	],
+	[	# Year 4
+		Vector2(0, 0),
+	],
+]
+
 # The menus dictionary contains all available menus in the game
 # and their scenes. This dictionary is accessed through the
 # get_menu_path(menu_name) method that returns the menu scene
@@ -61,6 +85,18 @@ func next_scene_path() -> String:
 	_set_current_year(current_year + 1)
 	_set_current_scene(year_scenes[current_year][0])
 	return current_scene
+	
+# Return the Vector2D starting position of the player 
+# for the current scene. If, for whatever reason,
+# we cannot find the starting vector, then return (0, 0).
+#
+# State variables are no set through execution.
+func player_starting_position() -> Vector2:
+	var current_scene_idx = year_scenes[current_year].find(current_scene, 0)
+	if current_scene_idx != -1 and current_scene_idx < year_player_positions[current_year].size():
+		return year_player_positions[current_year][current_scene_idx]
+	else:
+		return Vector2(0, 0)
 	
 # Return the path of the menu scene in the menus
 # dictionary that corresponds to the provided

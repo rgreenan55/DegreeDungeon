@@ -10,6 +10,7 @@ var scene_instance: PackedScene
 var menu_instance: PackedScene
 
 func _ready():
+	_init_ui()
 	_disable_ui()
 	_init_player()
 	_disable_player()
@@ -27,6 +28,10 @@ func _disable_ui():
 func _enable_ui():
 	ui.visible = true
 	
+func _init_ui():
+	ui.set_max_health(player.max_health)
+	ui.update_health(player.current_health)
+	
 func _disable_player():
 	player.visible = false;
 	
@@ -34,6 +39,7 @@ func _enable_player():
 	player.visible = true;
 	
 func _init_player():
+	player.s_health_changed.connect(ui.update_health)
 	player.s_died.connect(func(): _display_menu("game_over"))
 	
 #########################################
@@ -47,12 +53,15 @@ func _display_menu(menu_name: String):
 func _next_level():
 	await _transition_into()
 	_load_scene(GameState.next_scene_path())
+	player.position = GameState.player_starting_position()
 	await _transition_out()
 	
 func _restart_current_year():
 	await _transition_into()
-	# TODO: Modify player's health back to full
 	_load_scene(GameState.start_of_year())
+	player._ready()
+	ui.update_health(player.current_health)
+	player.position = GameState.player_starting_position()
 	await _transition_out()
 	
 func _quit_game():
@@ -102,4 +111,12 @@ func _load_scene(scene_path: String):
 			new_instance.s_show_menu.connect(_display_menu)
 		if new_instance.has_signal("s_next_level"):
 			new_instance.s_next_level.connect(_next_level)
+		if new_instance.has_signal("s_enable_player"):
+			new_instance.s_enable_player.connect(_enable_player)
+		if new_instance.has_signal("s_disable_player"):
+			new_instance.s_disable_player.connect(_disable_player)
+		if new_instance.has_signal("s_enable_ui"):
+			new_instance.s_enable_ui.connect(_enable_ui)
+		if new_instance.has_signal("s_disable_ui"):
+			new_instance.s_disable_ui.connect(_disable_ui)
 		current_scene.add_child(new_instance)
