@@ -12,7 +12,7 @@ func _ready():
 	_disable_ui()
 	_disable_player()
 	GameState.reset()
-	_load_menu(GameState.main_menu)
+	_load_menu(GameState.get_menu_path("title_menu"))
 	await _transition_out()
 	
 func _disable_ui():
@@ -26,6 +26,9 @@ func _disable_player():
 	
 func _enable_player():
 	pass
+	
+func _display_menu(menu_name: String):
+	_load_menu(GameState.get_menu_path(menu_name))
 	
 func _next_level():
 	await _transition_into()
@@ -61,7 +64,7 @@ func _load_menu(menu_path: String):
 
 func _unload_scene():
 	if is_instance_valid(scene_instance):
-		scene_instance.queue_free()
+		current_scene.get_child(0).queue_free()
 	scene_instance = null
 
 func _load_scene(scene_path: String):
@@ -69,4 +72,9 @@ func _load_scene(scene_path: String):
 	_unload_scene()
 	scene_instance = load(scene_path)
 	if scene_instance:
-		current_scene.add_child(scene_instance.instantiate())
+		var new_instance = scene_instance.instantiate()
+		if new_instance.has_signal("s_show_menu"):
+			new_instance.s_show_menu.connect(_display_menu)
+		if new_instance.has_signal("s_next_level"):
+			new_instance.s_next_level.connect(_next_level)
+		current_scene.add_child(new_instance)

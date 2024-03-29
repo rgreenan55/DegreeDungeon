@@ -34,12 +34,12 @@ func player_died():
 	animation_player.play("Fail_Paper_Spin_In")
 	
 func send_acceptance_letter():
-		animation_player.play("Acceptance_Paper_Spin_In")
+	animation_player.play("Acceptance_Paper_Spin_In")
 	
 func _on_restart_pressed():
-		animation_player.play_backwards("Fail_Paper_Spin_In")
-		await animation_player.animation_finished
-		scene_transition.transition_to(GameState.start_of_year())
+	animation_player.play_backwards("Fail_Paper_Spin_In")
+	await animation_player.animation_finished
+	scene_transition.transition_to(GameState.start_of_year())
 
 func _on_quit_pressed():
 	get_tree().quit()

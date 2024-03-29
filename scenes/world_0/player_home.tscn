@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ck0pn4iprgpq8"]
+[gd_scene load_steps=13 format=3 uid="uid://ck0pn4iprgpq8"]
 
 [ext_resource type="Script" path="res://scenes/world_0/player_home.gd" id="1_3xm6r"]
 [ext_resource type="Texture2D" uid="uid://c5awkqqlxkbh3" path="res://scenes/common/Interiors_free_16x16.png" id="1_brp2g"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://bu0mw60kso2sl" path="res://entities/player/Player.tscn" id="5_7qsbc"]
 [ext_resource type="PackedScene" uid="uid://euxim55sm4t6" path="res://scenes/world_0/scenes/mailbox.tscn" id="7_5hpcx"]
 [ext_resource type="PackedScene" uid="uid://d3ihesiv3yinj" path="res://ui/speech_bubble_ui/speech_bubble.tscn" id="7_lu881"]
-[ext_resource type="PackedScene" uid="uid://dk2p23b6cvj8e" path="res://ui/player_ui/ui.tscn" id="9_0a4fq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p8knd"]
 texture = ExtResource("1_brp2g")
@@ -5925,9 +5924,6 @@ autostart = true
 
 [node name="Mailbox" parent="." instance=ExtResource("7_5hpcx")]
 position = Vector2(758, 28)
-
-[node name="UI" parent="." instance=ExtResource("9_0a4fq")]
-unique_name_in_owner = true
 
 [connection signal="area_entered" from="MomTrigger" to="." method="_on_mom_trigger_area_entered"]
 [connection signal="body_entered" from="MomTrigger" to="." method="_on_mom_trigger_body_entered"]

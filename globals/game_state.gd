@@ -31,7 +31,14 @@ var year_scenes = [
 	],
 ]
 
-var main_menu = "res://menus/title/title_menu.tscn"
+# The menus dictionary contains all available menus in the game
+# and their scenes. This dictionary is accessed through the
+# get_menu_path(menu_name) method that returns the menu scene
+# for the given menu name if it exists
+var menus = {
+	"title_menu": "res://menus/title/title_menu.tscn",
+	"acceptance_letter": "res://menus/acceptance_letter/acceptance_letter.tscn"
+}
 
 func reset() -> void:
 	# Reset all variables to their defaults
@@ -53,6 +60,15 @@ func next_scene_path() -> String:
 	_set_current_year(current_year + 1)
 	_set_current_scene(year_scenes[current_year][0])
 	return current_scene
+	
+# Return the path of the menu scene in the menus
+# dictionary that corresponds to the provided
+# menu_name key. 
+#
+# State variables are not set through execution.
+func get_menu_path(menu_name: String) -> String:
+	assert(menu_name in menus)
+	return menus[menu_name]
 	
 # Returns the first scene for the current year
 # and sets that as the current scene.
