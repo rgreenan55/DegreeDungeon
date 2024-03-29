@@ -11,16 +11,19 @@ var move_speed : float
 var health : int
 var state : EnemyStates
 var player : Node2D
+var knockback : Vector2
 
 # On Enemy Load
 func _ready():
 	move_speed = 40
-	health = 3
+	health = 2
 	state = EnemyStates.IDLE
+	knockback = Vector2.ZERO
 	handle_idle_movement()
 
 # Processes
 func _process(_delta):
+	if(health <= 0): die()
 	play_animations()
 
 # Processes Physics
@@ -58,6 +61,9 @@ func keep_enemy_in_bounds():
 	if position.y > screen_size.y:
 		position.y = screen_size.y
 		velocity.y *= -1
+
+func handle_hit():
+	health -= 1
 
 func die():
 	queue_free()

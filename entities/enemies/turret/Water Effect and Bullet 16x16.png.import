@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bmqq4wmaqvsgo"
-path="res://.godot/imported/Bob_16x16.png-eb18bf616888c7d6fd22648294bdcc7b.ctex"
+uid="uid://dny1w07u5v115"
+path="res://.godot/imported/Water Effect and Bullet 16x16.png-301d66c00536e6a0c098392b9ab07813.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/enemies/Bob_16x16.png"
-dest_files=["res://.godot/imported/Bob_16x16.png-eb18bf616888c7d6fd22648294bdcc7b.ctex"]
+source_file="res://entities/enemies/turret/Water Effect and Bullet 16x16.png"
+dest_files=["res://.godot/imported/Water Effect and Bullet 16x16.png-301d66c00536e6a0c098392b9ab07813.ctex"]
 
 [params]
 

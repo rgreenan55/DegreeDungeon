@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://2qyb3xs0588i"
-path="res://.godot/imported/SpriteSheet.png-e6bcbabe2717341a8e7d3702e91d45a6.ctex"
+uid="uid://bmqq4wmaqvsgo"
+path="res://.godot/imported/Bob_16x16.png-998ae4a8b62967a79cd0c1fecbb68b65.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/enemies/SpriteSheet.png"
-dest_files=["res://.godot/imported/SpriteSheet.png-e6bcbabe2717341a8e7d3702e91d45a6.ctex"]
+source_file="res://entities/enemies/bob/Bob_16x16.png"
+dest_files=["res://.godot/imported/Bob_16x16.png-998ae4a8b62967a79cd0c1fecbb68b65.ctex"]
 
 [params]
 

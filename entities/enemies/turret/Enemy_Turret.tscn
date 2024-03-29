@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://dx78s7qi3mejd"]
+
+[ext_resource type="Script" path="res://entities/enemies/turret/Enemy_Turret.gd" id="1_2ftgm"]
+[ext_resource type="PackedScene" uid="uid://bamsd1ipaw4pe" path="res://entities/enemies/turret/Turret_Projectile.tscn" id="2_lehbo"]
+[ext_resource type="Texture2D" uid="uid://c5fmxirbhv1h2" path="res://entities/enemies/turret/creatures3_.png" id="3_by3br"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0kn2o"]
+atlas = ExtResource("3_by3br")
+region = Rect2(192, 126, 32, 37)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_roipi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0kn2o")
+}],
+"loop": true,
+"name": &"move",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rkp1l"]
+size = Vector2(18, 17)
+
+[node name="Enemy_Turret" type="Area2D" groups=["Enemy"]]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_2ftgm")
+projectile_template = ExtResource("2_lehbo")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-2, 3.5)
+scale = Vector2(0.75, 0.72973)
+sprite_frames = SubResource("SpriteFrames_roipi")
+animation = &"move"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 2)
+shape = SubResource("RectangleShape2D_rkp1l")
+
+[node name="ShootTimer" type="Timer" parent="."]
+wait_time = 1.5
+autostart = true
+
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

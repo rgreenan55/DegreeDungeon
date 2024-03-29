@@ -14,11 +14,13 @@ func _ready():
 func _process(delta):
 	position += direction * speed * delta
 	$AnimatedSprite2D.play("projectile")
+	
+		
 
-#decrements the current_health of player if projectile enters player body
-func _on_body_entered(body):
-	if (body.is_in_group("Player")):
-		body.current_health -= 1
-		var health = body.current_health
-		body.s_health_changed.emit(health)
+##decrements the current_health of player if projectile enters player body
+#func _on_body_entered(body):
+	#if (body.is_in_group("Player")):
+		#body.current_health -= 1
+		#var health = body.current_health
+		#body.s_health_changed.emit(health)
 		

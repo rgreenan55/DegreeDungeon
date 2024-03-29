@@ -497,11 +497,13 @@ libraries = {
 
 [node name="HurtBox" type="Area2D" parent="."]
 collision_layer = 2
-collision_mask = 20
+collision_mask = 84
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2(0, 12.0833)
 shape = SubResource("RectangleShape2D_ar8ad")
 
+[connection signal="area_entered" from="MeleeAttack" to="MeleeAttack" method="_on_body_entered"]
 [connection signal="body_entered" from="MeleeAttack" to="MeleeAttack" method="_on_body_entered"]
+[connection signal="area_entered" from="HurtBox" to="." method="handle_hit"]
 [connection signal="body_entered" from="HurtBox" to="." method="handle_hit"]

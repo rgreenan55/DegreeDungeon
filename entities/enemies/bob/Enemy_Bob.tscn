@@ -1,8 +1,8 @@
 [gd_scene load_steps=23 format=3 uid="uid://dgs7vdgy2wm5m"]
 
-[ext_resource type="Script" path="res://entities/enemies/Enemy_Bob.gd" id="1_olvun"]
-[ext_resource type="Texture2D" uid="uid://bmqq4wmaqvsgo" path="res://entities/enemies/Bob_16x16.png" id="2_oaulk"]
-[ext_resource type="PackedScene" uid="uid://bjb2isxw353ap" path="res://entities/enemies/Bob_Projectile.tscn" id="2_xgiir"]
+[ext_resource type="Script" path="res://entities/enemies/bob/Enemy_Bob.gd" id="1_olvun"]
+[ext_resource type="Texture2D" uid="uid://bmqq4wmaqvsgo" path="res://entities/enemies/bob/Bob_16x16.png" id="2_oaulk"]
+[ext_resource type="PackedScene" uid="uid://bjb2isxw353ap" path="res://entities/enemies/bob/Bob_Projectile.tscn" id="2_xgiir"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7qcuv"]
 radius = 7.0
