@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3ihesiv3yinj"]
+
+[ext_resource type="Theme" uid="uid://coqvjnmppcj70" path="res://ui/theme_default/theme_default.tres" id="1_xqkuh"]
+[ext_resource type="Script" path="res://ui/speech_bubble_ui/speech_bubble.gd" id="2_idmj8"]
+
+[node name="SpeechBubble" type="Node2D"]
+z_index = 5
+script = ExtResource("2_idmj8")
+
+[node name="Anchor" type="Node2D" parent="."]
+
+[node name="Control" type="Control" parent="Anchor"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 241.0
+offset_bottom = 40.0
+theme = ExtResource("1_xqkuh")
+
+[node name="MarginContainer" type="MarginContainer" parent="Anchor/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Anchor/Control/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Anchor/Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="DialogLabel" type="Label" parent="Anchor/Control/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Test
+"

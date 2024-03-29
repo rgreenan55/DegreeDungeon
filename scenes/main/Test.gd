@@ -9,6 +9,7 @@ func _ready():
 	UIContainer.set_max_health(Player.max_health)
 	UIContainer.update_health(Player.current_health)
 	# Connect the health changed signal of the player to the UI
+	Player.s_max_health_changed.connect(UIContainer.set_max_health)
 	Player.s_health_changed.connect(UIContainer.update_health)
 	Player.s_died.connect(UIContainer.player_died)
 
