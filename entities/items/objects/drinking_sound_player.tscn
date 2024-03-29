@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://clqnbr3o3a850"]
+
+[ext_resource type="Script" path="res://DrinkingSoundPlayer.gd" id="1_h8jmm"]
+[ext_resource type="AudioStream" uid="uid://dh3jpylxu3ws5" path="res://sounds/Pickup/mixkit-swallowing-a-water-drink-in-the-throat-150.mp3" id="2_1iogu"]
+[ext_resource type="AudioStream" uid="uid://farwh1udh6tp" path="res://sounds/Pickup/mixkit-human-male-enjoy-humm-129.mp3" id="3_f0rjj"]
+
+[node name="DrinkingSoundPlayer" type="Node2D"]
+script = ExtResource("1_h8jmm")
+
+[node name="Drinking" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_1iogu")
+pitch_scale = 1.1
+
+[node name="Moan" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_f0rjj")
+pitch_scale = 1.1
+
+[connection signal="finished" from="Drinking" to="." method="_on_drinking_finished"]

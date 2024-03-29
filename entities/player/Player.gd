@@ -1,17 +1,21 @@
 extends CharacterBody2D
-
 # Character Model from: https://limezu.itch.io/moderninteriors
+
+# Signals
+signal s_health_changed
+signal s_died
 
 # References
 @onready var animation : AnimatedSprite2D = $AnimatedSprite
+@onready var weapon : Area2D = $MeleeAttack
 
 # Exported Variables
 @export var max_health : int = 5
 
 # Variables
 var move_speed : float
-var current_health: int
 var is_dead: bool
+<<<<<<< HEAD
 var is_invincible: bool
 var is_speedy: bool
 
@@ -19,6 +23,15 @@ var is_speedy: bool
 signal s_max_health_changed
 signal s_health_changed
 signal s_died
+=======
+var current_health : int :
+	set (value):
+		current_health = value
+		s_health_changed.emit(value)
+		if (value == 0): handle_death()
+
+
+>>>>>>> 78ee9c0faf737b0070367af5605f8342f217fd72
 
 # On Player Load
 func _ready():
@@ -43,6 +56,7 @@ func _physics_process(_delta):
 	_process_collisions()
 	move_and_slide()
 
+<<<<<<< HEAD
 func damage_player(amount):
 	if is_invincible:
 		return
@@ -58,6 +72,15 @@ func damage_player(amount):
 func _process_collisions():
 	if Input.is_action_just_pressed("dev_dmg"):
 		damage_player(1)
+=======
+func _process_collisions():
+	if Input.is_action_just_pressed("dev_dmg"):
+		current_health -= 1
+
+func _unhandled_input(event : InputEvent) -> void:
+	if event.is_action_pressed("attack"):
+		weapon.attack()
+>>>>>>> 78ee9c0faf737b0070367af5605f8342f217fd72
 
 # Determines velocity based on user input
 func get_movement_input():
@@ -82,4 +105,13 @@ func determine_animation():
 		if (velocity.x < 0): animation.flip_h = true
 		else: animation.flip_h = false
 
+func handle_hit(body : Node2D):
+	if (body.is_in_group("Enemy")):
+		current_health -= 1
+		s_health_changed.emit(current_health)
 
+func handle_death():
+	is_dead = true
+	animation.play("dead_left_right");
+	if (velocity.x > 0): animation.flip_h = true
+	s_died.emit()

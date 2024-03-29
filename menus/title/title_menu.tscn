@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://c5dcihw1vclu3" path="res://menus/title/assets/DegreeDungeonTitle.png" id="4_2c2i6"]
 [ext_resource type="Shader" path="res://menus/title/title_menu.gdshader" id="4_nrtk4"]
 [ext_resource type="Texture2D" uid="uid://bc7t7hfoumnot" path="res://menus/title/assets/DegreeDungeonTitleBackground.png" id="5_vvnl2"]
-[ext_resource type="PackedScene" uid="uid://dlkxnlrqqt2mj" path="res://ui/scene_transition.tscn" id="7_tuyc0"]
+[ext_resource type="PackedScene" uid="uid://dlkxnlrqqt2mj" path="res://ui/scene_transition_ui/scene_transition.tscn" id="7_tuyc0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_v88ga"]
 shader = ExtResource("4_nrtk4")
