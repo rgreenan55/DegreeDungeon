@@ -7,6 +7,9 @@ extends CharacterBody2D
 # Enums
 enum EnemyStates { IDLE, ALERT }
 
+# Signals
+signal died
+
 # Variables
 var move_speed : float
 var health : int
@@ -90,5 +93,6 @@ func handle_hit():
 	health -= 1
 
 func die():
+	died.emit()
 	# Death Animation
 	queue_free()
