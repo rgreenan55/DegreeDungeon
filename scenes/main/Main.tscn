@@ -1,0 +1,70 @@
+[gd_scene load_steps=5 format=3 uid="uid://bya5f2une3dbd"]
+
+[ext_resource type="PackedScene" uid="uid://dk2p23b6cvj8e" path="res://ui/player_ui/ui.tscn" id="1_rn86o"]
+[ext_resource type="Script" path="res://scenes/main/Main.gd" id="1_uhhgu"]
+
+[sub_resource type="Animation" id="Animation_2drg8"]
+resource_name = "Transition_Fade_In"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fyh7d"]
+_data = {
+"Transition_Fade_In": SubResource("Animation_2drg8")
+}
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_uhhgu")
+
+[node name="CurrentScene" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="CurrentMenu" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1152.0
+offset_bottom = 648.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="UI" parent="." instance=ExtResource("1_rn86o")]
+unique_name_in_owner = true
+
+[node name="SceneTransition" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+mouse_filter = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SceneTransition"]
+libraries = {
+"": SubResource("AnimationLibrary_fyh7d")
+}
+
+[node name="ColorRect" type="ColorRect" parent="SceneTransition"]
+modulate = Color(1, 1, 1, 0)
+z_index = 100
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
