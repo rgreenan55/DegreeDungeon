@@ -17,4 +17,4 @@ func attack():
 func _on_body_entered(body):
 	if (body.has_method("handle_hit")):
 		body.knockback = $"..".global_position.direction_to(body.global_position) * force
-		body.handle_hit($".")
+		body.handle_hit()

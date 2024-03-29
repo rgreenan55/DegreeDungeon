@@ -458,4 +458,4 @@ position = Vector2(0, 12.0833)
 shape = SubResource("RectangleShape2D_ar8ad")
 
 [connection signal="body_entered" from="MeleeAttack" to="MeleeAttack" method="_on_body_entered"]
-[connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]
+[connection signal="body_entered" from="HurtBox" to="." method="handle_hit"]

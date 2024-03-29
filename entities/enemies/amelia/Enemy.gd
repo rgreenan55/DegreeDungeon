@@ -30,10 +30,10 @@ func _process(_delta):
 # Processes Physics
 func _physics_process(delta):
 	if (state == EnemyStates.ALERT): handle_alert_movement()
-	keep_enemy_in_bounds()
+	#keep_enemy_in_bounds()
 	velocity = velocity + knockback
-	move_and_slide()
 	knockback = lerp(knockback, Vector2.ZERO, 0.1)
+	move_and_slide()
 
 # Move Towards Next Navigation Point
 func handle_alert_movement():
@@ -71,22 +71,22 @@ func play_animations():
 		if (velocity.x < 0): animation.flip_h = true
 		else: animation.flip_h = false
 
-func keep_enemy_in_bounds():
-	var screen_size = get_viewport_rect().size
-	if position.x < 0:
-		position.x = 0
-		velocity.x *= -1
-	if position.x > screen_size.x:
-		position.x = screen_size.x
-		velocity.x *= -1
-	if position.y < 0:
-		position.y = 0
-		velocity.y *= -1
-	if position.y > screen_size.y:
-		position.y = screen_size.y
-		velocity.y *= -1
+#func keep_enemy_in_bounds():
+	#var screen_size = get_viewport_rect().size
+	#if position.x < 0:
+		#position.x = 0
+		#velocity.x *= -1
+	#if position.x > screen_size.x:
+		#position.x = screen_size.x
+		#velocity.x *= -1
+	#if position.y < 0:
+		#position.y = 0
+		#velocity.y *= -1
+	#if position.y > screen_size.y:
+		#position.y = screen_size.y
+		#velocity.y *= -1
 
-func handle_hit(origin):
+func handle_hit():
 	health -= 1
 
 func die():

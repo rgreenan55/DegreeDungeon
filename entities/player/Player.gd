@@ -1,6 +1,8 @@
 extends CharacterBody2D
-
 # Character Model from: https://limezu.itch.io/moderninteriors
+
+# Signals
+signal s_health_changed
 
 # References
 @onready var animation : AnimatedSprite2D = $AnimatedSprite
@@ -11,10 +13,10 @@ extends CharacterBody2D
 
 # Variables
 var move_speed : float
-var current_health: int
-
-# Signals
-signal s_health_changed
+var current_health : int :
+	set (value):
+		s_health_changed.emit(value)
+		current_health = value
 
 # On Player Load
 func _ready():
@@ -35,9 +37,7 @@ func _physics_process(_delta):
 func _process_collisions():
 	if Input.is_action_just_pressed("dev_dmg"):
 		current_health -= 1
-		if current_health < 0:
-			pass # rip
-		s_health_changed.emit(current_health)
+		if current_health < 0: pass # rip
 
 func _unhandled_input(event : InputEvent) -> void:
 	if event.is_action_pressed("attack"):
@@ -66,7 +66,7 @@ func determine_animation():
 		if (velocity.x < 0): animation.flip_h = true
 		else: animation.flip_h = false
 
-func _on_hurt_box_body_entered(body : Node2D):
+func handle_hit(body : Node2D):
 	if (body.is_in_group("Enemy")):
 		current_health -= 1
 		s_health_changed.emit(current_health)
