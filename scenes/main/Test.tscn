@@ -21,4 +21,5 @@ position = Vector2(32, 46)
 [node name="SceneTransition" parent="." instance=ExtResource("5_x2l04")]
 
 [node name="Enemy" parent="." instance=ExtResource("5_hhc6x")]
+z_index = 2
 position = Vector2(144, 67)
