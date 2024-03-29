@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://cliuyqdohyb4i"]
 
 [ext_resource type="Theme" uid="uid://coqvjnmppcj70" path="res://ui/theme_default/theme_default.tres" id="1_cbx3a"]
-[ext_resource type="PackedScene" uid="uid://dqx6lc7y0ni7" path="res://ui/player_ui/scenes/paper_gui.tscn" id="1_ckfa4"]
 [ext_resource type="Script" path="res://menus/acceptance_letter/acceptance_letter.gd" id="2_1xitt"]
+[ext_resource type="PackedScene" uid="uid://b7cltg7tl1qf4" path="res://menus/common/paper_gui.tscn" id="3_16oif"]
 
 [sub_resource type="Animation" id="Animation_p6v2t"]
 resource_name = "Spin_In"
@@ -195,18 +195,19 @@ libraries = {
 "": SubResource("AnimationLibrary_ur2wp")
 }
 
-[node name="AcceptancePaper" parent="CanvasLayer/Control" instance=ExtResource("1_ckfa4")]
-offset_left = 584.0
-offset_top = 301.0
-offset_right = 624.0
-offset_bottom = 341.0
+[node name="AcceptancePaper" parent="CanvasLayer/Control" instance=ExtResource("3_16oif")]
+offset_left = 581.0
+offset_top = 299.0
+offset_right = 621.0
+offset_bottom = 339.0
 scale = Vector2(2, 2)
 
 [node name="AcceptanceLabel" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 0
 offset_left = 469.0
 offset_top = 154.0
-offset_right = 953.002
-offset_bottom = 307.003
+offset_right = 953.004
+offset_bottom = 307.004
 theme_override_colors/font_color = Color(0.784314, 0, 0, 1)
 theme_override_font_sizes/font_size = 35
 text = "You have been accepted into
@@ -214,6 +215,7 @@ your undergraduate degree
 at▞	▜▗▔▟▐ !"
 
 [node name="CongratsLabel" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 0
 offset_left = 480.0
 offset_top = 110.0
 offset_right = 705.0
@@ -222,6 +224,8 @@ theme_override_colors/font_color = Color(0.784314, 0, 0, 1)
 text = "CONGRATULATIONS"
 
 [node name="UserPromptLabel" type="Label" parent="CanvasLayer/Control"]
+modulate = Color(1, 1, 1, 0.932852)
+layout_mode = 0
 offset_left = 528.0
 offset_top = 320.0
 offset_right = 811.0
@@ -231,6 +235,8 @@ theme_override_font_sizes/font_size = 35
 text = "Do you accept?..."
 
 [node name="DegreeAcceptButton" type="Button" parent="CanvasLayer/Control"]
+modulate = Color(1, 1, 1, 0.870213)
+layout_mode = 0
 offset_left = 631.0
 offset_top = 377.0
 offset_right = 684.0
@@ -239,6 +245,8 @@ theme_override_colors/font_color = Color(0.784314, 0, 0, 1)
 text = "YES!"
 
 [node name="DegreeDenyButton" type="Button" parent="CanvasLayer/Control"]
+modulate = Color(1, 1, 1, 0.870213)
+layout_mode = 0
 offset_left = 518.0
 offset_top = 378.0
 offset_right = 558.0

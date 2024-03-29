@@ -37,7 +37,8 @@ var year_scenes = [
 # for the given menu name if it exists
 var menus = {
 	"title_menu": "res://menus/title/title_menu.tscn",
-	"acceptance_letter": "res://menus/acceptance_letter/acceptance_letter.tscn"
+	"acceptance_letter": "res://menus/acceptance_letter/acceptance_letter.tscn",
+	"game_over": "res://menus/game_over/game_over.tscn"
 }
 
 func reset() -> void:
