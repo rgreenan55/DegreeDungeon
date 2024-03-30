@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://gyo7c48qalkt"]
+[gd_scene load_steps=8 format=3 uid="uid://gyo7c48qalkt"]
 
 [ext_resource type="PackedScene" uid="uid://urlec0li4vsi" path="res://scenes/common/map_template_GWC124.tscn" id="1_0us5t"]
 [ext_resource type="Script" path="res://scenes/main/Test.gd" id="1_m3ssa"]
 [ext_resource type="PackedScene" uid="uid://bu0mw60kso2sl" path="res://entities/player/Player.tscn" id="2_hbgph"]
 [ext_resource type="PackedScene" uid="uid://dk2p23b6cvj8e" path="res://ui/player_ui/ui.tscn" id="3_nvljr"]
-[ext_resource type="PackedScene" uid="uid://bghlk20cvt4ed" path="res://entities/enemies/amelia/Enemy.tscn" id="5_hhc6x"]
 [ext_resource type="PackedScene" uid="uid://dlkxnlrqqt2mj" path="res://ui/scene_transition_ui/scene_transition.tscn" id="5_x2l04"]
+[ext_resource type="PackedScene" uid="uid://bghlk20cvt4ed" path="res://entities/enemies/Enemy.tscn" id="6_6wi2p"]
+[ext_resource type="PackedScene" uid="uid://dgs7vdgy2wm5m" path="res://entities/enemies/bob/Enemy_Bob.tscn" id="7_b4s33"]
 
 [node name="Test" type="Node2D"]
 script = ExtResource("1_m3ssa")
@@ -19,7 +20,10 @@ position = Vector2(32, 46)
 [node name="UI" parent="." instance=ExtResource("3_nvljr")]
 
 [node name="SceneTransition" parent="." instance=ExtResource("5_x2l04")]
+metadata/_edit_use_anchors_ = true
 
-[node name="Enemy" parent="." instance=ExtResource("5_hhc6x")]
-z_index = 2
-position = Vector2(144, 67)
+[node name="Enemy" parent="." instance=ExtResource("6_6wi2p")]
+position = Vector2(139, 62)
+
+[node name="EnemyBob" parent="." instance=ExtResource("7_b4s33")]
+position = Vector2(281, 56)

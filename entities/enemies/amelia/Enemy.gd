@@ -51,7 +51,7 @@ func make_path():
 # Movement when Enemy is IDLE
 func handle_idle_movement():
 	if (state == EnemyStates.IDLE):
-		velocity = Vector2(randf_range(-1, 1), randf_range(-1, 1)).normalized() * move_speed
+		velocity = Vector2(randi_range(-1, 1), randi_range(-1, 1)).normalized() * move_speed
 		$MovementTimer.start(randf_range(2,5))
 
 # Called when player enters enemy Line Of Sight

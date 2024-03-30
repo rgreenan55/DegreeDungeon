@@ -113,11 +113,10 @@ func determine_animation():
 		if (velocity.x < 0): animation.flip_h = true
 		else: animation.flip_h = false
 
-func handle_hit(body : Node2D):
-	if (body.is_in_group("Enemy")):
+func handle_hit(body):
+	if (body.is_in_group("Enemy") || body.is_in_group("Projectile")):
 		current_health -= 1
-		
-		#s_health_changed.emit(current_health)
+		s_health_changed.emit(current_health)
 
 func handle_death():
 	is_dead = true

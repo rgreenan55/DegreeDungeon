@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://ui/player_ui/ui.gd" id="1_kkkl3"]
 [ext_resource type="Texture2D" uid="uid://dcjrt3374nkf" path="res://ui/assets/sprites/YouFailedTitle.png" id="2_gkmy2"]
-[ext_resource type="Theme" uid="uid://coqvjnmppcj70" path="res://ui/theme_default/theme_default.tres" id="2_rijdg"]
+[ext_resource type="Theme" uid="uid://dwaenijqjyg8s" path="res://ui/theme_default/theme_default.tres" id="2_rijdg"]
 [ext_resource type="PackedScene" uid="uid://dqx6lc7y0ni7" path="res://ui/player_ui/scenes/paper_gui.tscn" id="2_u75gu"]
 [ext_resource type="PackedScene" uid="uid://ceby5p67mj3tn" path="res://ui/player_ui/scenes/fail_gui.tscn" id="3_ein7f"]
 [ext_resource type="PackedScene" uid="uid://dlkxnlrqqt2mj" path="res://ui/scene_transition_ui/scene_transition.tscn" id="6_k581a"]
