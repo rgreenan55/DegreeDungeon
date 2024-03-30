@@ -1,0 +1,19 @@
+extends Node2D
+
+@onready var Player = $Player
+@onready var UIContainer = $UI
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	# Set max health in GUI to that of the player
+	UIContainer.set_max_health(Player.max_health)
+	Player.current_health -= 1
+	UIContainer.update_health(Player.current_health)
+	# Connect the health changed signal of the player to the UI
+	Player.s_max_health_changed.connect(UIContainer.set_max_health)
+	Player.s_health_changed.connect(UIContainer.update_health)
+	Player.s_died.connect(UIContainer.player_died)
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta):
+	pass

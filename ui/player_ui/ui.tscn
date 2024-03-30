@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dk2p23b6cvj8e"]
 
 [ext_resource type="Script" path="res://ui/player_ui/ui.gd" id="1_kkkl3"]
-[ext_resource type="Theme" uid="uid://coqvjnmppcj70" path="res://ui/theme_default/theme_default.tres" id="2_rijdg"]
+[ext_resource type="Theme" uid="uid://dwaenijqjyg8s" path="res://ui/theme_default/theme_default.tres" id="2_rijdg"]
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_kkkl3")

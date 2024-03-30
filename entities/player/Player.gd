@@ -1,21 +1,36 @@
 extends CharacterBody2D
-
 # Character Model from: https://limezu.itch.io/moderninteriors
 
 # References
 @onready var animation : AnimatedSprite2D = $AnimatedSprite
+@onready var weapon : Area2D = $MeleeAttack
 
 # Exported Variables
 @export var max_health : int = 5
 
 # Variables
 var move_speed : float
-var current_health: int
 var is_dead: bool
+var is_invincible: bool
+var is_speedy: bool
+
+var last_hit_time = 0
+var invincibility_frames_duration = 0.5
 
 # Signals
+signal s_max_health_changed
 signal s_health_changed
 signal s_died
+
+var current_health : int :
+	set (value):
+		if current_health > value and is_invincible:
+			return false
+		current_health = value
+		s_health_changed.emit(value)
+		if (value == 0): handle_death()
+		start_invincibility_frames()
+
 
 # On Player Load
 func _ready():
@@ -23,13 +38,16 @@ func _ready():
 	move_speed = 100
 	velocity = Vector2.ZERO
 	is_dead = false
+	is_invincible = false
+	is_speedy = false
 
 # Processes
-func _process(_delta):
+func _process(delta):
 	if is_dead:
 		return
 	get_movement_input()
 	determine_animation()
+	handle_invincibility_frames(delta)
 
 # Physics Processes
 func _physics_process(_delta):
@@ -38,17 +56,39 @@ func _physics_process(_delta):
 	_process_collisions()
 	move_and_slide()
 
+func handle_invincibility_frames(delta):
+	if last_hit_time != 0:
+		last_hit_time -= delta
+		if last_hit_time <= 0:
+			is_invincible = false
+			last_hit_time = 0
+
+func start_invincibility_frames():
+	print("invincible")
+	is_invincible = true
+	last_hit_time = invincibility_frames_duration
+
+#func damage_player(amount):
+	#if is_invincible:
+		#return
+	#current_health -= amount
+	#if current_health <= 0:
+		#is_dead = true
+		#animation.play("dead_left_right");
+		#if (velocity.x > 0): animation.flip_h = true
+		#s_died.emit()
+#
+	#s_health_changed.emit(current_health)
+
 
 func _process_collisions():
 	if Input.is_action_just_pressed("dev_dmg"):
 		current_health -= 1
-		if current_health <= 0:
-			is_dead = true
-			animation.play("dead_left_right");
-			if (velocity.x > 0): animation.flip_h = true
-			s_died.emit()
 
-		s_health_changed.emit(current_health)
+func _unhandled_input(event : InputEvent) -> void:
+	if event.is_action_pressed("attack"):
+		weapon.attack()
+
 
 # Determines velocity based on user input
 func get_movement_input():
@@ -73,4 +113,13 @@ func determine_animation():
 		if (velocity.x < 0): animation.flip_h = true
 		else: animation.flip_h = false
 
+func handle_hit(body):
+	if (body.is_in_group("Enemy") || body.is_in_group("Projectile")):
+		current_health -= 1
+		s_health_changed.emit(current_health)
 
+func handle_death():
+	is_dead = true
+	animation.play("dead_left_right");
+	if (velocity.x > 0): animation.flip_h = true
+	s_died.emit()

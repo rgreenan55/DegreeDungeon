@@ -4,7 +4,7 @@ class_name TITLE_MENU
 signal s_next_level
 signal s_quit_game
 
-# Start the game at the next scene specified in Year 0 
+# Start the game at the next scene specified in Year 0
 func _on_play_pressed():
 	s_next_level.emit()
 
