@@ -11,10 +11,10 @@ var scene_instance: PackedScene
 var menu_instance: PackedScene
 
 func _ready():
-	_init_ui()
-	_disable_ui()
 	_init_player()
+	_init_ui()
 	_disable_player()
+	_disable_ui()
 	_disable_follow_camera()
 	GameState.reset()
 	_load_menu(GameState.get_menu_path("title_menu"))
@@ -36,7 +36,7 @@ func _enable_ui():
 	
 func _init_ui():
 	ui.set_max_health(player.max_health)
-	ui.update_health(player.current_health - 1)
+	ui.update_health(player.current_health)
 	
 func _disable_player():
 	player.visible = false;
@@ -45,6 +45,7 @@ func _enable_player():
 	player.visible = true;
 	
 func _init_player():
+	player.current_health = player.max_health - 1
 	player.s_health_changed.connect(ui.update_health)
 	player.s_died.connect(func(): _display_menu("game_over"))
 	
