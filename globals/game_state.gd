@@ -45,6 +45,9 @@ var year_player_positions = [
 		Vector2(0, 0),
 	],
 	[	# Year 1
+		Vector2(232.5, 91.24),
+		Vector2(32, 46),
+		Vector2(49, 145),
 		Vector2(32, 46),
 	],
 	[	# Year 2
