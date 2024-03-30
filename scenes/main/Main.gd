@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var ui = %UI
 @onready var player = %Player
+@onready var follow_camera = %FollowCamera
 @onready var current_scene = %CurrentScene
 @onready var current_menu = %CurrentMenu
 @onready var animation_player = $SceneTransition/AnimationPlayer
@@ -14,9 +15,14 @@ func _ready():
 	_disable_ui()
 	_init_player()
 	_disable_player()
+	_disable_follow_camera()
 	GameState.reset()
 	_load_menu(GameState.get_menu_path("title_menu"))
 	await _transition_out()
+	
+func _process(delta):
+	if follow_camera.enabled:
+		follow_camera.position = player.position
 	
 #########################################
 #	Functions for managing parts of 
@@ -30,7 +36,7 @@ func _enable_ui():
 	
 func _init_ui():
 	ui.set_max_health(player.max_health)
-	ui.update_health(player.current_health)
+	ui.update_health(player.current_health - 1)
 	
 func _disable_player():
 	player.visible = false;
@@ -41,6 +47,12 @@ func _enable_player():
 func _init_player():
 	player.s_health_changed.connect(ui.update_health)
 	player.s_died.connect(func(): _display_menu("game_over"))
+	
+func _enable_follow_camera():
+	follow_camera.enabled = true
+	
+func _disable_follow_camera():
+	follow_camera.enabled = false;
 	
 #########################################
 #	General functions that are called 
@@ -119,4 +131,8 @@ func _load_scene(scene_path: String):
 			new_instance.s_enable_ui.connect(_enable_ui)
 		if new_instance.has_signal("s_disable_ui"):
 			new_instance.s_disable_ui.connect(_disable_ui)
+		if new_instance.has_signal("s_enable_follow_camera"):
+			new_instance.s_enable_follow_camera.connect(_enable_follow_camera)
+		if new_instance.has_signal("s_disable_follow_camera"):
+			new_instance.s_disable_follow_camera.connect(_disable_follow_camera)
 		current_scene.add_child(new_instance)

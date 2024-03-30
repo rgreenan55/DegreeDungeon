@@ -42,7 +42,7 @@ var year_scenes = [
 var year_player_positions = [
 	[	# Year 0
 		Vector2(0, 0),
-		Vector2(0, 0),
+		Vector2(536, 565),
 	],
 	[	# Year 1
 		Vector2(232.5, 91.24),

@@ -33,6 +33,17 @@ unique_name_in_owner = true
 
 [node name="Player" parent="." instance=ExtResource("2_1fv7w")]
 unique_name_in_owner = true
+z_index = 1
+scale = Vector2(0.6, 0.6)
+
+[node name="FollowCamera" type="Camera2D" parent="."]
+unique_name_in_owner = true
+enabled = false
+zoom = Vector2(3, 3)
+limit_left = 0
+limit_top = 0
+limit_right = 1152
+limit_bottom = 648
 
 [node name="UI" parent="." instance=ExtResource("1_rn86o")]
 unique_name_in_owner = true

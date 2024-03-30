@@ -1,7 +1,5 @@
 extends Node2D
 
-@onready var player = %Player
-@onready var player_camera = $PlayerCamera
 @onready var mom_speech_bubble = %MomSpeechBubble
 @onready var mom_timer = %MomTimer
 @onready var tile_map = $TileMap
@@ -24,19 +22,14 @@ var mom_text_post_trigger = [
 var has_adam_triggered_mom: bool = false
 var has_adam_triggered_mail: bool = false
 
+signal s_enable_player
+signal s_enable_follow_camera
 signal s_show_menu(menu_name)
 
 func _ready():	
+	s_enable_player.emit()
+	s_enable_follow_camera.emit()
 	_update_mom_speech()
-	_update_camera_pos()
-
-func _process(delta):
-	_update_camera_pos()
-
-func _update_camera_pos():
-	player_camera.position.x = player.position.x
-	player_camera.position.y = player.position.y
-	# player_camera.position = clamp(player_camera.position, Vector2(0, 0), Vector2(1152, 648))
 
 func _update_mom_speech():
 	if !has_adam_triggered_mom:
