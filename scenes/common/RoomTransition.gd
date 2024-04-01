@@ -1,19 +1,10 @@
 extends Node2D
 
-@export var scene_transition = Control
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
+signal s_transition_room
 
 func _on_area_2d_body_entered(body):
 	if body.is_in_group("Player"):
-		scene_transition.transition_to(GameState.next_scene_path())
+		s_transition_room.emit()
 
 func _disable_collision():
 	$Area2D/CollisionShape2D.disabled = true

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cgxhlutv6ie1w"
-path="res://.godot/imported/FailSymbol.png-ce02ae0353d4aca7e1fa98c013abc276.ctex"
+uid="uid://co5udyj2djama"
+path="res://.godot/imported/FailSymbol.png-d91c9285eeb89aaa7e75c62ab7c06aa9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/assets/sprites/FailSymbol.png"
-dest_files=["res://.godot/imported/FailSymbol.png-ce02ae0353d4aca7e1fa98c013abc276.ctex"]
+source_file="res://menus/assets/FailSymbol.png"
+dest_files=["res://.godot/imported/FailSymbol.png-d91c9285eeb89aaa7e75c62ab7c06aa9.ctex"]
 
 [params]
 

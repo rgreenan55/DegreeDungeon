@@ -1,0 +1,183 @@
+[gd_scene load_steps=8 format=3 uid="uid://ckfeerpjsp50"]
+
+[ext_resource type="Theme" uid="uid://coqvjnmppcj70" path="res://ui/theme_default/theme_default.tres" id="1_kf1le"]
+[ext_resource type="Script" path="res://menus/game_over/game_over.gd" id="1_yak1x"]
+[ext_resource type="Texture2D" uid="uid://cjot3gdho6r5o" path="res://menus/assets/YouFailedTitle.png" id="2_eexiq"]
+[ext_resource type="PackedScene" uid="uid://675k5o7mfpft" path="res://menus/common/fail_gui.tscn" id="2_u3244"]
+[ext_resource type="PackedScene" uid="uid://b7cltg7tl1qf4" path="res://menus/common/paper_gui.tscn" id="3_cp71n"]
+
+[sub_resource type="Animation" id="Animation_we51n"]
+resource_name = "Game_Over_Appear"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Form/MarginContainer/VBoxContainer:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprites/paper_gui:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.1, 0.1), Vector2(1.5, 1.5)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprites/paper_gui:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [6.28319, 0.301942]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprites/paper_gui:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(771, 272)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprites/paper_gui:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sprites/fail_gui:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(10, 10), Vector2(3, 3)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Sprites/fail_gui:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fg4v1"]
+_data = {
+"Game_Over_Appear": SubResource("Animation_we51n")
+}
+
+[node name="GameOver" type="CanvasLayer"]
+script = ExtResource("1_yak1x")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("1_kf1le")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_fg4v1")
+}
+
+[node name="Sprites" type="Control" parent="Control"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="paper_gui" parent="Control/Sprites" instance=ExtResource("3_cp71n")]
+modulate = Color(1, 1, 1, 0)
+offset_left = 771.0
+offset_top = 272.0
+offset_right = 811.0
+offset_bottom = 312.0
+rotation = 6.28319
+scale = Vector2(0.1, 0.1)
+
+[node name="fail_gui" parent="Control/Sprites" instance=ExtResource("2_u3244")]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+offset_left = 848.0
+offset_top = 207.0
+offset_right = 848.0
+offset_bottom = 207.0
+scale = Vector2(10, 10)
+
+[node name="Form" type="Control" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1112.0
+offset_bottom = 608.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/Form"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Form/MarginContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="TextureRect" type="TextureRect" parent="Control/Form/MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_eexiq")
+stretch_mode = 3
+
+[node name="Restart" type="Button" parent="Control/Form/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.67451, 0.196078, 0.196078, 1)
+text = "Restart"
+
+[node name="Quit" type="Button" parent="Control/Form/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.67451, 0.196078, 0.196078, 1)
+text = "Quit"
+
+[connection signal="pressed" from="Control/Form/MarginContainer/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="Control/Form/MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
