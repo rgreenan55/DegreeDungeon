@@ -11,6 +11,7 @@ func _on_degree_accept_button_pressed():
 	# The player has chosen to accept their degree, starting the game!
 	animation_player.play_backwards("Spin_In")
 	await animation_player.animation_finished
+	AmbientMusic.play()
 	s_next_level.emit()
 
 func _on_degree_deny_button_pressed():

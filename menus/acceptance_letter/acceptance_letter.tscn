@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cliuyqdohyb4i"]
 
-[ext_resource type="Theme" uid="uid://coqvjnmppcj70" path="res://ui/theme_default/theme_default.tres" id="1_cbx3a"]
+[ext_resource type="Theme" uid="uid://dwaenijqjyg8s" path="res://ui/theme_default/theme_default.tres" id="1_cbx3a"]
 [ext_resource type="Script" path="res://menus/acceptance_letter/acceptance_letter.gd" id="2_1xitt"]
 [ext_resource type="PackedScene" uid="uid://b7cltg7tl1qf4" path="res://menus/common/paper_gui.tscn" id="3_16oif"]
 

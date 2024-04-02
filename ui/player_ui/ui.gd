@@ -20,7 +20,7 @@ func update_health(current_health: int):
 	if current_health < 0:
 		return
 	current_health = min(health_container.get_child_count(), current_health)
-	
+
 	var coffee_cups = health_container.get_children()
 
 	for i in range(current_health):
