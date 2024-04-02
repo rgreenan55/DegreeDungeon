@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://c7dana6m4s3d5"]
 
-[ext_resource type="Script" path="res://scenes/main/Test.gd" id="1_kwf8e"]
+[ext_resource type="Script" path="res://scenes/world_1/generic_room_logic.gd" id="1_xpcpj"]
 [ext_resource type="PackedScene" uid="uid://urlec0li4vsi" path="res://scenes/common/map_template_GWC124.tscn" id="2_vhugu"]
 [ext_resource type="PackedScene" uid="uid://bghlk20cvt4ed" path="res://entities/enemies/amelia/Enemy.tscn" id="6_63ow5"]
 [ext_resource type="Script" path="res://scenes/world_1/Exits.gd" id="7_aq6te"]
@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dx78s7qi3mejd" path="res://entities/enemies/turret/Enemy_Turret.tscn" id="10_ovqjc"]
 
 [node name="Main" type="Node2D"]
-script = ExtResource("1_kwf8e")
+script = ExtResource("1_xpcpj")
 
 [node name="Node2D" parent="." instance=ExtResource("2_vhugu")]
 

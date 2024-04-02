@@ -2,6 +2,7 @@ extends Node
 
 var current_year: int : set = _set_current_year, get = _get_current_year
 var current_scene: String : set = _set_current_scene, get = _get_current_scene
+var scenes_cleared: int : set = _set_scenes_cleared, get = _get_scenes_cleared
 
 # The years array represents the macro-scopic breakdown
 # of the levels within the game. Each year has a subset of
@@ -22,6 +23,7 @@ var year_scenes = [
 		"res://scenes/world_1/Class1.tscn",
 		"res://scenes/world_1/Hall.tscn",
 		"res://scenes/main/Test.tscn",
+		"res://scenes/world_1/Hall.tscn",
 	],
 	[	# Year 2
 		"",
@@ -49,6 +51,7 @@ var year_player_positions = [
 		Vector2(32, 46),
 		Vector2(49, 145),
 		Vector2(32, 46),
+		Vector2(96, 100),
 	],
 	[	# Year 2
 		Vector2(0, 0),
@@ -75,6 +78,7 @@ func reset() -> void:
 	# Reset all variables to their defaults
 	current_year = 0
 	current_scene = year_scenes[current_year][0]
+	scenes_cleared = 0
 	
 # Return the path of the next scene for the current year if
 # there is one, otherwise switch to the next year and the first
@@ -137,4 +141,15 @@ func _set_current_scene(scene: String) -> void:
 	# to is part of the current year
 	assert(scene in year_scenes[current_year])
 	current_scene = scene
-
+	
+# Adds one to the number of scenes that have been cleared
+#
+# State variables are set through execution.
+func scene_cleared() -> void:
+	_set_scenes_cleared(scenes_cleared + 1)
+	
+func _get_scenes_cleared() -> int:
+	return scenes_cleared
+	
+func _set_scenes_cleared(new_scenes_cleared: int) -> void:
+	scenes_cleared = new_scenes_cleared
