@@ -29,7 +29,7 @@ func _ready():
 	# Set max health in GUI to zero since we don't want that to be visible right now
 	ui.set_max_health(0)
 	ui.update_health(0)
-	
+
 	_update_mom_speech()
 	_update_camera_pos()
 

@@ -25,7 +25,7 @@ func update_health(current_health: int):
 	if current_health < 0:
 		return
 	current_health = min(health_container.get_child_count(), current_health)
-	
+
 	var coffee_cups = health_container.get_children()
 
 	for i in range(current_health):
@@ -33,13 +33,13 @@ func update_health(current_health: int):
 
 	for i in range(current_health, coffee_cups.size()):
 		coffee_cups[i].update(false)
-		
+
 func player_died():
 	animation_player.play("Fail_Paper_Spin_In")
-	
+
 func send_acceptance_letter():
 		animation_player.play("Acceptance_Paper_Spin_In")
-	
+
 func _on_restart_pressed():
 		animation_player.play_backwards("Fail_Paper_Spin_In")
 		await animation_player.animation_finished
@@ -57,4 +57,5 @@ func _on_degree_accept_button_pressed():
 	# The player has chosen to accept their degree, starting the game!
 	animation_player.play_backwards("Acceptance_Paper_Spin_In")
 	await animation_player.animation_finished
+	AmbientMusic.play()
 	scene_transition.transition_to(GameState.next_scene_path())
