@@ -3,15 +3,10 @@ class_name UI
 
 @onready var CoffeeGui = preload("res://ui/player_ui/scenes/coffee_gui.tscn")
 @onready var health_container = %HealthContainer
-@onready var animation_player = %AnimationPlayer
-@onready var scene_transition = %SceneTransition
 
 var health = 5:
 	set(new_health):
 		health = new_health
-
-func _ready():
-	pass
 
 func set_max_health(max_hp : int):
 	print("Health before set max: " + str(health_container.get_child_count()))

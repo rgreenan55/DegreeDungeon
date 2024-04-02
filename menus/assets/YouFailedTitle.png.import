@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dcjrt3374nkf"
-path="res://.godot/imported/YouFailedTitle.png-4b2d320e10e033b81d75d6484b94a825.ctex"
+uid="uid://cjot3gdho6r5o"
+path="res://.godot/imported/YouFailedTitle.png-f557d141b409273b85a16b9d5ac0daf8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/assets/sprites/YouFailedTitle.png"
-dest_files=["res://.godot/imported/YouFailedTitle.png-4b2d320e10e033b81d75d6484b94a825.ctex"]
+source_file="res://menus/assets/YouFailedTitle.png"
+dest_files=["res://.godot/imported/YouFailedTitle.png-f557d141b409273b85a16b9d5ac0daf8.ctex"]
 
 [params]
 
