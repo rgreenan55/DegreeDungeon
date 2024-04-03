@@ -33,7 +33,7 @@ unique_name_in_owner = true
 
 [node name="Player" parent="." instance=ExtResource("2_1fv7w")]
 unique_name_in_owner = true
-z_index = 1
+z_index = 2
 scale = Vector2(0.6, 0.6)
 
 [node name="FollowCamera" type="Camera2D" parent="."]
