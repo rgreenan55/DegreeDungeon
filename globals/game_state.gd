@@ -27,6 +27,8 @@ var year_scenes = [
 		"res://scenes/world_1/Hall.tscn",
 		"res://scenes/world_1/Class3.tscn",
 		"res://scenes/world_1/Hall.tscn",
+		"res://scenes/world_1/Class4.tscn",
+		"res://scenes/world_1/Hall.tscn",
 	],
 	[	# Year 2
 		"",
@@ -57,6 +59,8 @@ var year_player_positions = [
 		Vector2(96, 100),
 		Vector2(56, 192),
 		Vector2(144, 100),
+		Vector2(56, 193),
+		Vector2(352, 100),
 	],
 	[	# Year 2
 		Vector2(0, 0),
