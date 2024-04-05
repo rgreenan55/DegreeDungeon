@@ -2,6 +2,7 @@ extends Node
 
 var current_year: int : set = _set_current_year, get = _get_current_year
 var current_scene: String : set = _set_current_scene, get = _get_current_scene
+var scenes_cleared: int : set = _set_scenes_cleared, get = _get_scenes_cleared
 
 # The years array represents the macro-scopic breakdown
 # of the levels within the game. Each year has a subset of
@@ -12,6 +13,7 @@ var years = [0, 1, 2, 3, 4]
 # scenes that form a particular year based on index.
 # For example: the array of scenes at index 1 represent
 # all scenes that make up year 1!
+var year_scene_idx = 0
 var year_scenes = [
 	[	# Year 0
 		"res://scenes/main/Main.tscn",
@@ -21,7 +23,12 @@ var year_scenes = [
 		"res://scenes/world_1/DormStart.tscn",
 		"res://scenes/world_1/Class1.tscn",
 		"res://scenes/world_1/Hall.tscn",
-		"res://scenes/main/Test.tscn",
+		"res://scenes/world_1/Class2.tscn",
+		"res://scenes/world_1/Hall.tscn",
+		"res://scenes/world_1/Class3.tscn",
+		"res://scenes/world_1/Hall.tscn",
+		"res://scenes/world_1/Class4.tscn",
+		"res://scenes/world_1/Hall.tscn",
 	],
 	[	# Year 2
 		"",
@@ -48,7 +55,12 @@ var year_player_positions = [
 		Vector2(232.5, 91.24),
 		Vector2(32, 46),
 		Vector2(49, 145),
-		Vector2(32, 46),
+		Vector2(88, 32),
+		Vector2(96, 100),
+		Vector2(56, 192),
+		Vector2(144, 100),
+		Vector2(56, 193),
+		Vector2(352, 100),
 	],
 	[	# Year 2
 		Vector2(0, 0),
@@ -75,6 +87,8 @@ func reset() -> void:
 	# Reset all variables to their defaults
 	current_year = 0
 	current_scene = year_scenes[current_year][0]
+	scenes_cleared = 0
+	year_scene_idx = 0
 	
 # Return the path of the next scene for the current year if
 # there is one, otherwise switch to the next year and the first
@@ -82,13 +96,14 @@ func reset() -> void:
 #
 # State variables are set through execution.
 func next_scene_path() -> String:
-	var current_scene_idx = year_scenes[current_year].find(current_scene, 0)
-	if current_scene_idx != -1 and current_scene_idx < year_scenes[current_year].size() - 1:
-		_set_current_scene(year_scenes[current_year][(current_scene_idx + 1)])
+	if year_scene_idx < year_scenes[current_year].size() - 1:
+		year_scene_idx += 1
+		_set_current_scene(year_scenes[current_year][year_scene_idx])
 		return current_scene
 	
 	# If the above fails, then we must move onto the next year.
 	_set_current_year(current_year + 1)
+	year_scene_idx = 0
 	_set_current_scene(year_scenes[current_year][0])
 	return current_scene
 	
@@ -98,9 +113,8 @@ func next_scene_path() -> String:
 #
 # State variables are no set through execution.
 func player_starting_position() -> Vector2:
-	var current_scene_idx = year_scenes[current_year].find(current_scene, 0)
-	if current_scene_idx != -1 and current_scene_idx < year_player_positions[current_year].size():
-		return year_player_positions[current_year][current_scene_idx]
+	if year_scene_idx < year_player_positions[current_year].size():
+		return year_player_positions[current_year][year_scene_idx]
 	else:
 		return Vector2(0, 0)
 	
@@ -118,7 +132,8 @@ func get_menu_path(menu_name: String) -> String:
 #
 # State variables are set through execution.
 func start_of_year() -> String:
-	_set_current_scene(year_scenes[current_year][0])
+	year_scene_idx = 0
+	_set_current_scene(year_scenes[current_year][year_scene_idx])
 	return current_scene
 
 func _get_current_year() -> int:
@@ -137,4 +152,15 @@ func _set_current_scene(scene: String) -> void:
 	# to is part of the current year
 	assert(scene in year_scenes[current_year])
 	current_scene = scene
-
+	
+# Adds one to the number of scenes that have been cleared
+#
+# State variables are set through execution.
+func scene_cleared() -> void:
+	_set_scenes_cleared(scenes_cleared + 1)
+	
+func _get_scenes_cleared() -> int:
+	return scenes_cleared
+	
+func _set_scenes_cleared(new_scenes_cleared: int) -> void:
+	scenes_cleared = new_scenes_cleared

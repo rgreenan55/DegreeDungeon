@@ -15,9 +15,28 @@ script = ExtResource("1_3jcml")
 
 [node name="Hallway" parent="." instance=ExtResource("2_xwwgw")]
 
-[node name="ExitDoorTop" parent="." instance=ExtResource("6_xp7tp")]
+[node name="ExitDoors" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="ExitDoor1" parent="ExitDoors" instance=ExtResource("6_xp7tp")]
 z_index = 1
 position = Vector2(96, 72)
+
+[node name="ExitDoor2" parent="ExitDoors" instance=ExtResource("6_xp7tp")]
+z_index = 1
+position = Vector2(144, 72)
+
+[node name="ExitDoor3" parent="ExitDoors" instance=ExtResource("6_xp7tp")]
+z_index = 1
+position = Vector2(352, 72)
+
+[node name="ExitDoor4" parent="ExitDoors" instance=ExtResource("6_xp7tp")]
+z_index = 1
+position = Vector2(560, 72)
+
+[node name="ExitDoor5" parent="ExitDoors" instance=ExtResource("6_xp7tp")]
+z_index = 1
+position = Vector2(736, 72)
 
 [node name="SpeedPickup" parent="." instance=ExtResource("7_wf17f")]
 position = Vector2(80, 118)
@@ -51,7 +70,11 @@ position = Vector2(279, 114)
 
 [node name="DrinkingSoundPlayer" parent="." instance=ExtResource("12_k2m2g")]
 
-[connection signal="s_exit_door" from="ExitDoorTop" to="." method="_on_exit_door_top_s_exit_door"]
+[connection signal="s_exit_door" from="ExitDoors/ExitDoor1" to="." method="_on_exit_door_top_s_exit_door"]
+[connection signal="s_exit_door" from="ExitDoors/ExitDoor2" to="." method="_on_exit_door_top_s_exit_door"]
+[connection signal="s_exit_door" from="ExitDoors/ExitDoor3" to="." method="_on_exit_door_top_s_exit_door"]
+[connection signal="s_exit_door" from="ExitDoors/ExitDoor4" to="." method="_on_exit_door_top_s_exit_door"]
+[connection signal="s_exit_door" from="ExitDoors/ExitDoor5" to="." method="_on_exit_door_top_s_exit_door"]
 [connection signal="picked_up" from="SpeedPickup" to="DrinkingSoundPlayer" method="_play_sound"]
 [connection signal="picked_up" from="MaxHealthPickup" to="DrinkingSoundPlayer" method="_play_sound"]
 [connection signal="picked_up" from="FullHealthPickup" to="DrinkingSoundPlayer" method="_play_sound"]
