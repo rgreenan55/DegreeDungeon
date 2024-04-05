@@ -70,9 +70,5 @@ libraries = {
 script = ExtResource("5_vtlra")
 animationName = "Glow"
 
-[node name="Camera2D" type="Camera2D" parent="."]
-enabled = false
-zoom = Vector2(15, 15)
-
 [connection signal="s_transition_room" from="RoomTransition" to="." method="_on_room_transition_s_transition_room"]
 [connection signal="animation_finished" from="AnimationPlayer2" to="AnimationPlayer2" method="_on_animation_finished"]
