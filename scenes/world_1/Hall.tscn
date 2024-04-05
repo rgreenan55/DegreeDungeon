@@ -1,14 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://dq870pms4umlk"]
+[gd_scene load_steps=4 format=3 uid="uid://dq870pms4umlk"]
 
 [ext_resource type="Script" path="res://scenes/world_1/Hall.gd" id="1_3jcml"]
 [ext_resource type="PackedScene" uid="uid://bahc25h2bhidl" path="res://scenes/common/map_template_Hall.tscn" id="2_xwwgw"]
 [ext_resource type="PackedScene" uid="uid://malwav3fokf5" path="res://scenes/common/ExitDoorTop.tscn" id="6_xp7tp"]
-[ext_resource type="PackedScene" uid="uid://cw6falelokm82" path="res://entities/items/objects/SpeedPickup.tscn" id="7_wf17f"]
-[ext_resource type="PackedScene" uid="uid://top8no5yrwkr" path="res://entities/items/objects/MaxHealthPickup.tscn" id="8_qe6r6"]
-[ext_resource type="PackedScene" uid="uid://bv780bs63xu5j" path="res://entities/items/objects/FullHealthPickup.tscn" id="9_u30ju"]
-[ext_resource type="PackedScene" uid="uid://hvtmxof87uoa" path="res://entities/items/objects/InvincibilityPickup.tscn" id="10_2h0oq"]
-[ext_resource type="PackedScene" uid="uid://cmigi4uq1hp61" path="res://entities/items/objects/HealthPickup.tscn" id="11_5xvcr"]
-[ext_resource type="PackedScene" uid="uid://clqnbr3o3a850" path="res://entities/items/objects/drinking_sound_player.tscn" id="12_k2m2g"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_3jcml")
@@ -38,50 +32,8 @@ position = Vector2(560, 72)
 z_index = 1
 position = Vector2(736, 72)
 
-[node name="SpeedPickup" parent="." instance=ExtResource("7_wf17f")]
-position = Vector2(80, 118)
-
-[node name="MaxHealthPickup" parent="." instance=ExtResource("8_qe6r6")]
-position = Vector2(367, 118)
-
-[node name="FullHealthPickup" parent="." instance=ExtResource("9_u30ju")]
-position = Vector2(457, 118)
-
-[node name="InvincibilityPickup" parent="." instance=ExtResource("10_2h0oq")]
-position = Vector2(521, 119)
-
-[node name="HealthPickup" parent="." instance=ExtResource("11_5xvcr")]
-position = Vector2(155, 121)
-
-[node name="SpeedPickup2" parent="." instance=ExtResource("7_wf17f")]
-position = Vector2(214, 120)
-
-[node name="InvincibilityPickup2" parent="." instance=ExtResource("10_2h0oq")]
-position = Vector2(689, 122)
-
-[node name="HealthPickup2" parent="." instance=ExtResource("11_5xvcr")]
-position = Vector2(635, 117)
-
-[node name="FullHealthPickup2" parent="." instance=ExtResource("9_u30ju")]
-position = Vector2(582, 123)
-
-[node name="MaxHealthPickup2" parent="." instance=ExtResource("8_qe6r6")]
-position = Vector2(279, 114)
-
-[node name="DrinkingSoundPlayer" parent="." instance=ExtResource("12_k2m2g")]
-
 [connection signal="s_exit_door" from="ExitDoors/ExitDoor1" to="." method="_on_exit_door_top_s_exit_door"]
 [connection signal="s_exit_door" from="ExitDoors/ExitDoor2" to="." method="_on_exit_door_top_s_exit_door"]
 [connection signal="s_exit_door" from="ExitDoors/ExitDoor3" to="." method="_on_exit_door_top_s_exit_door"]
 [connection signal="s_exit_door" from="ExitDoors/ExitDoor4" to="." method="_on_exit_door_top_s_exit_door"]
 [connection signal="s_exit_door" from="ExitDoors/ExitDoor5" to="." method="_on_exit_door_top_s_exit_door"]
-[connection signal="picked_up" from="SpeedPickup" to="DrinkingSoundPlayer" method="_play_sound"]
-[connection signal="picked_up" from="MaxHealthPickup" to="DrinkingSoundPlayer" method="_play_sound"]
-[connection signal="picked_up" from="FullHealthPickup" to="DrinkingSoundPlayer" method="_play_sound"]
-[connection signal="picked_up" from="InvincibilityPickup" to="DrinkingSoundPlayer" method="_play_sound"]
-[connection signal="picked_up" from="HealthPickup" to="DrinkingSoundPlayer" method="_play_sound"]
-[connection signal="picked_up" from="SpeedPickup2" to="DrinkingSoundPlayer" method="_play_sound"]
-[connection signal="picked_up" from="InvincibilityPickup2" to="DrinkingSoundPlayer" method="_play_sound"]
-[connection signal="picked_up" from="HealthPickup2" to="DrinkingSoundPlayer" method="_play_sound"]
-[connection signal="picked_up" from="FullHealthPickup2" to="DrinkingSoundPlayer" method="_play_sound"]
-[connection signal="picked_up" from="MaxHealthPickup2" to="DrinkingSoundPlayer" method="_play_sound"]
