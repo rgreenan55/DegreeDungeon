@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://d3ihesiv3yinj"]
 
-[ext_resource type="Theme" uid="uid://coqvjnmppcj70" path="res://ui/theme_default/theme_default.tres" id="1_xqkuh"]
+[ext_resource type="Theme" uid="uid://dwaenijqjyg8s" path="res://ui/theme_default/theme_default.tres" id="1_xqkuh"]
 [ext_resource type="Script" path="res://ui/speech_bubble_ui/speech_bubble.gd" id="2_idmj8"]
 
 [node name="SpeechBubble" type="Node2D"]
