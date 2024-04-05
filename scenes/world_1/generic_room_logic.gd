@@ -4,14 +4,7 @@ extends Node2D
 
 var room_cleared: bool = false
 
-# List of all powerups that may spawn after a room has been cleared
-var powerups = [
-	"res://entities/items/objects/FullHealthPickup.tscn",
-	"res://entities/items/objects/HealthPickup.tscn",
-	"res://entities/items/objects/InvincibilityPickup.tscn",
-	"res://entities/items/objects/MaxHealthPickup.tscn",
-	"res://entities/items/objects/SpeedPickup.tscn"
-]
+var random_drop = preload("res://entities/items/objects/GenericDrop.tscn")
 
 var last_enemy_pos: Vector2 = Vector2.ZERO
 
@@ -45,11 +38,10 @@ func _check_room_clear():
 		last_enemy_pos = get_tree().get_nodes_in_group("Enemy")[0].position
 		
 func _spawn_powerup():
-	var powerup = load(powerups.pick_random())
-	if powerup:
-		var powerup_instance = powerup.instantiate()
+	if random_drop:
+		var powerup_instance = random_drop.instantiate()
 		powerup_instance.position = last_enemy_pos
-		powerup_instance.picked_up.connect(_play_drinking_noise)
+		powerup_instance.s_picked_up.connect(_play_drinking_noise)
 		add_child(powerup_instance)
 		
 func _play_drinking_noise():

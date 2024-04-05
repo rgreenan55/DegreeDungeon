@@ -37,6 +37,8 @@ func startBoost():
 	pass
 	
 func endBoost():
+	# BUG: IF THE PLAYER LEAVES THE ROOM
+	# BEFORE THIS ENDS THEN IT NEVER ENDS!
 	player.move_speed /= speedMulti
 	player.is_speedy = false
 	finished.emit()
