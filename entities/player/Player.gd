@@ -96,6 +96,10 @@ func get_movement_input():
 	input_vector.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	input_vector.y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
 	input_vector = input_vector.normalized()
+	if not $RunningSound.playing and input_vector != Vector2.ZERO:
+		$RunningSound.playing = true
+	elif $RunningSound.playing and input_vector == Vector2.ZERO:
+		$RunningSound.playing = false
 	velocity = input_vector * move_speed
 
 # Determines animation of player

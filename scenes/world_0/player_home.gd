@@ -35,10 +35,13 @@ func _update_mom_speech():
 	if !has_adam_triggered_mom:
 		# Pull a random text prompt from the pre trigger array as busy talk
 		mom_speech_bubble.set_text(mom_text_pre_trigger.pick_random())
+		$PreTriggerSound.playing = true
 	elif mom_text_idx < mom_text_post_trigger.size():
 		# Pull a text prompt from the post trigger array in order
 		mom_speech_bubble.set_text(mom_text_post_trigger[mom_text_idx])
 		mom_text_idx += 1
+		$PreTriggerSound.playing = false
+		$PostTriggerSound.playing = true
 
 func _on_mom_timer_timeout():
 	_update_mom_speech()

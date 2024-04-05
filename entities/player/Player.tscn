@@ -1,9 +1,10 @@
-[gd_scene load_steps=62 format=3 uid="uid://bu0mw60kso2sl"]
+[gd_scene load_steps=63 format=3 uid="uid://bu0mw60kso2sl"]
 
 [ext_resource type="Script" path="res://entities/player/Player.gd" id="1_f30xf"]
 [ext_resource type="Texture2D" uid="uid://ccavkdfy5cvul" path="res://entities/player/Adam_16x16.png" id="2_13qk2"]
 [ext_resource type="Script" path="res://entities/player/MeleeAttack.gd" id="3_kbq0e"]
 [ext_resource type="Texture2D" uid="uid://b5kfbjwcypip6" path="res://entities/player/Keyboard.png" id="4_yjtom"]
+[ext_resource type="AudioStream" uid="uid://df2rek5vbyuuy" path="res://sounds/Player/valorant-footstep.mp3" id="5_7yh85"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tdh4c"]
 atlas = ExtResource("2_13qk2")
@@ -368,7 +369,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"move_down",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -391,7 +392,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"move_left_right",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -414,7 +415,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"move_up",
-"speed": 5.0
+"speed": 10.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fu8g3"]
@@ -468,7 +469,7 @@ script = ExtResource("1_f30xf")
 position = Vector2(0, -1)
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_0nkkh")
-animation = &"move_down"
+animation = &"move_up"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_fu8g3")
@@ -502,6 +503,9 @@ collision_mask = 84
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2(0, 12.0833)
 shape = SubResource("RectangleShape2D_ar8ad")
+
+[node name="RunningSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_7yh85")
 
 [connection signal="area_entered" from="MeleeAttack" to="MeleeAttack" method="_on_body_entered"]
 [connection signal="body_entered" from="MeleeAttack" to="MeleeAttack" method="_on_body_entered"]
