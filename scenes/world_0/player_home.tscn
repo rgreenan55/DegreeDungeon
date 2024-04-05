@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://ck0pn4iprgpq8"]
+[gd_scene load_steps=23 format=3 uid="uid://ck0pn4iprgpq8"]
 
 [ext_resource type="Script" path="res://scenes/world_0/player_home.gd" id="1_3xm6r"]
 [ext_resource type="Texture2D" uid="uid://c5awkqqlxkbh3" path="res://scenes/common/Interiors_free_16x16.png" id="1_brp2g"]
@@ -15,8 +15,6 @@
 [ext_resource type="AudioStream" uid="uid://bug1rw7pqyxju" path="res://sounds/Intro/3postTrigger.mp3" id="13_dtgfk"]
 [ext_resource type="AudioStream" uid="uid://c1gr1fmidy4n0" path="res://sounds/Intro/4postTrigger.mp3" id="14_l0nfh"]
 [ext_resource type="AudioStream" uid="uid://b21qqh37n6r0l" path="res://sounds/Intro/5postTrigger.mp3" id="15_iuprx"]
-[ext_resource type="AudioStream" uid="uid://dehxdutoxvg2" path="res://sounds/Completion/mixkit-completion-of-a-level-2063.mp3" id="16_kb6ia"]
-[ext_resource type="AudioStream" uid="uid://banguma7o37yf" path="res://sounds/Completion/YIPPIE.mp3" id="17_3xom7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p8knd"]
 texture = ExtResource("1_brp2g")
@@ -5953,15 +5951,9 @@ stream = SubResource("AudioStreamRandomizer_e5ysr")
 pitch_scale = 1.39
 
 [node name="PostTriggerSound" type="AudioStreamPlayer2D" parent="."]
-position = Vector2(950, 912)
+position = Vector2(475, 450)
 stream = SubResource("AudioStreamRandomizer_deonu")
 pitch_scale = 1.39
-
-[node name="LetterSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("16_kb6ia")
-
-[node name="AcceptSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("17_3xom7")
 
 [connection signal="area_entered" from="MomTrigger" to="." method="_on_mom_trigger_area_entered"]
 [connection signal="body_entered" from="MomTrigger" to="." method="_on_mom_trigger_body_entered"]

@@ -17,6 +17,8 @@ var state : EnemyStates
 var player : Node2D
 var knockback : Vector2
 
+var timeSinceLastSound = 0
+var nextSoundTime = 3+(1+randf()*3)
 # On Enemy Load
 func _ready():
 	move_speed = 30
@@ -26,8 +28,10 @@ func _ready():
 	handle_idle_movement()
 
 # Processes
-func _process(_delta):
+func _process(delta):
+	timeSinceLastSound += delta
 	if (health == 0): die()
+	playSound()
 	play_animations()
 
 # Processes Physics
@@ -74,6 +78,18 @@ func play_animations():
 		if (velocity.x < 0): animation.flip_h = true
 		else: animation.flip_h = false
 
+func genRandomTime():
+	nextSoundTime = 3+(1+randf()*3)
+
+func playSound():
+	if nextSoundTime < timeSinceLastSound:
+		timeSinceLastSound = 0
+		genRandomTime()
+		if state == EnemyStates.ALERT:
+			$ChaseSound.playing = true
+		else:
+			$IdleSound.playing = true
+
 #func keep_enemy_in_bounds():
 	#var screen_size = get_viewport_rect().size
 	#if position.x < 0:
@@ -91,8 +107,10 @@ func play_animations():
 
 func handle_hit():
 	health -= 1
+	$HurtSound.playing = true
 
 func die():
 	died.emit()
+	$DeathSound.playing = true
 	# Death Animation
 	queue_free()
