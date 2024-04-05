@@ -19,56 +19,56 @@ func _ready():
 	GameState.reset()
 	_load_menu(GameState.get_menu_path("title_menu"))
 	await _transition_out()
-	
+
 func _process(delta):
 	if follow_camera.enabled:
 		follow_camera.position = player.position
-	
+
 #########################################
-#	Functions for managing parts of 
+#	Functions for managing parts of
 # 	the Main scene
-#########################################	
+#########################################
 func _disable_ui():
 	ui.visible = false
-	
+
 func _enable_ui():
 	ui.visible = true
-	
+
 func _init_ui():
 	ui.set_max_health(player.max_health)
 	ui.update_health(player.current_health)
-	
+
 func _disable_player():
 	player.visible = false;
-	
+
 func _enable_player():
 	player.visible = true;
-	
+
 func _init_player():
 	player.current_health = player.max_health - 1
 	player.s_health_changed.connect(ui.update_health)
 	player.s_died.connect(func(): _display_menu("game_over"))
-	
+
 func _enable_follow_camera():
 	follow_camera.enabled = true
-	
+
 func _disable_follow_camera():
 	follow_camera.enabled = false;
-	
+
 #########################################
-#	General functions that are called 
-# 	through signals by the currently 
+#	General functions that are called
+# 	through signals by the currently
 # 	active scene and menu.
-#########################################	
+#########################################
 func _display_menu(menu_name: String):
 	_load_menu(GameState.get_menu_path(menu_name))
-	
+
 func _next_level():
 	await _transition_into()
 	_load_scene(GameState.next_scene_path())
 	player.position = GameState.player_starting_position()
 	await _transition_out()
-	
+
 func _restart_current_year():
 	await _transition_into()
 	_load_scene(GameState.start_of_year())
@@ -76,18 +76,18 @@ func _restart_current_year():
 	ui.update_health(player.current_health)
 	player.position = GameState.player_starting_position()
 	await _transition_out()
-	
+
 func _quit_game():
 	get_tree().quit()
-	
+
 func _transition_into():
 	animation_player.play("Transition_Fade_In")
 	return animation_player.animation_finished
-	
+
 func _transition_out():
 	animation_player.play_backwards("Transition_Fade_In")
 	return animation_player.animation_finished
-	
+
 #########################################
 #	Scene and Menu management functions
 #########################################
