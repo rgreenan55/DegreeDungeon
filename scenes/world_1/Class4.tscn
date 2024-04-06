@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://scenes/world_1/Exits.gd" id="3_06q0c"]
 [ext_resource type="PackedScene" uid="uid://dx78s7qi3mejd" path="res://entities/enemies/turret/Enemy_Turret.tscn" id="5_y6gs5"]
 [ext_resource type="PackedScene" uid="uid://dgs7vdgy2wm5m" path="res://entities/enemies/bob/Enemy_Bob.tscn" id="6_u4elk"]
-[ext_resource type="PackedScene" uid="uid://bghlk20cvt4ed" path="res://entities/enemies/amelia/Enemy.tscn" id="7_kt74h"]
+[ext_resource type="PackedScene" uid="uid://bghlk20cvt4ed" path="res://entities/enemies/amelia/Amelia.tscn" id="7_kt74h"]
 
 [node name="Class4" type="Node2D"]
 script = ExtResource("1_bjo1g")

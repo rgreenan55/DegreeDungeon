@@ -64,8 +64,10 @@ func keep_enemy_in_bounds():
 
 func handle_hit():
 	health -= 1
+	$HurtSound.playing = true
 
 func die():
+	$DeathSound.playing = true
 	queue_free()
 
 func _on_movement_timer_timeout():
@@ -74,3 +76,4 @@ func _on_movement_timer_timeout():
 func _on_shoot_timer_timeout():
 	var orb = orb_template.instantiate()
 	add_child(orb)
+	$AttackSound.playing = true

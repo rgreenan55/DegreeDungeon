@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://pq2pb8glbxrj"]
+
+[ext_resource type="AudioStream" uid="uid://dgnfwha4jw0v5" path="res://sounds/Music/ambient_music.mp3" id="1_rrrxx"]
+
+[node name="ambient_music" type="AudioStreamPlayer"]
+stream = ExtResource("1_rrrxx")
+volume_db = -20.0
+pitch_scale = 0.9

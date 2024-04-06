@@ -9,9 +9,9 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 
 
-func _on_animation_finished(anim_name):
+func _on_animation_finished(_anim_name):
 	play(animationName)

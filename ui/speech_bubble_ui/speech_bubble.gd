@@ -5,6 +5,6 @@ extends Node2D
 func _ready():
 	visible = false
 
-func set_text(text: String, wait_time: int = 3): 
+func set_text(text: String, _wait_time: int = 3):
 	visible = true
 	dialog_label.text = text
