@@ -5,11 +5,11 @@ extends Node2D
 
 # List of all possible drops that can be instantiated
 var powerups = [
-	#"res://entities/items/objects/FullHealthPickup.tscn",
-	#"res://entities/items/objects/HealthPickup.tscn",
+	"res://entities/items/objects/FullHealthPickup.tscn",
+	"res://entities/items/objects/HealthPickup.tscn",
 	"res://entities/items/objects/InvincibilityPickup.tscn",
-	#"res://entities/items/objects/MaxHealthPickup.tscn",
-	#"res://entities/items/objects/SpeedPickup.tscn"
+	"res://entities/items/objects/MaxHealthPickup.tscn",
+	"res://entities/items/objects/SpeedPickup.tscn"
 ]
 
 signal s_picked_up

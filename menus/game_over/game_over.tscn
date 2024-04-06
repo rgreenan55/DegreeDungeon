@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://ckfeerpjsp50"]
 
-[ext_resource type="Theme" uid="uid://coqvjnmppcj70" path="res://ui/theme_default/theme_default.tres" id="1_kf1le"]
+[ext_resource type="Theme" uid="uid://dwaenijqjyg8s" path="res://ui/theme_default/theme_default.tres" id="1_kf1le"]
 [ext_resource type="Script" path="res://menus/game_over/game_over.gd" id="1_yak1x"]
 [ext_resource type="Texture2D" uid="uid://cjot3gdho6r5o" path="res://menus/assets/YouFailedTitle.png" id="2_eexiq"]
 [ext_resource type="PackedScene" uid="uid://675k5o7mfpft" path="res://menus/common/fail_gui.tscn" id="2_u3244"]
