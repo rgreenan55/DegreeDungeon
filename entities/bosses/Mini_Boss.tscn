@@ -184,6 +184,7 @@ wait_time = 0.5
 [node name="ShootTimer" type="Timer" parent="."]
 wait_time = 1.5
 
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_exited" from="HurtBox" to="." method="_on_hurt_box_body_exited"]
 [connection signal="body_entered" from="LineOfSight" to="." method="enemy_sees_player"]
 [connection signal="timeout" from="PathFindingTimer" to="." method="make_path"]

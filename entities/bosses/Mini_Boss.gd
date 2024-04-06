@@ -33,8 +33,8 @@ func _ready():
 
 # Processes
 func _process(_delta):
-	print(move_speed)
-	if (health == 0): death = true
+	if (health == 0): 
+		death = true
 	if (health == 10): 
 		switch_to_range()
 	play_animations()
@@ -79,7 +79,10 @@ func play_animations():
 		animation.play("attack")
 	elif death:
 		animation.play("die")
-		die()
+		var frames_count = animation.sprite_frames.get_frame_count("die")
+		var cur_frame = animation.frame
+		if(cur_frame == (frames_count-1)): #check if all frames in death animation has been ran
+			die()
 	elif (velocity.x == 0):
 		if (velocity.y < 0): 
 			animation.play("move")
@@ -113,18 +116,21 @@ func handle_hit():
 func die():
 	died.emit()
 	queue_free()
+	$ShootTimer.stop()
 
-func _on_hurt_box_body_exited(body):
+#turns off attack animation if not in player body
+func _on_hurt_box_body_exited(body): 
 	if body.is_in_group("Player"):
 		attack = false
 
+#turn on ranged capabilities
 func switch_to_range():
 	range = true
 	move_speed = 40
 	$ShootTimer.start()
 	$ShootTimer.autostart = true
 
+#spawn projectile on shoot timer timeout
 func _on_shoot_timer_timeout():
 	var projectile = projectile_template.instantiate()
 	add_child(projectile)
-
