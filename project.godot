@@ -18,7 +18,6 @@ run/max_fps=60
 [autoload]
 
 GameState="*res://globals/game_state.gd"
-AmbientMusic="*res://sounds/Music/ambient_music.tscn"
 
 [debug]
 

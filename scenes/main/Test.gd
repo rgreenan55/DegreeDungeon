@@ -13,13 +13,13 @@ func _ready():
 	s_enable_player.emit()
 	s_enable_ui.emit()
 	s_disable_follow_camera.emit()
-
+	
 func _process(delta):
 	if !room_cleared:
 		_check_room_clear()
 	else:
 		exits._on_enemy_died()
-
+		
 func _check_room_clear():
 	room_cleared = get_tree().get_nodes_in_group("Enemy").size() <= 0
 	if room_cleared:

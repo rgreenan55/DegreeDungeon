@@ -18,7 +18,7 @@ func attack():
 	if lastUsed < 0:
 		animation.play("attack")
 		$"../AttackSound".playing = true
-		lastUsed = delay
+		lastUsed = delay 
 
 func _on_body_entered(body):
 	if (body.has_method("handle_hit")):
