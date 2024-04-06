@@ -9,7 +9,7 @@ var scenes_cleared: int : set = _set_scenes_cleared, get = _get_scenes_cleared
 # scenes which represent the levels required to beat that year
 var years = [0, 1, 2, 3, 4]
 
-# The year_scenes 2D array represent all of the 
+# The year_scenes 2D array represent all of the
 # scenes that form a particular year based on index.
 # For example: the array of scenes at index 1 represent
 # all scenes that make up year 1!
@@ -42,7 +42,7 @@ var year_scenes = [
 	],
 ]
 
-# The year_scenes 2D array represent all of the 
+# The year_scenes 2D array represent all of the
 # starting positions of the player for each scene
 # within each year. Each entry in this 2D array
 # corresponds to the starting position for the
@@ -91,10 +91,10 @@ func reset() -> void:
 	current_scene = year_scenes[current_year][0]
 	scenes_cleared = 0
 	year_scene_idx = 0
-	
+
 # Return the path of the next scene for the current year if
 # there is one, otherwise switch to the next year and the first
-# scene in that year. 
+# scene in that year.
 #
 # State variables are set through execution.
 func next_scene_path() -> String:
@@ -102,14 +102,14 @@ func next_scene_path() -> String:
 		year_scene_idx += 1
 		_set_current_scene(year_scenes[current_year][year_scene_idx])
 		return current_scene
-	
+
 	# If the above fails, then we must move onto the next year.
 	_set_current_year(current_year + 1)
 	year_scene_idx = 0
 	_set_current_scene(year_scenes[current_year][0])
 	return current_scene
-	
-# Return the Vector2D starting position of the player 
+
+# Return the Vector2D starting position of the player
 # for the current scene. If, for whatever reason,
 # we cannot find the starting vector, then return (0, 0).
 #
@@ -119,16 +119,16 @@ func player_starting_position() -> Vector2:
 		return year_player_positions[current_year][year_scene_idx]
 	else:
 		return Vector2(0, 0)
-	
+
 # Return the path of the menu scene in the menus
 # dictionary that corresponds to the provided
-# menu_name key. 
+# menu_name key.
 #
 # State variables are not set through execution.
 func get_menu_path(menu_name: String) -> String:
 	assert(menu_name in menus)
 	return menus[menu_name]
-	
+
 # Returns the first scene for the current year
 # and sets that as the current scene.
 #
@@ -154,15 +154,15 @@ func _set_current_scene(scene: String) -> void:
 	# to is part of the current year
 	assert(scene in year_scenes[current_year])
 	current_scene = scene
-	
+
 # Adds one to the number of scenes that have been cleared
 #
 # State variables are set through execution.
 func scene_cleared() -> void:
 	_set_scenes_cleared(scenes_cleared + 1)
-	
+
 func _get_scenes_cleared() -> int:
 	return scenes_cleared
-	
+
 func _set_scenes_cleared(new_scenes_cleared: int) -> void:
 	scenes_cleared = new_scenes_cleared

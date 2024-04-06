@@ -64,7 +64,7 @@ func handle_invincibility_frames(delta):
 	if last_hit_time <= 0:
 		is_invincible = false
 		last_hit_time = 0
-		
+
 func start_invincibility_frames():
 	print("invincible")
 	is_invincible = true
@@ -88,7 +88,7 @@ func _process_collisions():
 		current_health -= 1
 
 func _unhandled_input(event : InputEvent) -> void:
-	if event.is_action_pressed("attack"):
+	if event.is_action_pressed("attack") && !is_dead:
 		weapon.attack()
 
 # Determines velocity based on user input
@@ -131,7 +131,7 @@ func handle_death():
 	animation.play("dead_left_right");
 	if (velocity.x > 0): animation.flip_h = true
 	s_died.emit()
-	
+
 func enable_speed_powerup():
 	var speed_timer = Timer.new()
 	add_child(speed_timer)
@@ -141,7 +141,7 @@ func enable_speed_powerup():
 	move_speed *= speed_multi
 	speed_timer.start()
 	is_speedy = true
-	
+
 func enable_invincibility_powerup():
 	var invinc_timer = Timer.new()
 	add_child(invinc_timer)
@@ -150,7 +150,7 @@ func enable_invincibility_powerup():
 	invinc_timer.timeout.connect(_end_powerup)
 	invinc_timer.start()
 	is_invincible_powerup = true
-	
+
 func _end_powerup():
 	if is_speedy:
 		move_speed /= speed_multi

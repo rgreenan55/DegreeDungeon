@@ -541,6 +541,7 @@ volume_db = 24.0
 
 [node name="AttackSound" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_hw71u")
+volume_db = -5.0
 
 [connection signal="area_entered" from="MeleeAttack" to="MeleeAttack" method="_on_body_entered"]
 [connection signal="body_entered" from="MeleeAttack" to="MeleeAttack" method="_on_body_entered"]
