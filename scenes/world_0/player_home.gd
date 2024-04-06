@@ -27,7 +27,7 @@ signal s_enable_player
 signal s_enable_follow_camera
 signal s_show_menu(menu_name)
 
-func _ready():
+func _ready():	
 	s_enable_player.emit()
 	s_enable_follow_camera.emit()
 	_update_mom_speech()

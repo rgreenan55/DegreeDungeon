@@ -2,7 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://urlec0li4vsi" path="res://scenes/common/map_template_GWC124.tscn" id="1_0us5t"]
 [ext_resource type="Script" path="res://scenes/main/Test.gd" id="1_m3ssa"]
-[ext_resource type="PackedScene" uid="uid://bghlk20cvt4ed" path="res://entities/enemies/amelia/Amelia.tscn" id="6_6wi2p"]
+[ext_resource type="PackedScene" uid="uid://bu0mw60kso2sl" path="res://entities/player/Player.tscn" id="4_23rx5"]
+[ext_resource type="PackedScene" uid="uid://dcnmekjes8q0c" path="res://entities/enemies/teachers_assistant/Teachers_Assistant.tscn" id="5_6ed28"]
+[ext_resource type="PackedScene" uid="uid://bghlk20cvt4ed" path="res://entities/enemies/amelia/Enemy.tscn" id="6_6wi2p"]
 [ext_resource type="PackedScene" uid="uid://dgs7vdgy2wm5m" path="res://entities/enemies/bob/Enemy_Bob.tscn" id="7_b4s33"]
 
 [node name="Test" type="Node2D"]
@@ -11,8 +13,8 @@ script = ExtResource("1_m3ssa")
 [node name="Node2D" parent="." instance=ExtResource("1_0us5t")]
 metadata/_edit_use_anchors_ = true
 
-[node name="Enemy" parent="." instance=ExtResource("6_6wi2p")]
-position = Vector2(139, 62)
+[node name="TeachersAssistant" parent="." instance=ExtResource("5_6ed28")]
+position = Vector2(39, 36)
 
-[node name="EnemyBob" parent="." instance=ExtResource("7_b4s33")]
-position = Vector2(281, 56)
+[node name="Player" parent="." instance=ExtResource("4_23rx5")]
+position = Vector2(310, 59)

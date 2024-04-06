@@ -13,6 +13,7 @@ func _on_degree_accept_button_pressed():
 	animation_player.play_backwards("Spin_In")
 	$AcceptSound.playing = true
 	await animation_player.animation_finished
+	AmbientMusic.play()
 	s_next_level.emit()
 
 func _on_degree_deny_button_pressed():
