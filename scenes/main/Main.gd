@@ -20,7 +20,7 @@ func _ready():
 	_load_menu(GameState.get_menu_path("title_menu"))
 	await _transition_out()
 
-func _process(delta):
+func _process(_delta):
 	if follow_camera.enabled:
 		follow_camera.position = player.position
 
