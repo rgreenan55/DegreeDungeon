@@ -1,0 +1,72 @@
+[gd_scene load_steps=12 format=3 uid="uid://cxa7csgals2ve"]
+
+[ext_resource type="Texture2D" uid="uid://c1luu4dmepb40" path="res://entities/bosses/Green Effect and Bullet 16x16.png" id="1_q2j20"]
+[ext_resource type="Script" path="res://entities/bosses/mini_boss_projectile.gd" id="1_uc6lo"]
+[ext_resource type="PackedScene" uid="uid://bu0mw60kso2sl" path="res://entities/player/Player.tscn" id="2_vlhik"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yoit1"]
+atlas = ExtResource("1_q2j20")
+region = Rect2(480, 112, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gofpp"]
+atlas = ExtResource("1_q2j20")
+region = Rect2(496, 112, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bd4pc"]
+atlas = ExtResource("1_q2j20")
+region = Rect2(512, 112, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6745c"]
+atlas = ExtResource("1_q2j20")
+region = Rect2(528, 112, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kudku"]
+atlas = ExtResource("1_q2j20")
+region = Rect2(544, 112, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y38i4"]
+atlas = ExtResource("1_q2j20")
+region = Rect2(560, 112, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n11yg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yoit1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gofpp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bd4pc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6745c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kudku")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y38i4")
+}],
+"loop": true,
+"name": &"projectile",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pesya"]
+radius = 6.0
+
+[node name="MiniBoss_Projectile" type="Area2D" groups=["Projectile"]]
+collision_layer = 64
+collision_mask = 3
+script = ExtResource("1_uc6lo")
+player = ExtResource("2_vlhik")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_n11yg")
+animation = &"projectile"
+frame_progress = 0.545586
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_pesya")

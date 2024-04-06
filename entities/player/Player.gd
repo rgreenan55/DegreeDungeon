@@ -117,6 +117,10 @@ func handle_hit(body):
 	if (body.is_in_group("Enemy") || body.is_in_group("Projectile")):
 		current_health -= 1
 		s_health_changed.emit(current_health)
+	if(body.is_in_group("MiniBoss")):
+		body.attack = true
+		current_health -= 1
+		s_health_changed.emit(current_health)
 
 func handle_death():
 	is_dead = true

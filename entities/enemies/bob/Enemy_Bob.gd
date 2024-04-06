@@ -74,3 +74,4 @@ func _on_movement_timer_timeout():
 func _on_shoot_timer_timeout():
 	var orb = orb_template.instantiate()
 	add_child(orb)
+
