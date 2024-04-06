@@ -1,8 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://pq2pb8glbxrj"]
+[gd_scene load_steps=5 format=3 uid="uid://pq2pb8glbxrj"]
 
-[ext_resource type="AudioStream" uid="uid://dgnfwha4jw0v5" path="res://sounds/Music/ambient_music.mp3" id="1_rrrxx"]
+[ext_resource type="AudioStream" uid="uid://dhr0sm01yevwv" path="res://sounds/Music/chill_loop.mp3" id="1_1gerj"]
+[ext_resource type="AudioStream" uid="uid://dgnfwha4jw0v5" path="res://sounds/Music/mellow_loop.mp3" id="1_rrrxx"]
+[ext_resource type="Script" path="res://sounds/Music/ambient_music.gd" id="2_lheek"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ti7xb"]
+streams_count = 2
+stream_0/stream = ExtResource("1_1gerj")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("1_rrrxx")
+stream_1/weight = 1.0
 
 [node name="ambient_music" type="AudioStreamPlayer"]
-stream = ExtResource("1_rrrxx")
-volume_db = -20.0
+stream = SubResource("AudioStreamRandomizer_ti7xb")
+volume_db = -10.0
 pitch_scale = 0.9
+script = ExtResource("2_lheek")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://ck0pn4iprgpq8"]
+[gd_scene load_steps=24 format=3 uid="uid://ck0pn4iprgpq8"]
 
 [ext_resource type="Script" path="res://scenes/world_0/player_home.gd" id="1_3xm6r"]
 [ext_resource type="Texture2D" uid="uid://c5awkqqlxkbh3" path="res://scenes/common/Interiors_free_16x16.png" id="1_brp2g"]
@@ -15,6 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://bug1rw7pqyxju" path="res://sounds/Intro/3postTrigger.mp3" id="13_dtgfk"]
 [ext_resource type="AudioStream" uid="uid://c1gr1fmidy4n0" path="res://sounds/Intro/4postTrigger.mp3" id="14_l0nfh"]
 [ext_resource type="AudioStream" uid="uid://b21qqh37n6r0l" path="res://sounds/Intro/5postTrigger.mp3" id="15_iuprx"]
+[ext_resource type="AudioStream" uid="uid://dmm4tnexlgyy7" path="res://sounds/Intro/home.wav" id="16_ftcfa"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p8knd"]
 texture = ExtResource("1_brp2g")
@@ -5954,6 +5955,12 @@ pitch_scale = 1.39
 position = Vector2(475, 450)
 stream = SubResource("AudioStreamRandomizer_deonu")
 pitch_scale = 1.39
+
+[node name="HomeMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("16_ftcfa")
+volume_db = -20.0
+pitch_scale = 0.5
+autoplay = true
 
 [connection signal="area_entered" from="MomTrigger" to="." method="_on_mom_trigger_area_entered"]
 [connection signal="body_entered" from="MomTrigger" to="." method="_on_mom_trigger_body_entered"]

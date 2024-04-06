@@ -38,14 +38,14 @@ func _check_room_clear():
 		GameState.scene_cleared()
 	else:
 		last_enemy_pos = get_tree().get_nodes_in_group("Enemy")[0].position
-		
+
 func _spawn_powerup():
 	if random_drop:
 		var powerup_instance = random_drop.instantiate()
 		powerup_instance.position = last_enemy_pos
 		powerup_instance.s_picked_up.connect(_play_drinking_noise)
 		add_child(powerup_instance)
-		
+
 func _play_drinking_noise():
 	s_play_audio.emit("Drinking")
 	
