@@ -1,7 +1,11 @@
-[gd_scene load_steps=31 format=3 uid="uid://dcnmekjes8q0c"]
+[gd_scene load_steps=33 format=3 uid="uid://dcnmekjes8q0c"]
 
 [ext_resource type="Texture2D" uid="uid://xyxdf7x1ji1v" path="res://entities/enemies/teachers_assistant/TA.png" id="1_gfhhi"]
 [ext_resource type="Script" path="res://entities/enemies/teachers_assistant/Teachers_Assistant.gd" id="1_vmoe8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5dhcu"]
+atlas = ExtResource("1_gfhhi")
+region = Rect2(0, 128, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qfhfb"]
 atlas = ExtResource("1_gfhhi")
@@ -107,6 +111,14 @@ region = Rect2(512, 0, 64, 64)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_5dhcu")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_qfhfb")
 }, {
 "duration": 1.0,
@@ -198,31 +210,63 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xb2v1"]
 radius = 12.3077
-height = 43.0769
+height = 36.9231
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2sgmo"]
 size = Vector2(24.6154, 14.6154)
 
-[node name="TeachersAssistant" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_fbl60"]
+radius = 278.304
+
+[node name="TeachersAssistant" type="CharacterBody2D" groups=["Enemy"]]
+z_index = 2
 scale = Vector2(0.65, 0.65)
+collision_layer = 4
+collision_mask = 33
 script = ExtResource("1_vmoe8")
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_lqkjk")
-animation = &"move_down"
-frame_progress = 0.856413
+animation = &"idle"
+frame_progress = 0.679265
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 4.61539)
+position = Vector2(0, 9.23077)
 shape = SubResource("CapsuleShape2D_xb2v1")
 
 [node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 position = Vector2(9.16995e-08, 24.2308)
 shape = SubResource("RectangleShape2D_2sgmo")
 
-[node name="MovementTimer" type="Timer" parent="."]
-wait_time = 3.0
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+debug_path_custom_point_size = 2.0
 
-[connection signal="timeout" from="MovementTimer" to="." method="handle_movement"]
+[node name="Sight" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 35
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sight"]
+shape = SubResource("CircleShape2D_fbl60")
+
+[node name="PathFindingTimer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[node name="ChargeCooldown" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="StunnedTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="body_entered" from="Hurtbox" to="." method="hit_player"]
+[connection signal="body_entered" from="Sight" to="." method="set_player_in_range"]
+[connection signal="body_exited" from="Sight" to="." method="set_player_out_of_range"]
+[connection signal="timeout" from="PathFindingTimer" to="." method="idle_movement"]
+[connection signal="timeout" from="ChargeCooldown" to="." method="end_cooldown"]
+[connection signal="timeout" from="StunnedTimer" to="." method="stun_over"]
