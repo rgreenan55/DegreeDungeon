@@ -1,0 +1,192 @@
+[gd_scene load_steps=26 format=3 uid="uid://0cewsc6wu5qp"]
+
+[ext_resource type="Script" path="res://entities/bosses/Mini_Boss.gd" id="1_xno26"]
+[ext_resource type="Texture2D" uid="uid://d05e2psauauad" path="res://entities/bosses/Strange man asset/StrangeMan Attack.png" id="2_4eh2p"]
+[ext_resource type="PackedScene" uid="uid://cxa7csgals2ve" path="res://entities/bosses/mini_boss_projectile.tscn" id="2_c502p"]
+[ext_resource type="Texture2D" uid="uid://cj4hjcfoko3qp" path="res://entities/bosses/Strange man asset/StrangeMan Die.png" id="3_ja8wx"]
+[ext_resource type="Texture2D" uid="uid://b2gtywuh4jg2c" path="res://entities/bosses/Strange man asset/StrangeMan Idle.png" id="4_um87u"]
+[ext_resource type="Texture2D" uid="uid://daawrj42mdwiv" path="res://entities/bosses/Strange man asset/StrangeMan Walking.png" id="5_pc2re"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_scj84"]
+atlas = ExtResource("2_4eh2p")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b6bf2"]
+atlas = ExtResource("2_4eh2p")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sdp0c"]
+atlas = ExtResource("2_4eh2p")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ibkh"]
+atlas = ExtResource("3_ja8wx")
+region = Rect2(0, 0, 37, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v2dxc"]
+atlas = ExtResource("3_ja8wx")
+region = Rect2(37, 0, 37, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b7t34"]
+atlas = ExtResource("3_ja8wx")
+region = Rect2(74, 0, 37, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cmc18"]
+atlas = ExtResource("3_ja8wx")
+region = Rect2(111, 0, 37, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e38ut"]
+atlas = ExtResource("3_ja8wx")
+region = Rect2(148, 0, 37, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5v7j8"]
+atlas = ExtResource("3_ja8wx")
+region = Rect2(185, 0, 37, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kei3e"]
+atlas = ExtResource("4_um87u")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qo6xn"]
+atlas = ExtResource("4_um87u")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x7juo"]
+atlas = ExtResource("4_um87u")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7flpg"]
+atlas = ExtResource("5_pc2re")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_70ljj"]
+atlas = ExtResource("5_pc2re")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0152j"]
+atlas = ExtResource("5_pc2re")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lprbd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_scj84")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b6bf2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sdp0c")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ibkh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v2dxc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b7t34")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cmc18")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e38ut")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5v7j8")
+}],
+"loop": true,
+"name": &"die",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kei3e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qo6xn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x7juo")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7flpg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_70ljj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0152j")
+}],
+"loop": true,
+"name": &"move",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_41gnb"]
+size = Vector2(10, 26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nmoij"]
+size = Vector2(14, 31.75)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yaurk"]
+radius = 72.0069
+
+[node name="MiniBoss" type="CharacterBody2D" groups=["MiniBoss"]]
+collision_layer = 4
+collision_mask = 41
+script = ExtResource("1_xno26")
+projectile_template = ExtResource("2_c502p")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_lprbd")
+animation = &"attack"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, 0)
+shape = SubResource("RectangleShape2D_41gnb")
+
+[node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(2, 0.125)
+shape = SubResource("RectangleShape2D_nmoij")
+
+[node name="LineOfSight" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LineOfSight"]
+visible = false
+shape = SubResource("CircleShape2D_yaurk")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="PathFindingTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="MovementTimer" type="Timer" parent="."]
+
+[node name="ShootTimer" type="Timer" parent="."]
+wait_time = 1.5
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="body_exited" from="HurtBox" to="." method="_on_hurt_box_body_exited"]
+[connection signal="body_entered" from="LineOfSight" to="." method="enemy_sees_player"]
+[connection signal="timeout" from="PathFindingTimer" to="." method="make_path"]
+[connection signal="timeout" from="MovementTimer" to="." method="handle_idle_movement"]
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

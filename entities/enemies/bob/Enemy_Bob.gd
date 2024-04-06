@@ -77,3 +77,4 @@ func _on_shoot_timer_timeout():
 	var orb = orb_template.instantiate()
 	add_child(orb)
 	$AttackSound.playing = true
+

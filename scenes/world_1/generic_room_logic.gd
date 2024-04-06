@@ -48,7 +48,7 @@ func _spawn_powerup():
 
 func _play_drinking_noise():
 	s_play_audio.emit("Drinking")
-	
+
 func _display_report_card():
 	if report_card and get_tree().get_nodes_in_group("Player").size() > 0:
 		var current_health = get_tree().get_nodes_in_group("Player")[0].current_health
