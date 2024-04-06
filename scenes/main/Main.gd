@@ -79,6 +79,7 @@ func _restart_current_year():
 	await _transition_into()
 	_load_scene(GameState.start_of_year())
 	player._ready()
+	player.current_health = player.max_health - 1
 	ui.update_health(player.current_health)
 	player.position = GameState.player_starting_position()
 	await _transition_out()

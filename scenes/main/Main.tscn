@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dk2p23b6cvj8e" path="res://ui/player_ui/ui.tscn" id="1_rn86o"]
 [ext_resource type="Script" path="res://scenes/main/Main.gd" id="1_uhhgu"]
 [ext_resource type="PackedScene" uid="uid://bu0mw60kso2sl" path="res://entities/player/Player.tscn" id="2_1fv7w"]
-[ext_resource type="AudioStream" uid="uid://dh3jpylxu3ws5" path="res://sounds/Pickup/mixkit-swallowing-a-water-drink-in-the-throat-150.mp3" id="4_p26e5"]
+[ext_resource type="AudioStream" uid="uid://dmfn4awv8ekop" path="res://sounds/Pickup/bloxy-cola.mp3" id="4_jhv5c"]
 
 [sub_resource type="Animation" id="Animation_2drg8"]
 resource_name = "Transition_Fade_In"
@@ -88,5 +88,5 @@ color = Color(0, 0, 0, 1)
 unique_name_in_owner = true
 
 [node name="Drinking" type="AudioStreamPlayer" parent="AudioPlayer"]
-stream = ExtResource("4_p26e5")
+stream = ExtResource("4_jhv5c")
 pitch_scale = 1.1
