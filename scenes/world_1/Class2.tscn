@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dr8bagc1i7kka"]
+[gd_scene load_steps=7 format=3 uid="uid://dr8bagc1i7kka"]
 
 [ext_resource type="PackedScene" uid="uid://ic6bqmh5kkmr" path="res://scenes/common/map_template_HC13.tscn" id="1_4eh72"]
 [ext_resource type="Script" path="res://scenes/world_1/generic_room_logic.gd" id="1_wbkg1"]
 [ext_resource type="PackedScene" uid="uid://malwav3fokf5" path="res://scenes/common/ExitDoorTop.tscn" id="2_jtyvy"]
 [ext_resource type="Script" path="res://scenes/world_1/Exits.gd" id="3_4yo7a"]
 [ext_resource type="PackedScene" uid="uid://bghlk20cvt4ed" path="res://entities/enemies/amelia/Amelia.tscn" id="5_khv38"]
+[ext_resource type="PackedScene" uid="uid://b5lm5qgpj3txv" path="res://menus/report_card/report_card.tscn" id="6_b5vy1"]
 
 [node name="Class2" type="Node2D"]
 script = ExtResource("1_wbkg1")
@@ -35,6 +36,8 @@ position = Vector2(108, 164)
 [node name="Enemy3" parent="." instance=ExtResource("5_khv38")]
 z_index = 2
 position = Vector2(307, 169)
+
+[node name="ReportCard" parent="." instance=ExtResource("6_b5vy1")]
 
 [connection signal="s_exit_door" from="Exits/ExitDoor1" to="." method="_transition_level"]
 [connection signal="s_exit_door" from="Exits/ExitDoor2" to="." method="_transition_level"]

@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var exits = $Exits
+@onready var report_card = $ReportCard
 
 var room_cleared: bool = false
 
@@ -32,6 +33,7 @@ func _process(_delta):
 func _check_room_clear():
 	room_cleared = get_tree().get_nodes_in_group("Enemy").size() <= 0
 	if room_cleared:
+		_display_report_card()
 		_spawn_powerup()
 		GameState.scene_cleared()
 	else:
@@ -46,6 +48,22 @@ func _spawn_powerup():
 		
 func _play_drinking_noise():
 	s_play_audio.emit("Drinking")
+	
+func _display_report_card():
+	if report_card and get_tree().get_nodes_in_group("Player").size() > 0:
+		var current_health = get_tree().get_nodes_in_group("Player")[0].current_health
+		var grade = ""
+		match current_health:
+			1:
+				grade = "d"
+			2:
+				grade = "c"
+			3:
+				grade = "b"
+			_:
+				grade = "a"
+		report_card.assign_grade(grade)
+		report_card.display_report_card()
 
 func _transition_level():
 	s_next_level.emit()
