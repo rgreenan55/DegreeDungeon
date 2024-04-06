@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://c7dagqbxmr311"]
+[gd_scene load_steps=6 format=3 uid="uid://c7dagqbxmr311"]
 
 [ext_resource type="Script" path="res://scenes/world_1/DormStart.gd" id="1_cebfn"]
 [ext_resource type="PackedScene" uid="uid://dtdmw24g3xf70" path="res://scenes/common/map_template_Dorm.tscn" id="2_anprs"]
 [ext_resource type="PackedScene" uid="uid://d3ihesiv3yinj" path="res://ui/speech_bubble_ui/speech_bubble.tscn" id="6_1n4nq"]
 [ext_resource type="PackedScene" uid="uid://bwkikgqbgvxvc" path="res://scenes/common/RoomTransition.tscn" id="6_rf5pb"]
 [ext_resource type="PackedScene" uid="uid://cmigi4uq1hp61" path="res://entities/items/objects/HealthPickup.tscn" id="7_2cfxk"]
-[ext_resource type="PackedScene" uid="uid://clqnbr3o3a850" path="res://entities/items/objects/drinking_sound_player.tscn" id="8_d5mwb"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_cebfn")
@@ -20,14 +19,11 @@ position = Vector2(112, 101)
 z_index = 1
 position = Vector2(220, 119)
 
-[node name="DrinkingSoundPlayer" parent="." instance=ExtResource("8_d5mwb")]
-
 [node name="SpeechBubble" parent="." instance=ExtResource("6_1n4nq")]
 unique_name_in_owner = true
 position = Vector2(203, 149)
 scale = Vector2(0.25, 0.25)
 
 [connection signal="picked_up" from="HealthPickup" to="." method="_on_health_pickup_picked_up"]
-[connection signal="picked_up" from="HealthPickup" to="DrinkingSoundPlayer" method="_play_sound"]
 
 [editable path="DormTemplate"]

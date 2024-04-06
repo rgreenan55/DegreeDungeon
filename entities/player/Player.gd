@@ -12,10 +12,13 @@ extends CharacterBody2D
 var move_speed : float
 var is_dead: bool
 var is_invincible: bool
+var is_invincible_powerup: bool
 var is_speedy: bool
 
-var last_hit_time = 0
-var invincibility_frames_duration = 0.5
+var powerup_duration: int = 10
+var speed_multi: float = 1.5
+var last_hit_time: int = 0
+var invincibility_frames_duration: float = 0.5
 
 # Signals
 signal s_max_health_changed
@@ -24,13 +27,12 @@ signal s_died
 
 var current_health : int :
 	set (value):
-		if current_health > value and is_invincible:
+		if current_health > value and (is_invincible or is_invincible_powerup):
 			return false
 		current_health = value
 		s_health_changed.emit(value)
 		if (value == 0): handle_death()
 		start_invincibility_frames()
-
 
 # On Player Load
 func _ready():
@@ -39,6 +41,7 @@ func _ready():
 	velocity = Vector2.ZERO
 	is_dead = false
 	is_invincible = false
+	is_invincible_powerup = false
 	is_speedy = false
 
 # Processes
@@ -57,12 +60,11 @@ func _physics_process(_delta):
 	move_and_slide()
 
 func handle_invincibility_frames(delta):
-	if last_hit_time != 0:
-		last_hit_time -= delta
-		if last_hit_time <= 0:
-			is_invincible = false
-			last_hit_time = 0
-
+	last_hit_time -= delta
+	if last_hit_time <= 0:
+		is_invincible = false
+		last_hit_time = 0
+		
 func start_invincibility_frames():
 	print("invincible")
 	is_invincible = true
@@ -88,7 +90,6 @@ func _process_collisions():
 func _unhandled_input(event : InputEvent) -> void:
 	if event.is_action_pressed("attack"):
 		weapon.attack()
-
 
 # Determines velocity based on user input
 func get_movement_input():
@@ -130,3 +131,29 @@ func handle_death():
 	animation.play("dead_left_right");
 	if (velocity.x > 0): animation.flip_h = true
 	s_died.emit()
+	
+func enable_speed_powerup():
+	var speed_timer = Timer.new()
+	add_child(speed_timer)
+	speed_timer.wait_time = powerup_duration
+	speed_timer.one_shot = true
+	speed_timer.timeout.connect(_end_powerup)
+	move_speed *= speed_multi
+	speed_timer.start()
+	is_speedy = true
+	
+func enable_invincibility_powerup():
+	var invinc_timer = Timer.new()
+	add_child(invinc_timer)
+	invinc_timer.wait_time = powerup_duration
+	invinc_timer.one_shot = true
+	invinc_timer.timeout.connect(_end_powerup)
+	invinc_timer.start()
+	is_invincible_powerup = true
+	
+func _end_powerup():
+	if is_speedy:
+		move_speed /= speed_multi
+		is_speedy = false
+	if is_invincible_powerup:
+		is_invincible_powerup = false

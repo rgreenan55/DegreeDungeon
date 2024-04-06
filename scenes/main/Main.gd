@@ -6,6 +6,7 @@ extends Node2D
 @onready var current_scene = %CurrentScene
 @onready var current_menu = %CurrentMenu
 @onready var animation_player = $SceneTransition/AnimationPlayer
+@onready var audio_player = %AudioPlayer
 
 var scene_instance: PackedScene
 var menu_instance: PackedScene
@@ -60,6 +61,11 @@ func _disable_follow_camera():
 # 	through signals by the currently
 # 	active scene and menu.
 #########################################
+func _play_audio(audio_name: String):
+	for audio in audio_player.get_children():
+		if audio.name == audio_name:
+			audio.playing = true
+
 func _display_menu(menu_name: String):
 	_load_menu(GameState.get_menu_path(menu_name))
 
@@ -73,6 +79,7 @@ func _restart_current_year():
 	await _transition_into()
 	_load_scene(GameState.start_of_year())
 	player._ready()
+	player.current_health = player.max_health - 1
 	ui.update_health(player.current_health)
 	player.position = GameState.player_starting_position()
 	await _transition_out()
@@ -122,6 +129,8 @@ func _load_scene(scene_path: String):
 		var new_instance = scene_instance.instantiate()
 		if new_instance.has_signal("s_show_menu"):
 			new_instance.s_show_menu.connect(_display_menu)
+		if new_instance.has_signal("s_play_audio"):
+			new_instance.s_play_audio.connect(_play_audio)
 		if new_instance.has_signal("s_next_level"):
 			new_instance.s_next_level.connect(_next_level)
 		if new_instance.has_signal("s_enable_player"):

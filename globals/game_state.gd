@@ -21,6 +21,7 @@ var year_scenes = [
 	],
 	[	# Year 1
 		"res://scenes/world_1/DormStart.tscn",
+		"res://scenes/world_1/Hall.tscn",
 		"res://scenes/world_1/Class1.tscn",
 		"res://scenes/world_1/Hall.tscn",
 		"res://scenes/world_1/Class2.tscn",
@@ -53,14 +54,15 @@ var year_player_positions = [
 	],
 	[	# Year 1
 		Vector2(232.5, 91.24),
-		Vector2(32, 46),
 		Vector2(49, 145),
-		Vector2(88, 32),
+		Vector2(32, 46),
 		Vector2(96, 100),
-		Vector2(56, 192),
+		Vector2(88, 32),
 		Vector2(144, 100),
-		Vector2(56, 193),
+		Vector2(56, 192),
 		Vector2(352, 100),
+		Vector2(56, 193),
+		Vector2(560, 100),
 	],
 	[	# Year 2
 		Vector2(0, 0),
