@@ -33,9 +33,6 @@ position = Vector2(56, 16)
 [node name="MiniBoss" parent="." instance=ExtResource("8_5kji4")]
 position = Vector2(138, 99)
 
-[node name="EnemyBob" parent="." instance=ExtResource("9_jfwe7")]
-z_index = 2
-position = Vector2(266, 67)
 
 [node name="Enemy" parent="." instance=ExtResource("6_63ow5")]
 z_index = 2
