@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cliuyqdohyb4i"]
+[gd_scene load_steps=8 format=3 uid="uid://cliuyqdohyb4i"]
 
-[ext_resource type="Theme" uid="uid://coqvjnmppcj70" path="res://ui/theme_default/theme_default.tres" id="1_cbx3a"]
+[ext_resource type="Theme" uid="uid://dwaenijqjyg8s" path="res://ui/theme_default/theme_default.tres" id="1_cbx3a"]
 [ext_resource type="Script" path="res://menus/acceptance_letter/acceptance_letter.gd" id="2_1xitt"]
 [ext_resource type="PackedScene" uid="uid://b7cltg7tl1qf4" path="res://menus/common/paper_gui.tscn" id="3_16oif"]
+[ext_resource type="AudioStream" uid="uid://dwadjcwd7enet" path="res://sounds/Completion/mixkit-completion-of-a-level-2063-1.1.mp3" id="4_muaye"]
+[ext_resource type="AudioStream" uid="uid://banguma7o37yf" path="res://sounds/Completion/YIPPIE.mp3" id="5_rw20x"]
 
 [sub_resource type="Animation" id="Animation_p6v2t"]
 resource_name = "Spin_In"
@@ -253,6 +255,14 @@ offset_right = 558.0
 offset_bottom = 426.0
 theme_override_colors/font_color = Color(0.784314, 0, 0, 1)
 text = "NO."
+
+[node name="LetterSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_muaye")
+volume_db = -15.0
+
+[node name="AcceptSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_rw20x")
+volume_db = -30.0
 
 [connection signal="pressed" from="CanvasLayer/Control/DegreeAcceptButton" to="." method="_on_degree_accept_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/DegreeDenyButton" to="." method="_on_degree_deny_button_pressed"]

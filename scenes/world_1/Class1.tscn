@@ -1,15 +1,21 @@
-[gd_scene load_steps=6 format=3 uid="uid://c7dana6m4s3d5"]
+[gd_scene load_steps=9 format=3 uid="uid://c7dana6m4s3d5"]
 
-[ext_resource type="Script" path="res://scenes/main/Test.gd" id="1_kwf8e"]
+
+[ext_resource type="Script" path="res://scenes/world_1/generic_room_logic.gd" id="1_xpcpj"]
 [ext_resource type="PackedScene" uid="uid://urlec0li4vsi" path="res://scenes/common/map_template_GWC124.tscn" id="2_vhugu"]
-[ext_resource type="Script" path="res://scenes/world_1/Exits.gd" id="7_aq6te"]
+
 [ext_resource type="PackedScene" uid="uid://0cewsc6wu5qp" path="res://entities/bosses/Mini_Boss.tscn" id="8_5kji4"]
+
+[ext_resource type="PackedScene" uid="uid://bghlk20cvt4ed" path="res://entities/enemies/amelia/Amelia.tscn" id="6_63ow5"]
+[ext_resource type="Script" path="res://scenes/world_1/Exits.gd" id="7_aq6te"]
+[ext_resource type="PackedScene" uid="uid://b5lm5qgpj3txv" path="res://menus/report_card/report_card.tscn" id="8_1hmb7"]
+
 [ext_resource type="PackedScene" uid="uid://malwav3fokf5" path="res://scenes/common/ExitDoorTop.tscn" id="8_kkela"]
 
-[node name="Main" type="Node2D"]
-script = ExtResource("1_kwf8e")
+[node name="Class1" type="Node2D"]
+script = ExtResource("1_xpcpj")
 
-[node name="Node2D" parent="." instance=ExtResource("2_vhugu")]
+[node name="Classroom" parent="." instance=ExtResource("2_vhugu")]
 
 [node name="Exits" type="Node2D" parent="."]
 visible = false
@@ -23,8 +29,23 @@ position = Vector2(328, 16)
 z_index = 1
 position = Vector2(56, 16)
 
+
 [node name="MiniBoss" parent="." instance=ExtResource("8_5kji4")]
 position = Vector2(138, 99)
+
+[node name="EnemyBob" parent="." instance=ExtResource("9_jfwe7")]
+z_index = 2
+position = Vector2(266, 67)
+
+[node name="Enemy" parent="." instance=ExtResource("6_63ow5")]
+z_index = 2
+position = Vector2(148, 74)
+
+[node name="Enemy_Turret" parent="." instance=ExtResource("10_ovqjc")]
+position = Vector2(143, 126)
+
+
+[node name="ReportCard" parent="." instance=ExtResource("8_1hmb7")]
 
 [connection signal="s_exit_door" from="Exits/ExitDoorTop" to="." method="_transition_level"]
 [connection signal="s_exit_door" from="Exits/ExitDoorTop2" to="." method="_transition_level"]

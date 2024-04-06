@@ -2,6 +2,8 @@ extends Node2D
 
 @onready var exits = $Exits
 
+var room_cleared: bool = false
+
 signal s_next_level
 signal s_enable_player
 signal s_disable_follow_camera
@@ -13,9 +15,15 @@ func _ready():
 	s_disable_follow_camera.emit()
 	
 func _process(delta):
-	# Goofy way of checking if all the enemies have died
-	if get_node("Enemy") == null and get_node("EnemyBob") == null and get_node("Enemy_Turret") == null:
+	if !room_cleared:
+		_check_room_clear()
+	else:
 		exits._on_enemy_died()
-	
+		
+func _check_room_clear():
+	room_cleared = get_tree().get_nodes_in_group("Enemy").size() <= 0
+	if room_cleared:
+		GameState.scene_cleared()
+
 func _transition_level():
 	s_next_level.emit()

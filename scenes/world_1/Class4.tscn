@@ -1,0 +1,41 @@
+[gd_scene load_steps=9 format=3 uid="uid://d2ubon4hvi1tg"]
+
+[ext_resource type="Script" path="res://scenes/world_1/generic_room_logic.gd" id="1_bjo1g"]
+[ext_resource type="PackedScene" uid="uid://cduvwj8ngol7" path="res://scenes/common/map_template_ ITC317.tscn" id="1_myw3r"]
+[ext_resource type="PackedScene" uid="uid://malwav3fokf5" path="res://scenes/common/ExitDoorTop.tscn" id="2_0pcax"]
+[ext_resource type="Script" path="res://scenes/world_1/Exits.gd" id="3_06q0c"]
+[ext_resource type="PackedScene" uid="uid://dx78s7qi3mejd" path="res://entities/enemies/turret/Enemy_Turret.tscn" id="5_y6gs5"]
+[ext_resource type="PackedScene" uid="uid://dgs7vdgy2wm5m" path="res://entities/enemies/bob/Enemy_Bob.tscn" id="6_u4elk"]
+[ext_resource type="PackedScene" uid="uid://bghlk20cvt4ed" path="res://entities/enemies/amelia/Amelia.tscn" id="7_kt74h"]
+[ext_resource type="PackedScene" uid="uid://b5lm5qgpj3txv" path="res://menus/report_card/report_card.tscn" id="8_ode7s"]
+
+[node name="Class4" type="Node2D"]
+script = ExtResource("1_bjo1g")
+
+[node name="Classroom" type="Node2D" parent="."]
+
+[node name="ITC317" parent="Classroom" instance=ExtResource("1_myw3r")]
+
+[node name="Exits" type="Node2D" parent="."]
+visible = false
+script = ExtResource("3_06q0c")
+
+[node name="ExitDoorTop" parent="Exits" instance=ExtResource("2_0pcax")]
+z_index = 2
+position = Vector2(56, 208)
+
+[node name="Enemy_Turret" parent="." instance=ExtResource("5_y6gs5")]
+z_index = 3
+position = Vector2(230, 114)
+
+[node name="EnemyBob" parent="." instance=ExtResource("6_u4elk")]
+z_index = 3
+position = Vector2(351, 65)
+
+[node name="Enemy" parent="." instance=ExtResource("7_kt74h")]
+z_index = 3
+position = Vector2(32, 42)
+
+[node name="ReportCard" parent="." instance=ExtResource("8_ode7s")]
+
+[connection signal="s_exit_door" from="Exits/ExitDoorTop" to="." method="_transition_level"]
