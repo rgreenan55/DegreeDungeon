@@ -18,7 +18,7 @@ var health : int
 var state : EnemyStates
 var player : Node2D
 var knockback : Vector2
-var range : bool 
+var range : bool
 
 # On Enemy Load
 func _ready():
@@ -33,9 +33,9 @@ func _ready():
 
 # Processes
 func _process(_delta):
-	if (health == 0): 
+	if (health == 0):
 		death = true
-	if (health == 10): 
+	if (health == 10):
 		switch_to_range()
 	play_animations()
 
@@ -84,16 +84,16 @@ func play_animations():
 		if(cur_frame == (frames_count-1)): #check if all frames in death animation has been ran
 			die()
 	elif (velocity.x == 0):
-		if (velocity.y < 0): 
+		if (velocity.y < 0):
 			animation.play("move")
-		elif (velocity.y > 0): 
+		elif (velocity.y > 0):
 			animation.play("move")
 		else: animation.play("idle")
 	else:
 		animation.play("move");
 		if (velocity.x < 0): animation.flip_h = true
 		else: animation.flip_h = false
-		
+
 
 #func keep_enemy_in_bounds():
 	#var screen_size = get_viewport_rect().size
@@ -119,7 +119,7 @@ func die():
 	$ShootTimer.stop()
 
 #turns off attack animation if not in player body
-func _on_hurt_box_body_exited(body): 
+func _on_hurt_box_body_exited(body):
 	if body.is_in_group("Player"):
 		attack = false
 

@@ -127,7 +127,7 @@ func handle_hit(body):
 		body.attack = true
 		current_health -= 1
 		s_health_changed.emit(current_health)
-   
+
 	$HurtSound.playing = true
 
 

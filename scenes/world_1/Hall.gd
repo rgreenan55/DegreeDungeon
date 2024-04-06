@@ -12,7 +12,7 @@ func _ready():
 	s_enable_ui.emit()
 	s_enable_follow_camera.emit()
 	_enable_door(GameState.scenes_cleared)
-	
+
 func _enable_door(n_scenes_cleared):
 	var active_door_name = "ExitDoor{idx}".format({"idx": n_scenes_cleared + 1})
 	for door in exit_doors.get_children():
