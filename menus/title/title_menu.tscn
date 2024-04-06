@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://ldxnwmks75lc"]
+[gd_scene load_steps=8 format=3 uid="uid://ldxnwmks75lc"]
 
 [ext_resource type="Script" path="res://menus/title/title_menu.gd" id="1_6phue"]
 [ext_resource type="Theme" uid="uid://bv1ia5qyer18k" path="res://menus/title/title_menu.tres" id="1_csnxv"]
 [ext_resource type="Texture2D" uid="uid://c5dcihw1vclu3" path="res://menus/title/assets/DegreeDungeonTitle.png" id="4_2c2i6"]
 [ext_resource type="Shader" path="res://menus/title/title_menu.gdshader" id="4_nrtk4"]
 [ext_resource type="Texture2D" uid="uid://bc7t7hfoumnot" path="res://menus/title/assets/DegreeDungeonTitleBackground.png" id="5_vvnl2"]
+[ext_resource type="AudioStream" uid="uid://cngmmkdxt6q2f" path="res://sounds/Intro/titleScreenMusic.mp3" id="6_u8s0f"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_v88ga"]
 shader = ExtResource("4_nrtk4")
@@ -83,6 +84,10 @@ focus_neighbor_bottom = NodePath("../Play")
 focus_next = NodePath("../Play")
 focus_previous = NodePath("../Play")
 text = "Quit"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_u8s0f")
+autoplay = true
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
