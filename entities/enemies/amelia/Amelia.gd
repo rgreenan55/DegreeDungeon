@@ -90,21 +90,6 @@ func playSound():
 		else:
 			$IdleSound.playing = true
 
-#func keep_enemy_in_bounds():
-	#var screen_size = get_viewport_rect().size
-	#if position.x < 0:
-		#position.x = 0
-		#velocity.x *= -1
-	#if position.x > screen_size.x:
-		#position.x = screen_size.x
-		#velocity.x *= -1
-	#if position.y < 0:
-		#position.y = 0
-		#velocity.y *= -1
-	#if position.y > screen_size.y:
-		#position.y = screen_size.y
-		#velocity.y *= -1
-
 func handle_hit():
 	health -= 1
 	$HurtSound.playing = true

@@ -13,12 +13,9 @@ func _on_degree_accept_button_pressed():
 	animation_player.play_backwards("Spin_In")
 	$AcceptSound.playing = true
 	await animation_player.animation_finished
-<<<<<<< HEAD
 	AmbientMusic.play()
 	s_next_level.emit()
-=======
-	s_next_level.emit() 
->>>>>>> parent of d52b467 (Renamed Amelia file)
+	s_next_level.emit()
 
 func _on_degree_deny_button_pressed():
 	# If the player has denied the acceptance letter,
