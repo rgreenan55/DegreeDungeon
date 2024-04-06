@@ -8,6 +8,6 @@ func _on_area_2d_body_entered(body):
 
 func _disable_collision():
 	$Area2D/CollisionShape2D.disabled = true
-	
+
 func _enable_collision():
 	$Area2D/CollisionShape2D.disabled = false
