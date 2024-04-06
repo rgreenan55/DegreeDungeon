@@ -15,7 +15,6 @@ func _on_degree_accept_button_pressed():
 	await animation_player.animation_finished
 	AmbientMusic.play()
 	s_next_level.emit()
-	s_next_level.emit()
 
 func _on_degree_deny_button_pressed():
 	# If the player has denied the acceptance letter,
