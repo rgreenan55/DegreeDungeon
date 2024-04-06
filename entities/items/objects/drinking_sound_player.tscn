@@ -1,12 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://clqnbr3o3a850"]
+[gd_scene load_steps=5 format=3 uid="uid://c76j7y0efdjj8"]
 
-[ext_resource type="Script" path="res://entities/items/scripts/DrinkingSoundPlayer.gd" id="1_vl1ui"]
 [ext_resource type="AudioStream" uid="uid://dh3jpylxu3ws5" path="res://sounds/Pickup/mixkit-swallowing-a-water-drink-in-the-throat-150.mp3" id="2_1iogu"]
 [ext_resource type="AudioStream" uid="uid://farwh1udh6tp" path="res://sounds/Pickup/mixkit-human-male-enjoy-humm-129.mp3" id="3_f0rjj"]
 [ext_resource type="AudioStream" uid="uid://dmfn4awv8ekop" path="res://sounds/Pickup/bloxy-cola.mp3" id="4_2fpnr"]
 
+[sub_resource type="GDScript" id="GDScript_aa31v"]
+script/source = "extends Node2D
+
+func _play_sound():
+	$RobloxDrinking.playing = true
+	#$Drinking.playing = true
+#
+#func _on_drinking_finished():
+	#$Moan.playing = true
+"
+
 [node name="DrinkingSoundPlayer" type="Node2D"]
-script = ExtResource("1_vl1ui")
+script = SubResource("GDScript_aa31v")
 
 [node name="Drinking" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_1iogu")

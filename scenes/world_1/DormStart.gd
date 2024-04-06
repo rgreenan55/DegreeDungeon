@@ -13,6 +13,7 @@ signal s_next_level
 signal s_enable_player
 signal s_enable_ui
 signal s_disable_follow_camera
+signal s_play_audio(audio_name)
 
 func _ready():
 	s_enable_player.emit()
@@ -24,6 +25,7 @@ func _on_room_transition_s_transition_room():
 	s_next_level.emit()
 
 func _on_health_pickup_picked_up():
+	s_play_audio.emit("Drinking")
 	room_transition.s_transition_room.connect(_on_room_transition_s_transition_room)
 	speech_bubble_text_idx += 1
 	_display_speech()
