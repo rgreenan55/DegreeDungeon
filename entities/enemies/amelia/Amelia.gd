@@ -35,7 +35,7 @@ func _process(delta):
 	play_animations()
 
 # Processes Physics
-func _physics_process(delta):
+func _physics_process(_delta):
 	if (state == EnemyStates.ALERT): handle_alert_movement()
 	#keep_enemy_in_bounds()
 	velocity = velocity + knockback

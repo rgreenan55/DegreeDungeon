@@ -14,7 +14,7 @@ func _ready():
 	s_enable_ui.emit()
 	s_disable_follow_camera.emit()
 
-func _process(delta):
+func _process(_delta):
 	# TODO: Remove this in final product
 	if Input.is_action_just_pressed("dev_kill_all"):
 		for enemy in get_tree().get_nodes_in_group("Enemy"):
