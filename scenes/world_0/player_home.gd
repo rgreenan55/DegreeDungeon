@@ -21,12 +21,13 @@ var mom_text_post_trigger = [
 
 var has_adam_triggered_mom: bool = false
 var has_adam_triggered_mail: bool = false
+var first_call = true
 
 signal s_enable_player
 signal s_enable_follow_camera
 signal s_show_menu(menu_name)
 
-func _ready():	
+func _ready():
 	s_enable_player.emit()
 	s_enable_follow_camera.emit()
 	_update_mom_speech()
@@ -35,10 +36,16 @@ func _update_mom_speech():
 	if !has_adam_triggered_mom:
 		# Pull a random text prompt from the pre trigger array as busy talk
 		mom_speech_bubble.set_text(mom_text_pre_trigger.pick_random())
+		if first_call:
+			first_call = false
+			return
+		$PreTriggerSound.playing = true
 	elif mom_text_idx < mom_text_post_trigger.size():
 		# Pull a text prompt from the post trigger array in order
 		mom_speech_bubble.set_text(mom_text_post_trigger[mom_text_idx])
 		mom_text_idx += 1
+		$PreTriggerSound.playing = false
+		$PostTriggerSound.playing = true
 
 func _on_mom_timer_timeout():
 	_update_mom_speech()

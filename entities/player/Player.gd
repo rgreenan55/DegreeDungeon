@@ -96,6 +96,10 @@ func get_movement_input():
 	input_vector.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	input_vector.y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
 	input_vector = input_vector.normalized()
+	if not $RunningSound.playing and input_vector != Vector2.ZERO:
+		$RunningSound.playing = true
+	elif $RunningSound.playing and input_vector == Vector2.ZERO:
+		$RunningSound.playing = false
 	velocity = input_vector * move_speed
 
 # Determines animation of player
@@ -117,9 +121,12 @@ func handle_hit(body):
 	if (body.is_in_group("Enemy") || body.is_in_group("Projectile")):
 		current_health -= 1
 		s_health_changed.emit(current_health)
+		$HurtSound.playing = true
 
 func handle_death():
 	is_dead = true
+	$HurtSound.playing = false
+	$DeathSound.playing = true
 	animation.play("dead_left_right");
 	if (velocity.x > 0): animation.flip_h = true
 	s_died.emit()

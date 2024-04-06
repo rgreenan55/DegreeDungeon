@@ -6,6 +6,7 @@ signal s_quit_game
 
 # Start the game at the next scene specified in Year 0
 func _on_play_pressed():
+	$AudioStreamPlayer.playing = false
 	s_next_level.emit()
 
 # Quit out of the game
