@@ -5958,7 +5958,7 @@ pitch_scale = 1.39
 
 [node name="HomeMusic" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("16_ftcfa")
-volume_db = -20.0
+volume_db = -15.0
 pitch_scale = 0.5
 autoplay = true
 

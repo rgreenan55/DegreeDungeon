@@ -118,10 +118,10 @@ func _load_menu(menu_path: String):
 			new_instance.s_restart_level.connect(_restart_current_year)
 		current_menu.add_child(new_instance)
 
-func _on_load_story_letter(str):
-	story_letter._on_show_story(str)
+func _on_load_story_letter(story_Text):
+	story_letter._on_show_story(story_Text)
 	player.process_mode = Node.PROCESS_MODE_DISABLED
-	
+
 func _on_ok_story_letter():
 	player.process_mode = Node.PROCESS_MODE_INHERIT
 

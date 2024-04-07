@@ -7,9 +7,9 @@ signal s_accepted
 func _ready():
 	$CanvasLayer/Control.visible = false
 
-func _on_show_story(str):
+func _on_show_story(story_text):
 	$CanvasLayer/Control.visible = true
-	$CanvasLayer/Control/BodyLabel.text = str
+	$CanvasLayer/Control/BodyLabel.text = story_text
 	animation_player.play("Spin_In")
 
 func _on_degree_accept_button_pressed():

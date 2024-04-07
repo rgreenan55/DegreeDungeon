@@ -30,5 +30,4 @@ func _picked_up():
 	# We should queue free here but we can't cause invincibility
 
 func enable_pickup():
-	print("Called Me")
 	powerup_instance.get_node("CollisionShape2D").disabled = false

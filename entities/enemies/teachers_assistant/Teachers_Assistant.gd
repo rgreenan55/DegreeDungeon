@@ -100,7 +100,6 @@ func play_animations():
 		else: animation.flip_h = false
 
 func set_player_in_range(body : Node2D):
-	print(body.get_groups())
 	if (body.is_in_group("Player")):
 		player_in_range = true
 
