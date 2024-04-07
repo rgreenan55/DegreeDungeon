@@ -20,4 +20,3 @@ position = Vector2(241, 110)
 
 [node name="TeachersAssistant" parent="." instance=ExtResource("5_6ed28")]
 position = Vector2(52, 55)
-
