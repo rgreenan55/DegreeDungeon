@@ -8,13 +8,15 @@ enum EnemyStates { IDLE, ALERT }
 
 # Signals
 signal died
+signal s_damaged
 
 # Variables
 @export var attack : bool
 @export var projectile_template : PackedScene
 var death : bool
 var move_speed : float
-var health : int
+var max_health: int = 20
+var current_health : int
 var state : EnemyStates
 var player : Node2D
 var knockback : Vector2
@@ -23,7 +25,7 @@ var range : bool
 # On Enemy Load
 func _ready():
 	move_speed = 30
-	health = 20
+	current_health = max_health
 	knockback = Vector2.ZERO
 	state = EnemyStates.IDLE
 	handle_idle_movement()
@@ -33,9 +35,9 @@ func _ready():
 
 # Processes
 func _process(_delta):
-	if (health == 0):
+	if (current_health == 0):
 		death = true
-	if (health == 10):
+	if (current_health == 10):
 		switch_to_range()
 	play_animations()
 
@@ -96,7 +98,8 @@ func play_animations():
 
 func handle_hit():
 	$HurtSound.playing = true
-	health -= 1
+	current_health -= 1
+	s_damaged.emit()
 
 func die():
 	died.emit()
