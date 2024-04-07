@@ -232,7 +232,7 @@ projectile_template = ExtResource("2_c502p")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_lprbd")
 animation = &"die"
-frame_progress = 0.680321
+frame_progress = 0.488715
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite2D" groups=["Enemy"]]
 libraries = {
