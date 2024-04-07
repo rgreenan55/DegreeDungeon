@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://hvtmxof87uoa" path="res://entities/items/objects/InvincibilityPickup.tscn" id="9_lnojf"]
 [ext_resource type="PackedScene" uid="uid://cj5igp2pv7qha" path="res://ui/health_bar_ui/health_bar.tscn" id="9_w6r30"]
 
-[node name="Class2" type="Node2D"]
+[node name="finalBossLevel" type="Node2D"]
 script = ExtResource("1_k15pj")
 beerTemplate = ExtResource("9_lnojf")
 story_for_next_level = "Congratulations!!

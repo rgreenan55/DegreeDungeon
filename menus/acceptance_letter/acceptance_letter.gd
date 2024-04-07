@@ -9,6 +9,7 @@ func _ready():
 	$LetterSound.playing = true
 
 func _on_degree_accept_button_pressed():
+	$CanvasLayer/Control/DegreeAcceptButton.disabled = true
 	# The player has chosen to accept their degree, starting the game!
 	animation_player.play_backwards("Spin_In")
 	$AcceptSound.playing = true
