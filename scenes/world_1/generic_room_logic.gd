@@ -16,7 +16,7 @@ signal s_enable_player
 signal s_disable_follow_camera
 signal s_enable_ui
 signal s_play_audio(audio_name)
-signal s_show_story_letter(str)
+signal s_show_story_letter(str, title)
 
 func _ready():
 	s_enable_player.emit()
@@ -71,4 +71,4 @@ func _display_report_card():
 
 func _transition_level():
 	s_next_level.emit()
-	s_show_story_letter.emit(story_for_next_level)
+	s_show_story_letter.emit(story_for_next_level, "NEXT CLASS")

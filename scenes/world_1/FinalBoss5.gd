@@ -44,7 +44,7 @@ func _process(_delta):
 
 
 func _on_story_timer_timeout():
-	s_show_story_letter.emit(story_for_next_level)
+	s_show_story_letter.emit(story_for_next_level, "CONGRATS!")
 	pass # Replace with function body.
 	
 func _on_degree_timer_timeout():

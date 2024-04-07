@@ -4,6 +4,8 @@ extends Node2D
 @onready var mom_timer = %MomTimer
 @onready var tile_map = $TileMap
 
+@export_multiline var story_for_next_level = ""
+
 # Variables
 var mom_text_pre_trigger = [
 	"Adammm",
@@ -26,8 +28,10 @@ var first_call = true
 signal s_enable_player
 signal s_enable_follow_camera
 signal s_show_menu(menu_name)
+signal s_show_story_letter(str, title)
 
 func _ready():
+	s_show_story_letter.emit(story_for_next_level, "CONTROLS")
 	s_enable_player.emit()
 	s_enable_follow_camera.emit()
 	_update_mom_speech()
