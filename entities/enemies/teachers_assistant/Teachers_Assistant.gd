@@ -132,6 +132,7 @@ func hit_player(body : Node2D):
 func handle_hit():
 	if (state == EnemyStates.STUNNED):
 		current_health -= 1
+		$AnimatedSprite/AnimationPlayer.play("on_hit")
 		s_damaged.emit()
 
 func die():

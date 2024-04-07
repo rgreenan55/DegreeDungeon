@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://gyo7c48qalkt"]
+[gd_scene load_steps=5 format=3 uid="uid://gyo7c48qalkt"]
 
 [ext_resource type="PackedScene" uid="uid://urlec0li4vsi" path="res://scenes/common/map_template_GWC124.tscn" id="1_0us5t"]
 [ext_resource type="Script" path="res://scenes/main/Test.gd" id="1_m3ssa"]
 [ext_resource type="PackedScene" uid="uid://bu0mw60kso2sl" path="res://entities/player/Player.tscn" id="4_23rx5"]
 [ext_resource type="PackedScene" uid="uid://0cewsc6wu5qp" path="res://entities/bosses/Mini_Boss.tscn" id="4_me3hx"]
-[ext_resource type="PackedScene" uid="uid://dcnmekjes8q0c" path="res://entities/enemies/teachers_assistant/Teachers_Assistant.tscn" id="5_6ed28"]
 
 [node name="Test" type="Node2D"]
 script = ExtResource("1_m3ssa")
@@ -16,7 +15,4 @@ metadata/_edit_use_anchors_ = true
 position = Vector2(310, 59)
 
 [node name="MiniBoss" parent="." instance=ExtResource("4_me3hx")]
-position = Vector2(241, 110)
-
-[node name="TeachersAssistant" parent="." instance=ExtResource("5_6ed28")]
-position = Vector2(52, 55)
+position = Vector2(204, 35)

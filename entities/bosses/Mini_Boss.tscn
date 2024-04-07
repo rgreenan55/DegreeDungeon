@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://0cewsc6wu5qp"]
+[gd_scene load_steps=48 format=3 uid="uid://0cewsc6wu5qp"]
 
 [ext_resource type="Script" path="res://entities/bosses/Mini_Boss.gd" id="1_xno26"]
 [ext_resource type="Texture2D" uid="uid://d05e2psauauad" path="res://entities/bosses/Strange man asset/StrangeMan Attack.png" id="2_4eh2p"]
@@ -21,6 +21,7 @@
 [ext_resource type="AudioStream" uid="uid://cuc150hft4ehd" path="res://sounds/Attack/Boss/mwuah.mp3" id="16_5t3br"]
 [ext_resource type="AudioStream" uid="uid://gd52oeob2d4h" path="res://sounds/Attack/Boss/getbackhere.mp3" id="20_b21l8"]
 [ext_resource type="AudioStream" uid="uid://6gcdwkm2xo0u" path="res://sounds/Attack/Boss/panting.mp3" id="21_bnb7q"]
+[ext_resource type="AudioStream" uid="uid://ctiuy50t4oms8" path="res://sounds/Attack/Boss/bossdeath.mp3" id="22_3wuta"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_scj84"]
 atlas = ExtResource("2_4eh2p")
@@ -119,7 +120,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"die",
-"speed": 5.0
+"speed": 2.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -150,6 +151,26 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Animation" id="Animation_ileia"]
+resource_name = "on_hit"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2mwq0"]
+_data = {
+"on_hit": SubResource("Animation_ileia")
+}
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_41gnb"]
 size = Vector2(10, 19)
 
@@ -157,7 +178,7 @@ size = Vector2(10, 19)
 size = Vector2(14, 31.75)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yaurk"]
-radius = 72.0069
+radius = 112.004
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_xsm24"]
 streams_count = 6
@@ -202,6 +223,7 @@ stream_1/stream = ExtResource("21_bnb7q")
 stream_1/weight = 1.0
 
 [node name="MiniBoss" type="CharacterBody2D" groups=["MiniBoss"]]
+z_index = 2
 collision_layer = 4
 collision_mask = 41
 script = ExtResource("1_xno26")
@@ -209,7 +231,13 @@ projectile_template = ExtResource("2_c502p")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_lprbd")
-animation = &"attack"
+animation = &"die"
+frame_progress = 0.408597
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite2D" groups=["Enemy"]]
+libraries = {
+"": SubResource("AnimationLibrary_2mwq0")
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2, 1.5)
@@ -252,6 +280,10 @@ stream = SubResource("AudioStreamRandomizer_bfqmj")
 
 [node name="IdleSound" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_t3i3u")
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("22_3wuta")
+volume_db = 5.0
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]

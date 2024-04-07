@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 # References
-@onready var animation : AnimatedSprite2D = $AnimatedSprite2D
+@onready var animation : AnimatedSprite2D = $AnimatedSprite
 @export var orb_template : PackedScene
 # Enums
 enum EnemyStates { IDLE, ALERT }
@@ -65,6 +65,7 @@ func keep_enemy_in_bounds():
 
 func handle_hit():
 	health -= 1
+	$AnimatedSprite/AnimationPlayer.play("on_hit")
 	$HurtSound.playing = true
 
 func die():

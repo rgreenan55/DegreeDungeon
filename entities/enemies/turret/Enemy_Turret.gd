@@ -1,7 +1,7 @@
 extends Area2D
 @export var projectile_template : PackedScene
 # References
-@onready var animation : AnimatedSprite2D = $AnimatedSprite2D
+@onready var animation : AnimatedSprite2D = $AnimatedSprite
 
 # Variables
 var health : int
@@ -40,6 +40,7 @@ func playSound():
 func handle_hit():
 	health -= 1
 	timeSinceHit = 0.5
+	$AnimatedSprite/AnimationPlayer.play("on_hit")
 	$HurtSound.playing = true
 
 func die():
