@@ -428,7 +428,7 @@ animations = [{
 radius = 9.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pqbp4"]
-size = Vector2(35.5, 33.3333)
+size = Vector2(46.1667, 33.3333)
 
 [sub_resource type="Animation" id="Animation_oeqyx"]
 resource_name = "attack"
@@ -463,7 +463,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ar8ad"]
-size = Vector2(15, 10.8333)
+size = Vector2(15, 6.83328)
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_3e4n0"]
 playback_mode = 1
@@ -505,15 +505,15 @@ collision_mask = 53
 script = ExtResource("3_kbq0e")
 
 [node name="MeleeCollider" type="CollisionShape2D" parent="MeleeAttack"]
-position = Vector2(26.25, 0.666667)
+position = Vector2(31.5833, 0.666667)
 shape = SubResource("RectangleShape2D_pqbp4")
 disabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="MeleeAttack"]
 visible = false
-position = Vector2(16, -1.33333)
+position = Vector2(20.3109, -1.33335)
 rotation = -1.5708
-scale = Vector2(1, 1.639)
+scale = Vector2(1, 1.90843)
 texture = ExtResource("4_yjtom")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MeleeAttack"]
@@ -526,7 +526,7 @@ collision_layer = 2
 collision_mask = 84
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
-position = Vector2(0, 12.0833)
+position = Vector2(0, 14.0833)
 shape = SubResource("RectangleShape2D_ar8ad")
 
 [node name="RunningSound" type="AudioStreamPlayer2D" parent="."]
@@ -537,7 +537,7 @@ stream = SubResource("AudioStreamRandomizer_3e4n0")
 
 [node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_fryip")
-volume_db = 24.0
+volume_db = 5.0
 
 [node name="AttackSound" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_hw71u")
