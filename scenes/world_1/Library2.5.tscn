@@ -12,7 +12,7 @@
 [node name="Class2" type="Node2D"]
 script = ExtResource("1_8utiq")
 BossTemplate = ExtResource("2_4hem6")
-story_for_next_level = "With that answer sheet to study, you got the best grade in the class. Sorry to everyone who failed because of how much your mark effected the curve. Watch out in your next class, i think they are pretty angry!"
+story_for_next_level = "With that answer sheet to study, you've got the best grade in the class. Sorry to everyone who failed because of how much your mark effected the curve. Watch out in your next class, I think they are pretty angry!"
 
 [node name="Classroom" type="Node2D" parent="."]
 

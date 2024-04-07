@@ -11,7 +11,7 @@
 script = ExtResource("1_ff8fq")
 story_for_next_level = "Word on the street is the TA left their answer sheet in the library. It would definitely help your grade if you had it to study. Try to find it if you can!
 
-(We do not condon cheating)"
+(We do not condone cheating)"
 
 [node name="Classroom" type="Node2D" parent="."]
 

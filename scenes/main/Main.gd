@@ -83,6 +83,7 @@ func _restart_current_year():
 	player.current_health = player.max_health - 1
 	ui.update_health(player.current_health)
 	player.position = GameState.player_starting_position()
+	GameState.scenes_cleared = 0
 	await _transition_out()
 
 func _quit_game():

@@ -17,6 +17,7 @@ func _check_room_clear():
 		
 func _on_boss_died():
 	print("on boss died function")
+	GameState.scene_cleared()
 	room_cleared = true
 
 func _on_paper_picked_up():
