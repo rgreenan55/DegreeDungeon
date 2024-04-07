@@ -222,7 +222,7 @@ stream_0/weight = 1.0
 stream_1/stream = ExtResource("21_bnb7q")
 stream_1/weight = 1.0
 
-[node name="MiniBoss" type="CharacterBody2D" groups=["MiniBoss"]]
+[node name="MiniBoss" type="CharacterBody2D" groups=["Enemy", "MiniBoss"]]
 z_index = 2
 collision_layer = 4
 collision_mask = 41
@@ -232,7 +232,7 @@ projectile_template = ExtResource("2_c502p")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_lprbd")
 animation = &"die"
-frame_progress = 0.408597
+frame_progress = 0.680321
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite2D" groups=["Enemy"]]
 libraries = {

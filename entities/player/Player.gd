@@ -121,13 +121,9 @@ func determine_animation():
 
 func handle_hit(body):
 	if ((body.is_in_group("Enemy") && !body.is_in_group("Passive")) || body.is_in_group("Projectile")):
+		if(body.is_in_group("MiniBoss")): body.attack = true
 		current_health -= 1
-
-	if(body.is_in_group("MiniBoss")):
-		body.attack = true
-		current_health -= 1
-
-
+		$AnimatedSprite/AnimationPlayer.play("on_hit")
 
 func handle_death():
 	is_dead = true
