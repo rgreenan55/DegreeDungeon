@@ -7,6 +7,7 @@ extends Node2D
 @onready var current_menu = %CurrentMenu
 @onready var animation_player = $SceneTransition/AnimationPlayer
 @onready var audio_player = %AudioPlayer
+@onready var story_letter = %StoryLetter
 
 var scene_instance: PackedScene
 var menu_instance: PackedScene
@@ -82,6 +83,7 @@ func _restart_current_year():
 	player.current_health = player.max_health - 1
 	ui.update_health(player.current_health)
 	player.position = GameState.player_starting_position()
+	GameState.scenes_cleared = 0
 	await _transition_out()
 
 func _quit_game():
@@ -116,6 +118,13 @@ func _load_menu(menu_path: String):
 			new_instance.s_restart_level.connect(_restart_current_year)
 		current_menu.add_child(new_instance)
 
+func _on_load_story_letter(str):
+	story_letter._on_show_story(str)
+	player.process_mode = Node.PROCESS_MODE_DISABLED
+	
+func _on_ok_story_letter():
+	player.process_mode = Node.PROCESS_MODE_INHERIT
+
 func _unload_scene():
 	if is_instance_valid(scene_instance):
 		current_scene.get_child(0).queue_free()
@@ -145,4 +154,6 @@ func _load_scene(scene_path: String):
 			new_instance.s_enable_follow_camera.connect(_enable_follow_camera)
 		if new_instance.has_signal("s_disable_follow_camera"):
 			new_instance.s_disable_follow_camera.connect(_disable_follow_camera)
+		if new_instance.has_signal("s_show_story_letter"):
+			new_instance.s_show_story_letter.connect(_on_load_story_letter)
 		current_scene.add_child(new_instance)

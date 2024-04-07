@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://dgs7vdgy2wm5m"]
+[gd_scene load_steps=32 format=3 uid="uid://dgs7vdgy2wm5m"]
 
 [ext_resource type="Script" path="res://entities/enemies/bob/Enemy_Bob.gd" id="1_olvun"]
 [ext_resource type="Texture2D" uid="uid://bmqq4wmaqvsgo" path="res://entities/enemies/bob/Bob_16x16.png" id="2_oaulk"]
@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://cmedde8508xnl" path="res://sounds/Attack/bob/attack1.mp3" id="4_yj5cx"]
 [ext_resource type="AudioStream" uid="uid://dxerbh8uc4slp" path="res://sounds/Attack/bob/death1.mp3" id="5_oxap5"]
 [ext_resource type="AudioStream" uid="uid://bx10ajjgkhvnd" path="res://sounds/Attack/bob/hurt1.mp3" id="6_2opsb"]
+[ext_resource type="Script" path="res://entities/enemies/amelia/DeathSound.gd" id="6_k5jxy"]
 [ext_resource type="AudioStream" uid="uid://hi4sab8kmnwr" path="res://sounds/Attack/bob/hurt2.mp3" id="7_krgj8"]
 [ext_resource type="AudioStream" uid="uid://bt3v4l6bxub6q" path="res://sounds/Attack/bob/hurt3.mp3" id="8_soeac"]
 
@@ -212,6 +213,7 @@ pitch_scale = 0.9
 stream = SubResource("AudioStreamRandomizer_0usje")
 volume_db = 3.0
 pitch_scale = 0.9
+script = ExtResource("6_k5jxy")
 
 [node name="HurtSound" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_xkqt2")
@@ -219,3 +221,4 @@ pitch_scale = 0.9
 
 [connection signal="timeout" from="MovementTimer" to="." method="_on_movement_timer_timeout"]
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
+[connection signal="finished" from="DeathSound" to="DeathSound" method="_on_finished"]

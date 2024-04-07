@@ -1,0 +1,44 @@
+[gd_scene load_steps=9 format=3 uid="uid://ci8owmeaydahj"]
+
+[ext_resource type="Script" path="res://scenes/world_1/Library2.5.gd" id="1_8utiq"]
+[ext_resource type="PackedScene" uid="uid://dcnmekjes8q0c" path="res://entities/enemies/teachers_assistant/Teachers_Assistant.tscn" id="2_4hem6"]
+[ext_resource type="PackedScene" uid="uid://cy54aobw6ycov" path="res://scenes/common/map_template_Library.tscn" id="2_55v6a"]
+[ext_resource type="Script" path="res://scenes/world_1/Exits.gd" id="3_6ry5a"]
+[ext_resource type="PackedScene" uid="uid://malwav3fokf5" path="res://scenes/common/ExitDoorTop.tscn" id="4_t7jl4"]
+[ext_resource type="PackedScene" uid="uid://b0veca2rgcc3y" path="res://entities/items/objects/SubBossPickup.tscn" id="6_h743g"]
+[ext_resource type="PackedScene" uid="uid://b5lm5qgpj3txv" path="res://menus/report_card/report_card.tscn" id="6_px7qa"]
+[ext_resource type="PackedScene" uid="uid://cmigi4uq1hp61" path="res://entities/items/objects/HealthPickup.tscn" id="8_xl4pc"]
+
+[node name="Class2" type="Node2D"]
+script = ExtResource("1_8utiq")
+BossTemplate = ExtResource("2_4hem6")
+story_for_next_level = "With that answer sheet to study, you've got the best grade in the class. Sorry to everyone who failed because of how much your mark effected the curve. Watch out in your next class, I think they are pretty angry!"
+
+[node name="Classroom" type="Node2D" parent="."]
+
+[node name="Library" parent="Classroom" instance=ExtResource("2_55v6a")]
+
+[node name="Exits" type="Node2D" parent="."]
+visible = false
+z_index = 1
+script = ExtResource("3_6ry5a")
+
+[node name="ExitDoor1" parent="Exits" instance=ExtResource("4_t7jl4")]
+position = Vector2(64, 16)
+
+[node name="ReportCard" parent="." instance=ExtResource("6_px7qa")]
+
+[node name="SubBossPickup" parent="." instance=ExtResource("6_h743g")]
+position = Vector2(193, 112)
+
+[node name="HealthPickup" parent="." instance=ExtResource("8_xl4pc")]
+position = Vector2(356, 187)
+
+[node name="HealthPickup2" parent="." instance=ExtResource("8_xl4pc")]
+position = Vector2(28, 188)
+
+[node name="HealthPickup3" parent="." instance=ExtResource("8_xl4pc")]
+position = Vector2(354, 48)
+
+[connection signal="s_exit_door" from="Exits/ExitDoor1" to="." method="_transition_level"]
+[connection signal="picked_up" from="SubBossPickup" to="." method="_on_paper_picked_up"]

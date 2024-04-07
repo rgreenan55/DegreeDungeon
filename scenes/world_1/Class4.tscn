@@ -11,6 +11,7 @@
 
 [node name="Class4" type="Node2D"]
 script = ExtResource("1_bjo1g")
+story_for_next_level = "And that is the end of your classes. You're nearly finished, the last thing you need to do is finish your exams. Word is one of the profs went beserk and is ravaging the gym. They might exempt you if you help calm him down."
 
 [node name="Classroom" type="Node2D" parent="."]
 
@@ -26,16 +27,24 @@ position = Vector2(56, 208)
 
 [node name="Enemy_Turret" parent="." instance=ExtResource("5_y6gs5")]
 z_index = 3
-position = Vector2(230, 114)
+position = Vector2(193, 115)
 
 [node name="EnemyBob" parent="." instance=ExtResource("6_u4elk")]
 z_index = 3
-position = Vector2(351, 65)
+position = Vector2(338, 50)
 
 [node name="Enemy" parent="." instance=ExtResource("7_kt74h")]
 z_index = 3
-position = Vector2(32, 42)
+position = Vector2(31, 43)
 
 [node name="ReportCard" parent="." instance=ExtResource("8_ode7s")]
+
+[node name="EnemyBob2" parent="." instance=ExtResource("6_u4elk")]
+z_index = 3
+position = Vector2(338, 174)
+
+[node name="Enemy2" parent="." instance=ExtResource("7_kt74h")]
+z_index = 3
+position = Vector2(267, 111)
 
 [connection signal="s_exit_door" from="Exits/ExitDoorTop" to="." method="_transition_level"]

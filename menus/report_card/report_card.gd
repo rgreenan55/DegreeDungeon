@@ -17,6 +17,16 @@ func assign_grade(grade: String):
 		grade_icon.add_child(grade_instance)
 		
 func display_report_card():
+	# THIS PLAYER FREEZING STUFF IS GROSS IM SORRY IT'S DUE TODAY
+	var player = null
+	if get_tree().get_nodes_in_group("Player").size() > 0:
+		player = get_tree().get_nodes_in_group("Player")[0]
+		player.process_mode = Node.PROCESS_MODE_DISABLED
+		
 	animation_player.play("Report_Card_Appear")
 	await animation_player.animation_finished
 	animation_player.play_backwards("Report_Card_Appear")
+	await animation_player.animation_finished
+
+	if player:
+		player.process_mode = Node.PROCESS_MODE_INHERIT

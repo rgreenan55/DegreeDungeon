@@ -8,6 +8,11 @@
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_cebfn")
+story_for_next_level = "New to the school, all the babes are gonna try to snatch you up!
+
+Watch out!
+
+First class you need to pass, failing out now will doom the rest of your degree!"
 
 [node name="DormTemplate" parent="." instance=ExtResource("2_anprs")]
 

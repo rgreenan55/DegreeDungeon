@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://bghlk20cvt4ed"]
+[gd_scene load_steps=43 format=3 uid="uid://bghlk20cvt4ed"]
 
 [ext_resource type="Script" path="res://entities/enemies/amelia/Amelia.gd" id="1_du78g"]
 [ext_resource type="AudioStream" uid="uid://chp8ex28kq2lk" path="res://sounds/Attack/Amelia/hurt1.mp3" id="3_3pboo"]
@@ -12,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://c8k86f0r5b2ee" path="res://sounds/Attack/Amelia/death1.mp3" id="10_iq2nh"]
 [ext_resource type="AudioStream" uid="uid://dwwfoicnb0yp4" path="res://sounds/Attack/Amelia/death2.mp3" id="11_snofi"]
 [ext_resource type="AudioStream" uid="uid://nb6lpn7angl1" path="res://sounds/Attack/Amelia/chase1.mp3" id="12_2un33"]
+[ext_resource type="Script" path="res://entities/enemies/amelia/DeathSound.gd" id="12_xkdt3"]
 [ext_resource type="AudioStream" uid="uid://bllo41ia8hkht" path="res://sounds/Attack/Amelia/chase2.mp3" id="13_lstco"]
 [ext_resource type="AudioStream" uid="uid://djsp8lu8q7x4o" path="res://sounds/Attack/Amelia/chase3.mp3" id="14_kf8ib"]
 
@@ -265,6 +266,7 @@ pitch_scale = 1.33
 [node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_8r3tj")
 pitch_scale = 1.33
+script = ExtResource("12_xkdt3")
 
 [node name="ChaseSound" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_k4l5i")
@@ -273,3 +275,4 @@ pitch_scale = 1.33
 [connection signal="body_entered" from="LineOfSight" to="." method="enemy_sees_player"]
 [connection signal="timeout" from="MovementTimer" to="." method="handle_idle_movement"]
 [connection signal="timeout" from="PathFindingTimer" to="." method="make_path"]
+[connection signal="finished" from="DeathSound" to="DeathSound" method="_on_finished"]

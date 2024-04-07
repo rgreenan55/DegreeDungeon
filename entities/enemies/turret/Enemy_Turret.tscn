@@ -1,25 +1,40 @@
-[gd_scene load_steps=18 format=3 uid="uid://dx78s7qi3mejd"]
+[gd_scene load_steps=22 format=3 uid="uid://dx78s7qi3mejd"]
 
 [ext_resource type="Script" path="res://entities/enemies/turret/Enemy_Turret.gd" id="1_2ftgm"]
 [ext_resource type="PackedScene" uid="uid://bamsd1ipaw4pe" path="res://entities/enemies/turret/Turret_Projectile.tscn" id="2_lehbo"]
-[ext_resource type="Texture2D" uid="uid://c5fmxirbhv1h2" path="res://entities/enemies/turret/creatures3_.png" id="3_by3br"]
+[ext_resource type="Texture2D" uid="uid://b7s0giinvx5sy" path="res://entities/enemies/turret/bj_b8f.png" id="3_h155h"]
 [ext_resource type="AudioStream" uid="uid://bl7ddtp7yv6fe" path="res://sounds/Attack/turret/attack1.mp3" id="4_mp71l"]
 [ext_resource type="AudioStream" uid="uid://cat7xii8mmndg" path="res://sounds/Attack/turret/death1.mp3" id="5_ibhj3"]
 [ext_resource type="AudioStream" uid="uid://bsx7b8p6cnke4" path="res://sounds/Attack/turret/death2.mp3" id="6_ed6o1"]
+[ext_resource type="AudioStream" uid="uid://de5247jrukuyd" path="res://sounds/Attack/turret/death3.mp3" id="7_35u3c"]
+[ext_resource type="Script" path="res://entities/enemies/amelia/DeathSound.gd" id="7_g63lm"]
 [ext_resource type="AudioStream" uid="uid://shlhxuf2xnxn" path="res://sounds/Attack/turret/hurt1.mp3" id="7_qbrey"]
 [ext_resource type="AudioStream" uid="uid://cu7q7u2l6nig3" path="res://sounds/Attack/turret/hurt2.mp3" id="8_xhr8a"]
 [ext_resource type="AudioStream" uid="uid://fiw40atp1ra2" path="res://sounds/Attack/turret/idle1.mp3" id="9_c11ug"]
 [ext_resource type="AudioStream" uid="uid://chniaxg4fipmg" path="res://sounds/Attack/turret/idle2.mp3" id="10_dmhf1"]
+[ext_resource type="AudioStream" uid="uid://cx0r20wvpxnmq" path="res://sounds/Attack/turret/idle3.mp3" id="13_34kjj"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0kn2o"]
-atlas = ExtResource("3_by3br")
-region = Rect2(192, 126, 32, 37)
+[sub_resource type="AtlasTexture" id="AtlasTexture_o0id3"]
+atlas = ExtResource("3_h155h")
+region = Rect2(90, 65, 15, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rp68o"]
+atlas = ExtResource("3_h155h")
+region = Rect2(23, 65, 15, 15)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_roipi"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0kn2o")
+"texture": SubResource("AtlasTexture_o0id3")
+}],
+"loop": true,
+"name": &"hit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rp68o")
 }],
 "loop": true,
 "name": &"move",
@@ -27,7 +42,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rkp1l"]
-size = Vector2(18, 17)
+size = Vector2(19, 18)
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_t51tv"]
 random_pitch = 1.1
@@ -37,11 +52,13 @@ stream_0/weight = 1.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_lf2o0"]
 random_pitch = 1.1
-streams_count = 2
+streams_count = 3
 stream_0/stream = ExtResource("5_ibhj3")
 stream_0/weight = 1.0
 stream_1/stream = ExtResource("6_ed6o1")
 stream_1/weight = 1.0
+stream_2/stream = ExtResource("7_35u3c")
+stream_2/weight = 1.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_423wt"]
 random_pitch = 1.1
@@ -53,11 +70,13 @@ stream_1/weight = 1.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_5laa8"]
 random_pitch = 1.1
-streams_count = 2
+streams_count = 3
 stream_0/stream = ExtResource("9_c11ug")
 stream_0/weight = 1.0
 stream_1/stream = ExtResource("10_dmhf1")
 stream_1/weight = 1.0
+stream_2/stream = ExtResource("13_34kjj")
+stream_2/weight = 1.0
 
 [node name="Enemy_Turret" type="Area2D" groups=["Enemy"]]
 collision_layer = 4
@@ -66,13 +85,11 @@ script = ExtResource("1_2ftgm")
 projectile_template = ExtResource("2_lehbo")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-2, 3.5)
-scale = Vector2(0.75, 0.72973)
+scale = Vector2(1.2, 1.2)
 sprite_frames = SubResource("SpriteFrames_roipi")
-animation = &"move"
+animation = &"hit"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 2)
 shape = SubResource("RectangleShape2D_rkp1l")
 
 [node name="ShootTimer" type="Timer" parent="."]
@@ -84,6 +101,7 @@ stream = SubResource("AudioStreamRandomizer_t51tv")
 
 [node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_lf2o0")
+script = ExtResource("7_g63lm")
 
 [node name="HurtSound" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_423wt")
@@ -92,3 +110,4 @@ stream = SubResource("AudioStreamRandomizer_423wt")
 stream = SubResource("AudioStreamRandomizer_5laa8")
 
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
+[connection signal="finished" from="DeathSound" to="DeathSound" method="_on_finished"]

@@ -15,6 +15,7 @@ var is_invincible: bool
 var is_invincible_powerup: bool
 var is_speedy: bool
 
+
 var powerup_duration: int = 10
 var speed_multi: float = 1.5
 var last_hit_time: float = 0

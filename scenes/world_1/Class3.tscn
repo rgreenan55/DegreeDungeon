@@ -1,15 +1,17 @@
-[gd_scene load_steps=8 format=3 uid="uid://cbd7rtffdrleh"]
+[gd_scene load_steps=7 format=3 uid="uid://cbd7rtffdrleh"]
 
 [ext_resource type="Script" path="res://scenes/world_1/generic_room_logic.gd" id="1_ff8fq"]
 [ext_resource type="PackedScene" uid="uid://bfaxd8um1mdrb" path="res://scenes/common/map_template_ITD414.tscn" id="1_iki60"]
 [ext_resource type="Script" path="res://scenes/world_1/Exits.gd" id="1_p81xi"]
 [ext_resource type="PackedScene" uid="uid://malwav3fokf5" path="res://scenes/common/ExitDoorTop.tscn" id="3_gh68q"]
 [ext_resource type="PackedScene" uid="uid://dx78s7qi3mejd" path="res://entities/enemies/turret/Enemy_Turret.tscn" id="4_q0iag"]
-[ext_resource type="PackedScene" uid="uid://dgs7vdgy2wm5m" path="res://entities/enemies/bob/Enemy_Bob.tscn" id="5_rnpd7"]
 [ext_resource type="PackedScene" uid="uid://b5lm5qgpj3txv" path="res://menus/report_card/report_card.tscn" id="7_kybko"]
 
 [node name="Class3" type="Node2D"]
 script = ExtResource("1_ff8fq")
+story_for_next_level = "Word on the street is the TA left their answer sheet in the library. It would definitely help your grade if you had it to study. Try to find it if you can!
+
+(We do not condone cheating)"
 
 [node name="Classroom" type="Node2D" parent="."]
 
@@ -24,16 +26,17 @@ z_index = 2
 position = Vector2(56, 208)
 
 [node name="Enemy_Turret" parent="." instance=ExtResource("4_q0iag")]
-position = Vector2(189, 113)
-
-[node name="EnemyBob" parent="." instance=ExtResource("5_rnpd7")]
-z_index = 2
-position = Vector2(315, 74)
-
-[node name="EnemyBob2" parent="." instance=ExtResource("5_rnpd7")]
-z_index = 2
-position = Vector2(315, 153)
+position = Vector2(192, 111)
 
 [node name="ReportCard" parent="." instance=ExtResource("7_kybko")]
+
+[node name="Enemy_Turret2" parent="." instance=ExtResource("4_q0iag")]
+position = Vector2(55, 55)
+
+[node name="Enemy_Turret3" parent="." instance=ExtResource("4_q0iag")]
+position = Vector2(311, 55)
+
+[node name="Enemy_Turret4" parent="." instance=ExtResource("4_q0iag")]
+position = Vector2(312, 183)
 
 [connection signal="s_exit_door" from="Exits/ExitDoorTop" to="." method="_transition_level"]

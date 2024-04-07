@@ -134,6 +134,7 @@ func handle_hit():
 		health -= 10
 
 func die():
+	print("boss died")
 	died.emit()
 	$DeathSound.play()
 	$DeathSound.reparent(get_parent())

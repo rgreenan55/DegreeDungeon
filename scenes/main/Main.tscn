@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bljks5s3p8tey"]
+[gd_scene load_steps=8 format=3 uid="uid://bljks5s3p8tey"]
 
 [ext_resource type="PackedScene" uid="uid://dk2p23b6cvj8e" path="res://ui/player_ui/ui.tscn" id="1_rn86o"]
 [ext_resource type="Script" path="res://scenes/main/Main.gd" id="1_uhhgu"]
 [ext_resource type="PackedScene" uid="uid://bu0mw60kso2sl" path="res://entities/player/Player.tscn" id="2_1fv7w"]
 [ext_resource type="AudioStream" uid="uid://dmfn4awv8ekop" path="res://sounds/Pickup/bloxy-cola.mp3" id="4_jhv5c"]
+[ext_resource type="PackedScene" uid="uid://ptr2nelowubu" path="res://menus/story_letter/story_letter.tscn" id="5_i815l"]
 
 [sub_resource type="Animation" id="Animation_2drg8"]
 resource_name = "Transition_Fade_In"
@@ -90,3 +91,8 @@ unique_name_in_owner = true
 [node name="Drinking" type="AudioStreamPlayer" parent="AudioPlayer"]
 stream = ExtResource("4_jhv5c")
 pitch_scale = 1.1
+
+[node name="StoryLetter" parent="." instance=ExtResource("5_i815l")]
+unique_name_in_owner = true
+
+[connection signal="s_accepted" from="StoryLetter" to="." method="_on_ok_story_letter"]
