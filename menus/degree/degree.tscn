@@ -1,12 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://dm1tokaai453p"]
+[gd_scene load_steps=7 format=3 uid="uid://dm1tokaai453p"]
 
+[ext_resource type="Script" path="res://menus/degree/degree.gd" id="1_2cfq6"]
 [ext_resource type="PackedScene" uid="uid://chbqqoxda2fo2" path="res://menus/common/degree_paper.tscn" id="1_73fjb"]
 [ext_resource type="Theme" uid="uid://dwaenijqjyg8s" path="res://ui/theme_default/theme_default.tres" id="1_o53tk"]
 [ext_resource type="PackedScene" uid="uid://bulu38lysuqar" path="res://menus/common/seal_gui.tscn" id="3_lsfo3"]
 
 [sub_resource type="Animation" id="Animation_t5k1o"]
 resource_name = "Degree_Spin_In"
-length = 1.2
+length = 2.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -134,6 +135,7 @@ _data = {
 }
 
 [node name="Degree" type="CanvasLayer"]
+script = ExtResource("1_2cfq6")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -153,15 +155,17 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="degree_paper" parent="Control/Sprites" instance=ExtResource("1_73fjb")]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 offset_left = 576.0
 offset_top = 324.0
 offset_right = 576.0
 offset_bottom = 324.0
-rotation = 1.5708
-scale = Vector2(3, 3)
+rotation = 4.71239
+scale = Vector2(0.1, 0.1)
 
 [node name="seal_gui" parent="Control/Sprites" instance=ExtResource("3_lsfo3")]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 offset_left = 576.0
 offset_top = 438.0
@@ -170,6 +174,7 @@ offset_bottom = 438.0
 scale = Vector2(5, 5)
 
 [node name="degree_title" type="Label" parent="Control/Sprites"]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 333.0
 offset_top = 178.0
@@ -181,6 +186,7 @@ University"
 horizontal_alignment = 1
 
 [node name="degree_text" type="Label" parent="Control/Sprites"]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 376.0
 offset_top = 318.0

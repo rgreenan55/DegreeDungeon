@@ -9,6 +9,7 @@ enum EnemyStates { IDLE, ALERT }
 # Signals
 signal died
 signal s_damaged
+signal sees_player
 
 # Variables
 @export var attack : bool
@@ -78,6 +79,7 @@ func enemy_sees_player(body : Node2D):
 		if range: move_speed = 40
 		else: move_speed = 60
 		state = EnemyStates.ALERT
+		sees_player.emit()
 
 # Handles Animations
 func play_animations():

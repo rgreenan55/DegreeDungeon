@@ -27,15 +27,12 @@ position = Vector2(88, 16)
 position = Vector2(296, 16)
 
 [node name="Enemy1" parent="." instance=ExtResource("5_khv38")]
-z_index = 2
 position = Vector2(55, 177)
 
 [node name="Enemy2" parent="." instance=ExtResource("5_khv38")]
-z_index = 2
 position = Vector2(195, 95)
 
 [node name="Enemy3" parent="." instance=ExtResource("5_khv38")]
-z_index = 2
 position = Vector2(333, 181)
 
 [node name="ReportCard" parent="." instance=ExtResource("6_b5vy1")]

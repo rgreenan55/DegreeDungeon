@@ -1,0 +1,77 @@
+[gd_scene load_steps=12 format=3 uid="uid://bkhq5ut50nojm"]
+
+[ext_resource type="Script" path="res://scenes/world_1/FinalBoss5.gd" id="1_k15pj"]
+[ext_resource type="PackedScene" uid="uid://dey2vruvpdrn8" path="res://scenes/common/map_template_Gym.tscn" id="2_koll4"]
+[ext_resource type="Script" path="res://scenes/world_1/Exits.gd" id="4_npv2p"]
+[ext_resource type="PackedScene" uid="uid://0cewsc6wu5qp" path="res://entities/bosses/Mini_Boss.tscn" id="6_dwgq6"]
+[ext_resource type="PackedScene" uid="uid://dm1tokaai453p" path="res://menus/degree/degree.tscn" id="6_jiw5h"]
+[ext_resource type="PackedScene" uid="uid://b5lm5qgpj3txv" path="res://menus/report_card/report_card.tscn" id="6_lhf4d"]
+[ext_resource type="PackedScene" uid="uid://bv780bs63xu5j" path="res://entities/items/objects/FullHealthPickup.tscn" id="7_4jin5"]
+[ext_resource type="PackedScene" uid="uid://cmigi4uq1hp61" path="res://entities/items/objects/HealthPickup.tscn" id="8_1s8lr"]
+[ext_resource type="PackedScene" uid="uid://cw6falelokm82" path="res://entities/items/objects/SpeedPickup.tscn" id="8_3i32p"]
+[ext_resource type="PackedScene" uid="uid://hvtmxof87uoa" path="res://entities/items/objects/InvincibilityPickup.tscn" id="9_lnojf"]
+[ext_resource type="PackedScene" uid="uid://cj5igp2pv7qha" path="res://ui/health_bar_ui/health_bar.tscn" id="9_w6r30"]
+
+[node name="finalBossLevel" type="Node2D"]
+script = ExtResource("1_k15pj")
+beerTemplate = ExtResource("9_lnojf")
+story_for_next_level = "Congratulations!!
+
+For helping subdue the crazed professor the university has granted you a passing grade and you recieved your degree!
+
+Good luck with where life takes you next!"
+
+[node name="Classroom" type="Node2D" parent="."]
+
+[node name="Gym" parent="Classroom" instance=ExtResource("2_koll4")]
+
+[node name="Exits" type="Node2D" parent="."]
+visible = false
+z_index = 1
+script = ExtResource("4_npv2p")
+
+[node name="ReportCard" parent="." instance=ExtResource("6_lhf4d")]
+
+[node name="HealthBar" parent="." instance=ExtResource("9_w6r30")]
+unique_name_in_owner = true
+
+[node name="Degree" parent="." instance=ExtResource("6_jiw5h")]
+
+[node name="MiniBoss" parent="." instance=ExtResource("6_dwgq6")]
+position = Vector2(364, 91)
+
+[node name="FullHealthPickup" parent="." instance=ExtResource("7_4jin5")]
+z_index = 1
+position = Vector2(540, 165)
+
+[node name="SpeedPickup" parent="." instance=ExtResource("8_3i32p")]
+z_index = 1
+position = Vector2(248, 309)
+
+[node name="InvincibilityPickup" parent="." instance=ExtResource("9_lnojf")]
+z_index = 1
+position = Vector2(105, 262)
+
+[node name="HealthPickup" parent="." instance=ExtResource("8_1s8lr")]
+z_index = 1
+position = Vector2(56, 116)
+
+[node name="SpeedPickup2" parent="." instance=ExtResource("8_3i32p")]
+z_index = 1
+position = Vector2(679, 357)
+
+[node name="StoryTimer" type="Timer" parent="."]
+wait_time = 4.8
+one_shot = true
+
+[node name="DegreeTimer" type="Timer" parent="."]
+wait_time = 2.4
+one_shot = true
+
+[node name="BeerTimer" type="Timer" parent="."]
+
+[connection signal="died" from="MiniBoss" to="." method="_on_boss_died"]
+[connection signal="sees_player" from="MiniBoss" to="." method="_on_boss_first_alert"]
+[connection signal="timeout" from="StoryTimer" to="." method="_on_story_timer_timeout"]
+[connection signal="timeout" from="DegreeTimer" to="." method="_on_degree_timer_timeout"]
+[connection signal="timeout" from="BeerTimer" to="." method="_on_beer_timer_timeout"]
