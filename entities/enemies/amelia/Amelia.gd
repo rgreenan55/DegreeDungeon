@@ -97,5 +97,6 @@ func handle_hit():
 func die():
 	died.emit()
 	$DeathSound.playing = true
+	$DeathSound.reparent(get_parent())
 	# Death Animation
 	queue_free()

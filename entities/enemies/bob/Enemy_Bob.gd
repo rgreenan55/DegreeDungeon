@@ -68,6 +68,7 @@ func handle_hit():
 
 func die():
 	$DeathSound.playing = true
+	$DeathSound.reparent(get_parent())
 	queue_free()
 
 func _on_movement_timer_timeout():

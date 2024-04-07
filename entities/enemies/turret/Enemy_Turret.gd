@@ -9,6 +9,7 @@ var knockback : Vector2
 var alternate : int
 
 var timeSinceLastSound = 0
+var timeSinceHit = 0
 var nextSoundTime = 3+(1+randf()*3)
 # On Enemy Load
 func _ready():
@@ -18,10 +19,14 @@ func _ready():
 
 #This enemy is static like a turret
 func _process(delta):
+	timeSinceHit -= delta
 	timeSinceLastSound += delta
 	if (health == 0): die()
 	playSound()
-	animation.play("move")
+	if timeSinceHit <= 0:
+		animation.play("move")
+	else:
+		animation.play("hit")
 
 func genRandomTime():
 	nextSoundTime = 3+(1+randf()*3)
@@ -34,10 +39,12 @@ func playSound():
 
 func handle_hit():
 	health -= 1
+	timeSinceHit = 0.5
 	$HurtSound.playing = true
 
 func die():
 	$DeathSound.playing = true
+	$DeathSound.reparent(get_parent())
 	queue_free()
 
 #4 projectiles shooting in the up, down left and right directions

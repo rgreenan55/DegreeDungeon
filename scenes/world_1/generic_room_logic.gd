@@ -3,6 +3,8 @@ extends Node2D
 @onready var exits = $Exits
 @onready var report_card = $ReportCard
 
+@export_multiline var story_for_next_level = ""
+
 var room_cleared: bool = false
 
 var random_drop = preload("res://entities/items/objects/GenericDrop.tscn")
@@ -14,6 +16,7 @@ signal s_enable_player
 signal s_disable_follow_camera
 signal s_enable_ui
 signal s_play_audio(audio_name)
+signal s_show_story_letter(str)
 
 func _ready():
 	s_enable_player.emit()
@@ -24,7 +27,8 @@ func _process(_delta):
 	# TODO: Remove this in final product
 	if Input.is_action_just_pressed("dev_kill_all"):
 		for enemy in get_tree().get_nodes_in_group("Enemy"):
-			enemy.queue_free()
+			#enemy.queue_free()
+			enemy.health = 0
 	if !room_cleared:
 		_check_room_clear()
 	else:
@@ -67,3 +71,4 @@ func _display_report_card():
 
 func _transition_level():
 	s_next_level.emit()
+	s_show_story_letter.emit(story_for_next_level)

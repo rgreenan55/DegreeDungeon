@@ -20,16 +20,18 @@ var year_scenes = [
 		"res://scenes/world_0/player_home.tscn",
 	],
 	[	# Year 1
-		"res://scenes/world_1/DormStart.tscn",
-		"res://scenes/world_1/Hall.tscn",
-		"res://scenes/world_1/Class1.tscn",
-		"res://scenes/world_1/Hall.tscn",
-		"res://scenes/world_1/Class2.tscn",
-		"res://scenes/world_1/Hall.tscn",
-		"res://scenes/world_1/Class3.tscn",
-		"res://scenes/world_1/Hall.tscn",
-		"res://scenes/world_1/Class4.tscn",
-		"res://scenes/world_1/Hall.tscn",
+		"res://scenes/world_1/DormStart.tscn",	#1
+		"res://scenes/world_1/Hall.tscn",		#2
+		"res://scenes/world_1/Class2.tscn",		#5
+		"res://scenes/world_1/Hall.tscn",		#4
+		"res://scenes/world_1/Class3.tscn",		#9
+		"res://scenes/world_1/Hall.tscn",		#6
+		"res://scenes/world_1/Library2.5.tscn",	#7
+		"res://scenes/world_1/Hall.tscn",		#8
+		"res://scenes/world_1/Class1.tscn",		#3
+		"res://scenes/world_1/Hall.tscn",		#10
+		"res://scenes/world_1/Class4.tscn",		#11
+		"res://scenes/world_1/Hall.tscn",		#12
 	],
 	[	# Year 2
 		"",
@@ -53,16 +55,17 @@ var year_player_positions = [
 		Vector2(536, 565),
 	],
 	[	# Year 1
-		Vector2(232.5, 91.24),
-		Vector2(49, 145),
-		Vector2(32, 46),
-		Vector2(96, 100),
-		Vector2(88, 32),
-		Vector2(144, 100),
-		Vector2(56, 192),
-		Vector2(352, 100),
-		Vector2(56, 193),
-		Vector2(560, 100),
+		Vector2(232.5, 91.24),	#1
+		Vector2(49, 145),		#2
+		Vector2(88, 32),		#5
+		Vector2(96, 100),		#4
+		Vector2(56, 192),		#9
+		Vector2(144, 100),		#6
+		Vector2(64, 30),		#7
+		Vector2(352, 100),		#8
+		Vector2(32, 46),		#3
+		Vector2(560, 100),		#10
+		Vector2(56, 193),		#11
 	],
 	[	# Year 2
 		Vector2(0, 0),

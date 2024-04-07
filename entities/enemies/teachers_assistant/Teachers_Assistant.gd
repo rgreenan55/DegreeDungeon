@@ -28,7 +28,7 @@ var player : Node2D
 func _ready():
 	state = EnemyStates.IDLE
 	move_speed = normal_speed
-	health = 20
+	health = 5
 
 	on_cooldown = false
 
@@ -122,6 +122,7 @@ func handle_hit():
 		health -= 1
 
 func die():
+	print("boss died")
 	died.emit()
 	# Death Animation
 	queue_free()
