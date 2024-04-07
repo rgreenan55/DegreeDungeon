@@ -9,7 +9,7 @@
 
 [node name="Class2" type="Node2D"]
 script = ExtResource("1_wbkg1")
-story_for_next_level = "There's been a virus outbreak in the computer lab! The computers have gone rouge! Help eliminate them and they'll bump up your grade for sure!"
+story_for_next_level = "There's been a virus outbreak in the computer lab! The computers have gone rogue! Help eliminate them and they'll bump up your grade for sure!"
 
 [node name="Classroom" type="Node2D" parent="."]
 
