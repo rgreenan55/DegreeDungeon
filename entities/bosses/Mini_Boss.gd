@@ -90,32 +90,18 @@ func play_animations():
 			animation.play("move")
 		else: animation.play("idle")
 	else:
-		animation.play("move");
+		animation.play("move")
 		if (velocity.x < 0): animation.flip_h = true
 		else: animation.flip_h = false
 
-
-#func keep_enemy_in_bounds():
-	#var screen_size = get_viewport_rect().size
-	#if position.x < 0:
-		#position.x = 0
-		#velocity.x *= -1
-	#if position.x > screen_size.x:
-		#position.x = screen_size.x
-		#velocity.x *= -1
-	#if position.y < 0:
-		#position.y = 0
-		#velocity.y *= -1
-	#if position.y > screen_size.y:
-		#position.y = screen_size.y
-		#velocity.y *= -1
-
 func handle_hit():
+	$HurtSound.playing = true
 	health -= 1
 
 func die():
 	died.emit()
 	queue_free()
+	$ShootTimer.autostart = false
 	$ShootTimer.stop()
 
 #turns off attack animation if not in player body
@@ -132,5 +118,14 @@ func switch_to_range():
 
 #spawn projectile on shoot timer timeout
 func _on_shoot_timer_timeout():
+	if((randi_range(1,10) > 3) and !$HurtSound.playing and !$MeleeSound.playing and !$IdleSound.playing): $ShootSound.playing = true
 	var projectile = projectile_template.instantiate()
 	add_child(projectile)
+
+#to play melee sound
+func _on_hurt_box_body_entered(body):
+	if(!$HurtSound.playing and !$ShootSound.playing and !$IdleSound.playing): $MeleeSound.playing = true
+
+#50% chance to play idle sounds when exiting line of sight
+func _on_line_of_sight_body_exited(body):
+	if(!$ShootSound.playing and (randi_range(1,99) > 50) and !$MeleeSound.playing and !$HurtSound.playing): $IdleSound.playing = true

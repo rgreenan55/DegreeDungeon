@@ -2,7 +2,7 @@ extends Area2D
 
 @export var direction = Vector2.ZERO
 var speed = 100
-	
+
 func _process(delta):
 	$AnimatedSprite2D.play("projectile")
 	position += direction * speed * delta

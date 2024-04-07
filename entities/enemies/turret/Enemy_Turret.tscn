@@ -80,7 +80,7 @@ stream_2/weight = 1.0
 
 [node name="Enemy_Turret" type="Area2D" groups=["Enemy"]]
 collision_layer = 4
-collision_mask = 2
+collision_mask = 8
 script = ExtResource("1_2ftgm")
 projectile_template = ExtResource("2_lehbo")
 

@@ -20,13 +20,10 @@ run/max_fps=60
 GameState="*res://globals/game_state.gd"
 AmbientMusic="*res://sounds/Music/ambient_music.tscn"
 
-[debug]
-
-settings/stdout/print_fps=true
-
 [display]
 
 window/stretch/mode="canvas_items"
+window/vsync/vsync_mode=0
 
 [editor]
 

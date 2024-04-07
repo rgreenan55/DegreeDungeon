@@ -37,6 +37,7 @@ func handle_idle_movement():
 	if (state == EnemyStates.IDLE):
 		velocity = Vector2(randi_range(-1, 1), randi_range(-1, 1)).normalized() * move_speed
 		$MovementTimer.start(randf_range(1,3))
+
 # Handles Animations
 func play_animations():
 	if (velocity.x == 0):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://0cewsc6wu5qp"]
+[gd_scene load_steps=45 format=3 uid="uid://0cewsc6wu5qp"]
 
 [ext_resource type="Script" path="res://entities/bosses/Mini_Boss.gd" id="1_xno26"]
 [ext_resource type="Texture2D" uid="uid://d05e2psauauad" path="res://entities/bosses/Strange man asset/StrangeMan Attack.png" id="2_4eh2p"]
@@ -6,6 +6,21 @@
 [ext_resource type="Texture2D" uid="uid://cj4hjcfoko3qp" path="res://entities/bosses/Strange man asset/StrangeMan Die.png" id="3_ja8wx"]
 [ext_resource type="Texture2D" uid="uid://b2gtywuh4jg2c" path="res://entities/bosses/Strange man asset/StrangeMan Idle.png" id="4_um87u"]
 [ext_resource type="Texture2D" uid="uid://daawrj42mdwiv" path="res://entities/bosses/Strange man asset/StrangeMan Walking.png" id="5_pc2re"]
+[ext_resource type="AudioStream" uid="uid://cxoplnpyoip84" path="res://sounds/Attack/Boss/code.mp3" id="8_v8wgf"]
+[ext_resource type="AudioStream" uid="uid://qsias22d40by" path="res://sounds/Attack/Boss/failure.mp3" id="9_6pudq"]
+[ext_resource type="AudioStream" uid="uid://dbvjr0ecjenql" path="res://sounds/Attack/Boss/love.mp3" id="9_adn0b"]
+[ext_resource type="AudioStream" uid="uid://mkuo8ekie3u4" path="res://sounds/Attack/Boss/jk.mp3" id="10_6iaov"]
+[ext_resource type="AudioStream" uid="uid://bcx8l2q4kvq4q" path="res://sounds/Attack/Boss/sorry.mp3" id="11_ast13"]
+[ext_resource type="AudioStream" uid="uid://cop6ynuqw8jty" path="res://sounds/Attack/Boss/ow.mp3" id="11_ffp71"]
+[ext_resource type="AudioStream" uid="uid://dvkvxuok88cji" path="res://sounds/Attack/Boss/stupid.mp3" id="12_3djju"]
+[ext_resource type="AudioStream" uid="uid://b7jfap8w8mm2v" path="res://sounds/Attack/Boss/stop.mp3" id="12_3tro5"]
+[ext_resource type="AudioStream" uid="uid://55t1lqohvqe0" path="res://sounds/Attack/Boss/ah.mp3" id="13_7jk5w"]
+[ext_resource type="AudioStream" uid="uid://j1ynp32sxvnb" path="res://sounds/Attack/Boss/;).mp3" id="14_rer5o"]
+[ext_resource type="AudioStream" uid="uid://cmecdbio7125j" path="res://sounds/Attack/Boss/hiya.mp3" id="15_xfc1p"]
+[ext_resource type="AudioStream" uid="uid://bxcok1ynxpiba" path="res://sounds/Attack/Boss/headbutt.mp3" id="16_0ayv1"]
+[ext_resource type="AudioStream" uid="uid://cuc150hft4ehd" path="res://sounds/Attack/Boss/mwuah.mp3" id="16_5t3br"]
+[ext_resource type="AudioStream" uid="uid://gd52oeob2d4h" path="res://sounds/Attack/Boss/getbackhere.mp3" id="20_b21l8"]
+[ext_resource type="AudioStream" uid="uid://6gcdwkm2xo0u" path="res://sounds/Attack/Boss/panting.mp3" id="21_bnb7q"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_scj84"]
 atlas = ExtResource("2_4eh2p")
@@ -136,13 +151,55 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_41gnb"]
-size = Vector2(10, 26)
+size = Vector2(10, 19)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nmoij"]
 size = Vector2(14, 31.75)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yaurk"]
 radius = 72.0069
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_xsm24"]
+streams_count = 6
+stream_0/stream = ExtResource("8_v8wgf")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("9_6pudq")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("9_adn0b")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("10_6iaov")
+stream_3/weight = 0.7
+stream_4/stream = ExtResource("11_ast13")
+stream_4/weight = 0.7
+stream_5/stream = ExtResource("12_3djju")
+stream_5/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ctj5a"]
+streams_count = 4
+stream_0/stream = ExtResource("11_ffp71")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("12_3tro5")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("13_7jk5w")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("14_rer5o")
+stream_3/weight = 0.7
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_bfqmj"]
+streams_count = 3
+stream_0/stream = ExtResource("15_xfc1p")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("16_0ayv1")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("16_5t3br")
+stream_2/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_t3i3u"]
+streams_count = 2
+stream_0/stream = ExtResource("20_b21l8")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("21_bnb7q")
+stream_1/weight = 1.0
 
 [node name="MiniBoss" type="CharacterBody2D" groups=["MiniBoss"]]
 collision_layer = 4
@@ -155,7 +212,7 @@ sprite_frames = SubResource("SpriteFrames_lprbd")
 animation = &"attack"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(2, 0)
+position = Vector2(2, 1.5)
 shape = SubResource("RectangleShape2D_41gnb")
 
 [node name="HurtBox" type="Area2D" parent="."]
@@ -184,9 +241,23 @@ wait_time = 0.5
 [node name="ShootTimer" type="Timer" parent="."]
 wait_time = 1.5
 
+[node name="ShootSound" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_xsm24")
+
+[node name="HurtSound" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_ctj5a")
+
+[node name="MeleeSound" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_bfqmj")
+
+[node name="IdleSound" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_t3i3u")
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]
 [connection signal="body_exited" from="HurtBox" to="." method="_on_hurt_box_body_exited"]
 [connection signal="body_entered" from="LineOfSight" to="." method="enemy_sees_player"]
+[connection signal="body_exited" from="LineOfSight" to="." method="_on_line_of_sight_body_exited"]
 [connection signal="timeout" from="PathFindingTimer" to="." method="make_path"]
 [connection signal="timeout" from="MovementTimer" to="." method="handle_idle_movement"]
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

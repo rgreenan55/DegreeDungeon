@@ -24,23 +24,27 @@ var player_in_range : bool
 var player_in_sight : bool
 var player : Node2D
 
+var idle_played : bool
+
 # On Enemy Load
 func _ready():
 	state = EnemyStates.IDLE
 	move_speed = normal_speed
-	health = 5
+	health = 10
 
-	on_cooldown = false
+	$ChargeCooldown.start(5)
+	on_cooldown = true
+	idle_played = true
 
 	player_in_range = false
 	player_in_sight = false
 	player = get_tree().current_scene.get_node("Player")
 
+	$EnterDialogue.play()
+
 # Processes
 func _process(_delta):
-
-	print("CD ", on_cooldown, " ", $ChargeCooldown.time_left)
-
+	print(health)
 	if (health == 0): die()
 	play_animations()
 
@@ -52,6 +56,9 @@ func _physics_process(_delta):
 
 # Move Towards Next Navigation Point
 func idle_movement():
+	if (!idle_played && $ChargeCooldown.time_left < 5):
+		$IdleSound.play()
+		idle_played = true
 	make_path()
 	velocity = to_local(nav_agent.get_next_path_position()).normalized() * move_speed
 func make_path():
@@ -63,10 +70,13 @@ func alert_movement():
 	if (on_cooldown):
 		if (is_on_wall() or is_on_ceiling() or is_on_floor()):
 			state = EnemyStates.STUNNED
+			$StunnedSound.play()
 			$StunnedTimer.start()
 	else: # charge
+		$AttackSound.play()
 		$PathFindingTimer.stop()
 		velocity = position.direction_to(player.position) * charge_speed
+		idle_played = false
 		on_cooldown = true
 
 # Movement
@@ -77,7 +87,9 @@ func handle_movement():
 
 # Handles Animations
 func play_animations():
-	if (velocity.x == 0):
+	if (state == EnemyStates.STUNNED):
+		animation.play("stunned")
+	elif (velocity.x == 0):
 		if (velocity.y < 0): animation.play("move_up")
 		elif (velocity.y > 0): animation.play("move_down")
 		else: animation.play("idle")
@@ -119,10 +131,12 @@ func hit_player(body : Node2D):
 
 func handle_hit():
 	if (state == EnemyStates.STUNNED):
-		health -= 1
+		health -= 10
 
 func die():
 	print("boss died")
 	died.emit()
+	$DeathSound.play()
+	$DeathSound.reparent(get_parent())
 	# Death Animation
 	queue_free()

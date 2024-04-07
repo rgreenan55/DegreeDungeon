@@ -62,7 +62,7 @@ func _on_shoot_timer_timeout():
 	projectile_left.reparent(self.get_parent())
 	projectile_right.reparent(self.get_parent())
 	$AttackSound.playing = true
-	if alternate: 
+	if alternate:
 		projectile_up.direction.y = -1
 		projectile_down.direction.y = 1
 		projectile_left.direction.x = -1

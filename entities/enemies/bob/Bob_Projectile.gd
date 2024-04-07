@@ -4,17 +4,24 @@ extends Area2D
 var direction = Vector2.ZERO
 var speed = 180
 var player_node : Node2D
+
 #grab player position to send projectile towards it
 func _ready():
 	player_node = get_tree().current_scene.get_node("Player")
 	var enemy_node = self.get_parent() #get the parent node enemy is in
 	direction = (player_node.position - enemy_node.position).normalized()
 	reparent(enemy_node.get_parent()) #reparent to main scene where enemy is in
+	$AnimatedSprite2D.play("projectile")
 
 func _process(delta):
 	position += direction * speed * delta
-	$AnimatedSprite2D.play("projectile")
 
+func handle_hit():
+	$AnimatedSprite2D.play("break")
+	$CollisionShape2D.queue_free()
+	speed = 20
+	await $AnimatedSprite2D.animation_looped
+	queue_free()
 
 
 ##decrements the current_health of player if projectile enters player body

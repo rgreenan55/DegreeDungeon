@@ -1,7 +1,18 @@
-[gd_scene load_steps=33 format=3 uid="uid://dcnmekjes8q0c"]
+[gd_scene load_steps=49 format=3 uid="uid://dcnmekjes8q0c"]
 
 [ext_resource type="Texture2D" uid="uid://xyxdf7x1ji1v" path="res://entities/enemies/teachers_assistant/TA.png" id="1_gfhhi"]
 [ext_resource type="Script" path="res://entities/enemies/teachers_assistant/Teachers_Assistant.gd" id="1_vmoe8"]
+[ext_resource type="AudioStream" uid="uid://ch325iypvwdbi" path="res://sounds/Attack/TeachersAssistant/EnterDialogue.wav" id="3_ysq3g"]
+[ext_resource type="AudioStream" uid="uid://dcmxjgu0oa4kt" path="res://sounds/Attack/TeachersAssistant/Attack1.wav" id="4_aesf0"]
+[ext_resource type="AudioStream" uid="uid://c5ig8cppn3k0a" path="res://sounds/Attack/TeachersAssistant/Attack2.wav" id="5_p5v3h"]
+[ext_resource type="AudioStream" uid="uid://bim22ja8kj0ek" path="res://sounds/Attack/TeachersAssistant/Attack3.wav" id="6_uxv3k"]
+[ext_resource type="AudioStream" uid="uid://bsqx8jiuukh1p" path="res://sounds/Attack/TeachersAssistant/Idle1.wav" id="7_87in3"]
+[ext_resource type="AudioStream" uid="uid://b8fjhtlonmjsd" path="res://sounds/Attack/TeachersAssistant/Idle2.wav" id="8_ipf8i"]
+[ext_resource type="AudioStream" uid="uid://bldi5qcqojndw" path="res://sounds/Attack/TeachersAssistant/Idle3.wav" id="9_ub4ea"]
+[ext_resource type="AudioStream" uid="uid://itmjj68gap8y" path="res://sounds/Attack/TeachersAssistant/Idle4.wav" id="10_1g8d6"]
+[ext_resource type="AudioStream" uid="uid://cgcj28k6wggjd" path="res://sounds/Attack/TeachersAssistant/Stunned1.wav" id="11_41ld4"]
+[ext_resource type="AudioStream" uid="uid://bilcihpf72n4k" path="res://sounds/Attack/TeachersAssistant/Stunned2.wav" id="12_vusax"]
+[ext_resource type="AudioStream" uid="uid://ml1io50yoc5m" path="res://sounds/Attack/TeachersAssistant/Death.wav" id="13_ahlo3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5dhcu"]
 atlas = ExtResource("1_gfhhi")
@@ -107,6 +118,14 @@ region = Rect2(448, 0, 64, 64)
 atlas = ExtResource("1_gfhhi")
 region = Rect2(512, 0, 64, 64)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_fub3c"]
+atlas = ExtResource("1_gfhhi")
+region = Rect2(192, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rp1w6"]
+atlas = ExtResource("1_gfhhi")
+region = Rect2(448, 128, 64, 64)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_lqkjk"]
 animations = [{
 "frames": [{
@@ -206,6 +225,17 @@ animations = [{
 "loop": true,
 "name": &"move_up",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fub3c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rp1w6")
+}],
+"loop": true,
+"name": &"stunned",
+"speed": 5.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xb2v1"]
@@ -218,6 +248,34 @@ size = Vector2(24.6154, 14.6154)
 [sub_resource type="CircleShape2D" id="CircleShape2D_fbl60"]
 radius = 278.304
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_lamij"]
+streams_count = 3
+stream_0/stream = ExtResource("4_aesf0")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("5_p5v3h")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("6_uxv3k")
+stream_2/weight = 0.75
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_tvvcp"]
+streams_count = 4
+stream_0/stream = ExtResource("7_87in3")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("8_ipf8i")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("9_ub4ea")
+stream_2/weight = 0.05
+stream_3/stream = ExtResource("10_1g8d6")
+stream_3/weight = 0.75
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_grtdo"]
+playback_mode = 1
+streams_count = 2
+stream_0/stream = ExtResource("11_41ld4")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("12_vusax")
+stream_1/weight = 0.75
+
 [node name="TeachersAssistant" type="CharacterBody2D" groups=["Enemy"]]
 z_index = 2
 scale = Vector2(0.65, 0.65)
@@ -227,8 +285,8 @@ script = ExtResource("1_vmoe8")
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_lqkjk")
-animation = &"idle"
-frame_progress = 0.679265
+animation = &"stunned"
+frame_progress = 0.260136
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 9.23077)
@@ -257,12 +315,30 @@ wait_time = 0.5
 autostart = true
 
 [node name="ChargeCooldown" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 7.5
 one_shot = true
 
 [node name="StunnedTimer" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 4.0
 one_shot = true
+
+[node name="EnterDialogue" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_ysq3g")
+volume_db = 5.0
+
+[node name="AttackSound" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_lamij")
+volume_db = -10.0
+
+[node name="IdleSound" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_tvvcp")
+
+[node name="StunnedSound" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_grtdo")
+volume_db = -10.0
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_ahlo3")
 
 [connection signal="body_entered" from="Hurtbox" to="." method="hit_player"]
 [connection signal="body_entered" from="Sight" to="." method="set_player_in_range"]
