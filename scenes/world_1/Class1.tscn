@@ -9,7 +9,7 @@
 
 [node name="Class1" type="Node2D"]
 script = ExtResource("1_xpcpj")
-story_for_next_level = "Pheu, that was a close one! Going into the last class of <your degree> or <the year>, you've made alot of friends, but more importantly, you've made alot of enemies. They are back for revenge!"
+story_for_next_level = "Pheu, that was a close one! Going into the last class of your degree, you've made alot of friends, but more worryingly, you've made alot of enemies. They are back for revenge!"
 
 [node name="Classroom" parent="." instance=ExtResource("2_vhugu")]
 

@@ -32,8 +32,13 @@ position = Vector2(560, 72)
 z_index = 1
 position = Vector2(736, 72)
 
+[node name="ExitDoor6" parent="ExitDoors" instance=ExtResource("6_xp7tp")]
+z_index = 4
+position = Vector2(624, 168)
+
 [connection signal="s_exit_door" from="ExitDoors/ExitDoor1" to="." method="_on_exit_door_top_s_exit_door"]
 [connection signal="s_exit_door" from="ExitDoors/ExitDoor2" to="." method="_on_exit_door_top_s_exit_door"]
 [connection signal="s_exit_door" from="ExitDoors/ExitDoor3" to="." method="_on_exit_door_top_s_exit_door"]
 [connection signal="s_exit_door" from="ExitDoors/ExitDoor4" to="." method="_on_exit_door_top_s_exit_door"]
 [connection signal="s_exit_door" from="ExitDoors/ExitDoor5" to="." method="_on_exit_door_top_s_exit_door"]
+[connection signal="s_exit_door" from="ExitDoors/ExitDoor6" to="." method="_on_exit_door_top_s_exit_door"]
