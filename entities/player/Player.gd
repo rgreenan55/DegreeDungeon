@@ -33,7 +33,7 @@ var current_health : int :
 		if (current_health > value): $HurtSound.playing = true
 		current_health = value
 		s_health_changed.emit(value)
-		if (value == 0): handle_death()
+		if (current_health == 0): handle_death()
 		start_invincibility_frames()
 
 # On Player Load
