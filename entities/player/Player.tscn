@@ -543,7 +543,7 @@ volume_db = 5.0
 stream = SubResource("AudioStreamRandomizer_hw71u")
 volume_db = -5.0
 
-[connection signal="area_entered" from="MeleeAttack" to="MeleeAttack" method="_on_body_entered"]
-[connection signal="body_entered" from="MeleeAttack" to="MeleeAttack" method="_on_body_entered"]
+[connection signal="area_entered" from="MeleeAttack" to="MeleeAttack" method="_on_hit"]
+[connection signal="body_entered" from="MeleeAttack" to="MeleeAttack" method="_on_hit"]
 [connection signal="area_entered" from="HurtBox" to="." method="handle_hit"]
 [connection signal="body_entered" from="HurtBox" to="." method="handle_hit"]

@@ -17,7 +17,7 @@ var is_speedy: bool
 
 var powerup_duration: int = 10
 var speed_multi: float = 1.5
-var last_hit_time: int = 0
+var last_hit_time: float = 0
 var invincibility_frames_duration: float = 0.5
 
 # Signals
@@ -29,6 +29,7 @@ var current_health : int :
 	set (value):
 		if current_health > value and (is_invincible or is_invincible_powerup):
 			return false
+		if (current_health > value): $HurtSound.playing = true
 		current_health = value
 		s_health_changed.emit(value)
 		if (value == 0): handle_death()
@@ -66,7 +67,6 @@ func handle_invincibility_frames(delta):
 		last_hit_time = 0
 
 func start_invincibility_frames():
-	print("invincible")
 	is_invincible = true
 	last_hit_time = invincibility_frames_duration
 
@@ -119,16 +119,13 @@ func determine_animation():
 		else: animation.flip_h = false
 
 func handle_hit(body):
-	if (body.is_in_group("Enemy") || body.is_in_group("Projectile")):
+	if ((body.is_in_group("Enemy") && !body.is_in_group("Passive")) || body.is_in_group("Projectile")):
 		current_health -= 1
-		s_health_changed.emit(current_health)
 
 	if(body.is_in_group("MiniBoss")):
 		body.attack = true
 		current_health -= 1
-		s_health_changed.emit(current_health)
 
-	$HurtSound.playing = true
 
 
 func handle_death():
