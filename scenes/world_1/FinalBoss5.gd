@@ -56,6 +56,6 @@ func _on_beer_timer_timeout():
 	var beer = beerTemplate.instantiate()
 	beer.position.x = 23+randf()*(712-23)
 	beer.position.y = 71+randf()*(408-71)
-	beer.s_picked_up.connect(_play_drinking_noise)
+	beer.picked_up.connect(_play_drinking_noise)
 	add_child(beer)
 	pass # Replace with function body.
