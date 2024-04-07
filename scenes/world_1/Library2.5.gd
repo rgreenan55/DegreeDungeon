@@ -2,11 +2,6 @@ extends "res://scenes/world_1/generic_room_logic.gd"
 
 @export var BossTemplate : PackedScene
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	s_disable_follow_camera.emit()
-	super._ready()
-
 func _check_room_clear():
 	if room_cleared:
 		_display_report_card()
