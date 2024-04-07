@@ -18,9 +18,12 @@ func attack():
 	if lastUsed < 0:
 		animation.play("attack")
 		$"../AttackSound".playing = true
-		lastUsed = delay 
+		lastUsed = delay
 
-func _on_body_entered(body):
-	if (body.has_method("handle_hit")):
-		body.knockback = $"..".global_position.direction_to(body.global_position) * force
-		body.handle_hit()
+func _on_hit(thing_hit : Node2D):
+	if (thing_hit.has_method("handle_hit")):
+		if (thing_hit.is_in_group("Enemy")):
+			thing_hit.knockback = $"..".global_position.direction_to(thing_hit.global_position) * force
+			thing_hit.handle_hit()
+		if (thing_hit.is_in_group("Projectile")):
+			thing_hit.handle_hit()

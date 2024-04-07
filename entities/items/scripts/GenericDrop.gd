@@ -14,10 +14,13 @@ var powerups = [
 
 signal s_picked_up
 
+var powerup_instance
+
 func _ready():
 	var powerup = load(powerups.pick_random())
 	if powerup:
-		var powerup_instance = powerup.instantiate()
+		powerup_instance = powerup.instantiate()
+		powerup_instance.get_node("CollisionShape2D").disabled = true
 		powerup_instance.picked_up.connect(_picked_up)
 		pickup.add_child(powerup_instance)
 		animation_player.play("Drop_Fade_In")
@@ -25,3 +28,7 @@ func _ready():
 func _picked_up():
 	s_picked_up.emit()
 	# We should queue free here but we can't cause invincibility
+
+func enable_pickup():
+	print("Called Me")
+	powerup_instance.get_node("CollisionShape2D").disabled = false
