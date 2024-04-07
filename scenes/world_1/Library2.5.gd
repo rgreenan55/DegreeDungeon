@@ -10,7 +10,7 @@ func _check_room_clear():
 		GameState.scene_cleared()
 	elif get_tree().get_nodes_in_group("Enemy").size() > 0:
 		last_enemy_pos = get_tree().get_nodes_in_group("Enemy")[0].position
-		
+
 func _on_boss_died():
 	print("on boss died function")
 	GameState.scene_cleared()
