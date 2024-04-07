@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://bghlk20cvt4ed"]
+[gd_scene load_steps=45 format=3 uid="uid://bghlk20cvt4ed"]
 
 [ext_resource type="Script" path="res://entities/enemies/amelia/Amelia.gd" id="1_du78g"]
 [ext_resource type="AudioStream" uid="uid://chp8ex28kq2lk" path="res://sounds/Attack/Amelia/hurt1.mp3" id="3_3pboo"]
@@ -172,6 +172,26 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Animation" id="Animation_b7wcg"]
+resource_name = "on_hit"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nwr62"]
+_data = {
+"on_hit": SubResource("Animation_b7wcg")
+}
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a23d6"]
 radius = 9.0
 
@@ -218,6 +238,7 @@ stream_2/stream = ExtResource("14_kf8ib")
 stream_2/weight = 1.0
 
 [node name="Amelia" type="CharacterBody2D" groups=["Enemy"]]
+z_index = 2
 scale = Vector2(0.75, 0.75)
 collision_layer = 4
 collision_mask = 41
@@ -229,6 +250,12 @@ script = ExtResource("1_du78g")
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_w823c")
 animation = &"idle"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_nwr62")
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_a23d6")

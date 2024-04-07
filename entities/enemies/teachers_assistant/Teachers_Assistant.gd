@@ -89,6 +89,7 @@ func handle_movement():
 # Handles Animations
 func play_animations():
 	if (state == EnemyStates.STUNNED):
+		$StunnedSprite.visible = true
 		animation.play("stunned")
 	elif (velocity.x == 0):
 		if (velocity.y < 0): animation.play("move_up")
@@ -117,6 +118,7 @@ func SightCheck():
 			state = EnemyStates.ALERT
 
 func stun_over():
+	$StunnedSprite.visible = false
 	state = EnemyStates.IDLE
 	$ChargeCooldown.start()
 
@@ -132,6 +134,7 @@ func hit_player(body : Node2D):
 func handle_hit():
 	if (state == EnemyStates.STUNNED):
 		current_health -= 1
+		$AnimatedSprite/AnimationPlayer.play("on_hit")
 		s_damaged.emit()
 
 func die():

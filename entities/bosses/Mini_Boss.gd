@@ -15,7 +15,7 @@ signal s_damaged
 @export var projectile_template : PackedScene
 var death : bool
 var move_speed : float
-var max_health: int = 20
+var max_health: int = 2
 var current_health : int
 var state : EnemyStates
 var player : Node2D
@@ -35,18 +35,22 @@ func _ready():
 
 # Processes
 func _process(_delta):
-	if (current_health == 0):
+	if (current_health <= 0):
+		$ShootTimer.autostart = false
+		$ShootTimer.stop()
 		death = true
-	if (current_health == 10):
+	if (!range && current_health < 10):
 		switch_to_range()
 	play_animations()
 
 # Processes Physics
 func _physics_process(delta):
-	if (state == EnemyStates.ALERT): handle_alert_movement()
-	#keep_enemy_in_bounds()
-	velocity = velocity + knockback
-	knockback = lerp(knockback, Vector2.ZERO, 0.1)
+	if (death):
+		velocity = Vector2.ZERO
+	else:
+		if (state == EnemyStates.ALERT): handle_alert_movement()
+		velocity = velocity + knockback
+		knockback = lerp(knockback, Vector2.ZERO, 0.1)
 	move_and_slide()
 
 # Move Towards Next Navigation Point
@@ -81,10 +85,7 @@ func play_animations():
 		animation.play("attack")
 	elif death:
 		animation.play("die")
-		var frames_count = animation.sprite_frames.get_frame_count("die")
-		var cur_frame = animation.frame
-		if(cur_frame == (frames_count-1)): #check if all frames in death animation has been ran
-			die()
+		animation.animation_looped.connect(die)
 	elif (velocity.x == 0):
 		if (velocity.y < 0):
 			animation.play("move")
@@ -97,15 +98,15 @@ func play_animations():
 		else: animation.flip_h = false
 
 func handle_hit():
-	$HurtSound.playing = true
 	current_health -= 1
+	if (current_health <= 0): $DeathSound.play()
+	else: $HurtSound.play()
+	$AnimatedSprite2D/AnimationPlayer.play("on_hit")
 	s_damaged.emit()
 
 func die():
 	died.emit()
 	queue_free()
-	$ShootTimer.autostart = false
-	$ShootTimer.stop()
 
 #turns off attack animation if not in player body
 func _on_hurt_box_body_exited(body):
@@ -121,14 +122,14 @@ func switch_to_range():
 
 #spawn projectile on shoot timer timeout
 func _on_shoot_timer_timeout():
-	if((randi_range(1,10) > 3) and !$HurtSound.playing and !$MeleeSound.playing and !$IdleSound.playing): $ShootSound.playing = true
+	if((randi_range(1,10) > 3) and !$HurtSound.playing and !$MeleeSound.playing and !$IdleSound.playing): $ShootSound.play()
 	var projectile = projectile_template.instantiate()
 	add_child(projectile)
 
 #to play melee sound
 func _on_hurt_box_body_entered(body):
-	if(!$HurtSound.playing and !$ShootSound.playing and !$IdleSound.playing): $MeleeSound.playing = true
+	if(!$HurtSound.playing and !$ShootSound.playing and !$IdleSound.playing): $MeleeSound.play()
 
 #50% chance to play idle sounds when exiting line of sight
 func _on_line_of_sight_body_exited(body):
-	if(!$ShootSound.playing and (randi_range(1,99) > 50) and !$MeleeSound.playing and !$HurtSound.playing): $IdleSound.playing = true
+	if(!$ShootSound.playing and (randi_range(1,99) > 50) and !$MeleeSound.playing and !$HurtSound.playing): $IdleSound.play()

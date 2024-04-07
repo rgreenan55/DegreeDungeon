@@ -92,6 +92,7 @@ func playSound():
 
 func handle_hit():
 	health -= 1
+	$AnimatedSprite/AnimationPlayer.play("on_hit")
 	$HurtSound.playing = true
 
 func die():
