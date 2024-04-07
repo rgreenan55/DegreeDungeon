@@ -22,7 +22,7 @@ func attack():
 
 func _on_hit(thing_hit : Node2D):
 	if (thing_hit.has_method("handle_hit")):
-		if (thing_hit.is_in_group("Enemy")):
+		if (thing_hit.is_in_group("Enemy") || thing_hit.is_in_group("MiniBoss")):
 			thing_hit.knockback = $"..".global_position.direction_to(thing_hit.global_position) * force
 			thing_hit.handle_hit()
 		if (thing_hit.is_in_group("Projectile")):
