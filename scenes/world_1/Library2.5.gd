@@ -1,6 +1,7 @@
 extends "res://scenes/world_1/generic_room_logic.gd"
 
 @export var BossTemplate : PackedScene
+@onready var health_bar = %HealthBar
 
 func _check_room_clear():
 	if room_cleared:
@@ -21,4 +22,5 @@ func _on_paper_picked_up():
 	enemy.position.x = 64
 	enemy.position.y = 40
 	add_child(enemy) #adds as a child of ourselves
+	health_bar.initialize(enemy)
 	enemy.died.connect(_on_boss_died)

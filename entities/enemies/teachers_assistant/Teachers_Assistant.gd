@@ -6,6 +6,7 @@ extends CharacterBody2D
 
 # Signals
 signal died
+signal s_damaged
 
 # Enums & Constants
 enum EnemyStates { IDLE, ALERT, STUNNED }
@@ -14,7 +15,8 @@ const normal_speed = 30
 
 # Variables
 var move_speed : float
-var health : int
+var max_health: int = 10
+var current_health : int
 var knockback : Vector2
 var state : EnemyStates
 
@@ -30,7 +32,7 @@ var idle_played : bool
 func _ready():
 	state = EnemyStates.IDLE
 	move_speed = normal_speed
-	health = 10
+	current_health = max_health
 
 	$ChargeCooldown.start(5)
 	on_cooldown = true
@@ -44,8 +46,7 @@ func _ready():
 
 # Processes
 func _process(_delta):
-	print(health)
-	if (health == 0): die()
+	if (current_health == 0): die()
 	play_animations()
 
 # Processes Physics
@@ -131,10 +132,10 @@ func hit_player(body : Node2D):
 
 func handle_hit():
 	if (state == EnemyStates.STUNNED):
-		health -= 10
+		current_health -= 1
+		s_damaged.emit()
 
 func die():
-	print("boss died")
 	died.emit()
 	$DeathSound.play()
 	$DeathSound.reparent(get_parent())

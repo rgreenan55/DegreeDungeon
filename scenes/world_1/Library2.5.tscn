@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ci8owmeaydahj"]
+[gd_scene load_steps=10 format=3 uid="uid://ci8owmeaydahj"]
 
 [ext_resource type="Script" path="res://scenes/world_1/Library2.5.gd" id="1_8utiq"]
 [ext_resource type="PackedScene" uid="uid://dcnmekjes8q0c" path="res://entities/enemies/teachers_assistant/Teachers_Assistant.tscn" id="2_4hem6"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://b0veca2rgcc3y" path="res://entities/items/objects/SubBossPickup.tscn" id="6_h743g"]
 [ext_resource type="PackedScene" uid="uid://b5lm5qgpj3txv" path="res://menus/report_card/report_card.tscn" id="6_px7qa"]
 [ext_resource type="PackedScene" uid="uid://cmigi4uq1hp61" path="res://entities/items/objects/HealthPickup.tscn" id="8_xl4pc"]
+[ext_resource type="PackedScene" uid="uid://cj5igp2pv7qha" path="res://ui/health_bar_ui/health_bar.tscn" id="9_btqx3"]
 
 [node name="Class2" type="Node2D"]
 script = ExtResource("1_8utiq")
@@ -39,6 +40,9 @@ position = Vector2(28, 188)
 
 [node name="HealthPickup3" parent="." instance=ExtResource("8_xl4pc")]
 position = Vector2(354, 48)
+
+[node name="HealthBar" parent="." instance=ExtResource("9_btqx3")]
+unique_name_in_owner = true
 
 [connection signal="s_exit_door" from="Exits/ExitDoor1" to="." method="_transition_level"]
 [connection signal="picked_up" from="SubBossPickup" to="." method="_on_paper_picked_up"]
