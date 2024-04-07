@@ -15,7 +15,7 @@ signal s_damaged
 @export var projectile_template : PackedScene
 var death : bool
 var move_speed : float
-var max_health: int = 2
+var max_health: int = 20
 var current_health : int
 var state : EnemyStates
 var player : Node2D
